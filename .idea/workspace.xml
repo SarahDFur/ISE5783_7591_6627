@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="Geometries &amp; Primitives&#10;- files">
-      <change afterPath="$PROJECT_DIR$/src/geometries/Geometry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/geometries/RadialGeometry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/primitives/Double3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/primitives/Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geometries/Triangle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +61,14 @@
       <option name="presentableId" value="Default" />
       <updated>1677401526457</updated>
     </task>
+    <task id="LOCAL‎-00001" summary="Geometries &amp; Primitives&#10;- files">
+      <created>1678360334430</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL‎-00001" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1678360334430</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
