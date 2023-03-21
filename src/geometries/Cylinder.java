@@ -5,7 +5,7 @@ import primitives.Ray;
 import primitives.Vector;
 
 /**
- *Cylinder class extending class Tube,
+ *Cylinder class extending class Tube
  * represents a cylinder in 3D Cartesian coordinate system
  */
 public class Cylinder extends Tube{
