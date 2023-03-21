@@ -3,6 +3,10 @@ package primitives;
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
+/**
+ * Vector class extending Point class,
+ * represents a vector in 3D Cartesian coordinate system
+ */
 public class Vector extends Point {
     /**
      * constructor
@@ -43,11 +47,7 @@ public class Vector extends Point {
 
     public Vector add(Vector other)
     {
-        return new Vector(
-                _xyz.d1+other._xyz.d1,
-                _xyz.d2+other._xyz.d2,
-                _xyz.d3+other._xyz.d3
-        );
+        return new Vector(_xyz.add(other._xyz));
     }
 
 

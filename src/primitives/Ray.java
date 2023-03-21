@@ -1,21 +1,37 @@
 package primitives;
 
+/**
+ * Ray class represents a ray in 3D Cartesian coordinate system,
+ * using a point and a vector
+ */
 public class Ray {
     final private Point p0;
     final private Vector dir;
 
+    /**
+     * constructor
+     * normalize the vector received
+     * @param p0 point
+     * @param dir direction vector
+     */
     public Ray(Point p0, Vector dir) {
         this.p0 = p0;
-        this.dir = dir;
+        this.dir = dir.normalize();
+    }
+
+    public Point getP0() {
+        return p0;
+    }
+
+    public Vector getDir() {
+        return dir;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Ray ray = (Ray) o;
-
         if (!p0.equals(ray.p0)) return false;
         return dir.equals(ray.dir);
     }

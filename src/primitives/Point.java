@@ -4,6 +4,9 @@ import java.util.Objects;
 
 import static java.lang.Math.max;
 
+/**
+ * Point class represents a point in 3D Cartesian coordinate system
+ */
 public class Point {
     /**
      * point zero is frequently used
@@ -25,20 +28,11 @@ public class Point {
     }
 
     /**
-     * setter which receives Double3
+     * constructor which receives Double3
      * @param xyz the Double3 for creating the Point
      */
     public Point(Double3 xyz) {
         _xyz = xyz;
-    }
-
-
-    /**
-     * getter
-     * @return the Double3 coordinates
-     */
-    public Double3 getXyz() {
-        return _xyz;
     }
 
     @Override
@@ -67,11 +61,7 @@ public class Point {
      * @return point result of vector addition
      */
     public Point add(Vector vector) {
-        return new Point(
-                _xyz.d1 + vector._xyz.d1,
-                _xyz.d2 + vector._xyz.d2,
-                _xyz.d3 + vector._xyz.d3
-        );
+        return new Point(_xyz.add(vector._xyz));
     }
 
     /**
@@ -83,11 +73,7 @@ public class Point {
         if (other._xyz.equals(_xyz)) {
             throw new IllegalArgumentException("Cannot create Vector (0,0,0)");
         }
-        return new Vector(
-                _xyz.d1 - other._xyz.d1,
-                _xyz.d2 - other._xyz.d2,
-                _xyz.d3 - other._xyz.d3
-        );
+        return new Vector(_xyz.subtract(other._xyz));
     }
 
     /**
