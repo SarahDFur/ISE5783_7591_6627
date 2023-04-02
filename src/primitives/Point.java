@@ -15,7 +15,7 @@ public class Point {
     /**
      * coordinates of the point
      */
-    final Double3 _xyz;
+    final Double3 xyz;
 
     /**
      * constructor which receives 3 doubles
@@ -24,7 +24,7 @@ public class Point {
      * @param d3 third coordinate
      */
     public Point(double d1, double d2, double d3) {
-        _xyz = new Double3(d1, d2, d3);
+        xyz = new Double3(d1, d2, d3);
     }
 
     /**
@@ -32,7 +32,7 @@ public class Point {
      * @param xyz the Double3 for creating the Point
      */
     public Point(Double3 xyz) {
-        _xyz = xyz;
+        this.xyz = xyz;
     }
 
     @Override
@@ -40,18 +40,18 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return _xyz.equals(point._xyz);
+        return xyz.equals(point.xyz);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_xyz);
+        return Objects.hash(xyz);
     }
 
     @Override
     public String toString() {
         return "Point{" +
-                "_xyz=" + _xyz +
+                "_xyz=" + xyz +
                 '}';
     }
 
@@ -61,7 +61,7 @@ public class Point {
      * @return point result of vector addition
      */
     public Point add(Vector vector) {
-        return new Point(_xyz.add(vector._xyz));
+        return new Point(xyz.add(vector.xyz));
     }
 
     /**
@@ -70,10 +70,10 @@ public class Point {
      * @return my vector minus other vector
      */
     public Vector subtract(Point other) {
-        if (other._xyz.equals(_xyz)) {
+        if (other.xyz.equals(xyz)) {
             throw new IllegalArgumentException("Cannot create Vector (0,0,0)");
         }
-        return new Vector(_xyz.subtract(other._xyz));
+        return new Vector(xyz.subtract(other.xyz));
     }
 
     /**
@@ -91,9 +91,9 @@ public class Point {
      * @return returns the distance between two points
      */
     public double distanceSquared(Point p) {
-        double a = _xyz.d1 - p._xyz.d1;
-        double b = _xyz.d2 - p._xyz.d2;
-        double c = _xyz.d3 - p._xyz.d3;
+        double a = xyz.d1 - p.xyz.d1;
+        double b = xyz.d2 - p.xyz.d2;
+        double c = xyz.d3 - p.xyz.d3;
 
         return a * a + b * b + c * c;
     }
