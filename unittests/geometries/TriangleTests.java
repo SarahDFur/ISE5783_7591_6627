@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for geometries.Triangle class
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public class TriangleTests {
 

@@ -13,21 +13,27 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PointTests {
 
+    /**
+     *  Test method for {@link Point#add(Vector)}.
+     *  Checks addition
+     */
     @Test
     void add() {
-        // ============ Equivalence Partitions Tests ==============
-        //TC00: Addition with a positive result
         Point p0 = new Point(0,0,0);
         Vector v1 = new Vector(1,1,1);
+        // ============ Equivalence Partitions Tests ==============
+        //TC00: Addition with a positive result
         assertEquals(new Point (1,1,1), p0.add(v1), "Incorrect addition");
 
         // =============== Boundary Values Tests ==================
         //TC01: Addition with a negative result
-        assertThrows(IllegalArgumentException.class,
-                ()-> p0.add(new Vector(0,0,0)),
-                "impossible addition");
+        assertThrows(IllegalArgumentException.class, ()->p0.add(new Vector(0,0,0)), "impossible addition");
     }
 
+    /**
+     *  Test method for {@link Point#subtract(Point)}.
+     *  Checks subtraction
+     */
     @Test
     void subtract() {
         Point p1 = new Point(2, 4, 3);
@@ -36,39 +42,36 @@ public class PointTests {
 
         // =============== Boundary Values Tests ==================
         // TC00: Subtraction results in vector 0
-
-        assertThrows(IllegalArgumentException.class,
-                ()->p1.subtract(p1),
-                "Subtraction results in vector 0");
+        assertThrows(IllegalArgumentException.class, ()->p1.subtract(p1), "Subtraction results in vector 0");
 
         // ============ Equivalence Partitions Tests ==============
         //TC01: Result is positive
         Assertions.assertEquals(new Vector(1,3,2),p1.subtract(p2),"Vector subtraction with positive result failed");
-
         //TC02: Result is negative
         assertEquals(new Vector(-1,-3,-2),p2.subtract(p1),"Vector subtraction with negative result failed");
-
         //TC03: Subtracting a negative number
         assertEquals(new Vector(7,10,10),p1.subtract(p3),"Vector subtraction with negative vector failed");
     }
 
+    /**
+     *  Test method for {@link Point#distance(Point)}.
+     *  Checks distance calculation
+     */
     @Test
     void distance() {
         // ============ Equivalence Partitions Tests ==============
         //TC00: Distance between two points is calculated correctly
-        assertEquals(
-                9,
-                new Point (0,0,0).distance(new Point (0,0,9)),
-                "Problem with distance calculation");
+        assertEquals(9, new Point (0,0,0).distance(new Point (0,0,9)), "Problem with distance calculation");
     }
 
+    /**
+     *  Test method for {@link Point#distanceSquared(Point)}.
+     *  Checks distance (squared) calculation - sum of squared coordinates
+     */
     @Test
     void distanceSquared() {
         // ============ Equivalence Partitions Tests ==============
         //TC00: Squared distance between two points is calculated correctly
-        assertEquals(
-                3,
-                new Point (0,0,0).distanceSquared(new Point (1,1,1)),
-                "Problem with distance calculation");
+        assertEquals(3, new Point (0,0,0).distanceSquared(new Point (1,1,1)), "Problem with distance calculation");
     }
 }

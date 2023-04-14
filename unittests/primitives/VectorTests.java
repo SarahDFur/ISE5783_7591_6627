@@ -22,7 +22,7 @@ public class VectorTests {
         Vector v1 = new Vector(1,1,1);
         Vector v2 = new Vector (-1,-1,-1);
         Vector v3 = new Vector (-5,-6,-7);
-        Vector v4 = new Vector(2, 4, 3);
+        Vector v4 = new Vector(2, 4, 6);
 
         // =============== Boundary Values Tests ==================
         //TC00: Addition results in vector 0
@@ -32,7 +32,7 @@ public class VectorTests {
 
         // ============ Equivalence Partitions Tests ==============
         //TC02: Result is positive
-        assertEquals(new Vector(3,5,4), v4.add(v1), "Error in addition calculation");
+        assertEquals(new Vector(3,5,7), v4.add(v1), "Error in addition calculation");
         //TC03: Result is negative
         assertEquals(new Vector(-3,-2,-4), v4.add(v3), "Error in addition calculation");
     }
@@ -76,7 +76,7 @@ public class VectorTests {
 
     /**
      * Test method for {@link Vector#length()}.
-     *
+     * Checks that correct length is calculated
      */
     @Test
     public void length() {
@@ -87,7 +87,7 @@ public class VectorTests {
 
     /**
      * Test method for {@link primitives.Vector#dotProduct(Vector)}.
-     *
+     * Checks if the dot product is correct
      */
     @Test
     public void dotProduct() {
@@ -98,6 +98,7 @@ public class VectorTests {
         // =============== Boundary Values Tests ==================
         //TC00: dot product between orthogonal vectors
         assertTrue(isZero(v1.dotProduct(v3)),"ERROR: dotProduct() for orthogonal vectors is not zero");
+
         // ============ Equivalence Partitions Tests ==============
         //TC01: checking that dot product is the correct value
         assertTrue(isZero(v1.dotProduct(v2) + 28), "ERROR: dotProduct() wrong value");
@@ -105,7 +106,7 @@ public class VectorTests {
 
     /**
      * Test method for {@link primitives.Vector#crossProduct(Vector)}.
-     *
+     * Checks that the cross product is correct
      */
     @Test
     public void crossProduct() {
@@ -115,42 +116,35 @@ public class VectorTests {
 
         // =============== Boundary Values Tests ==================
         //TC00: two vectors are parallel
-        assertThrows(IllegalArgumentException.class,
-                ()->v1.crossProduct(v2),
-                "ERROR: crossProduct() for parallel vectors does not throw an exception" );
+        assertThrows(IllegalArgumentException.class, ()->v1.crossProduct(v2), "ERROR: crossProduct() for parallel vectors does not throw an exception" );
 
         // ============ Equivalence Partitions Tests ==============
         Vector vr = v1.crossProduct(v3);
         //TC01.1: checking correct length for vr
         assertTrue(isZero(vr.length() - v1.length() * v3.length()),"ERROR: crossProduct() wrong result length");
         //TC01.2: checking vr is orthogonal to v1 and v3
-        assertTrue(isZero(vr.dotProduct(v1)) || !isZero(vr.dotProduct(v3)),
-                "ERROR: crossProduct() result is not orthogonal to its operands");
+        assertTrue(isZero(vr.dotProduct(v1)) || !isZero(vr.dotProduct(v3)), "ERROR: crossProduct() result is not orthogonal to its operands");
     }
 
     /**
      * Test method for {@link Vector#normalize()}.
-     *
+     * Checks that normalize() functions properly
      */
     @Test
     public void normalize() {
         Vector v = new Vector(0, 0, 9);
-        Vector u = v.normalize();
+        Vector normalized = v.normalize();
 
         // =============== Boundary Values Tests ==================
         //TC00.1 checking that the length of the normalized vector is 1
-        assertTrue(isZero(u.length() - 1),"ERROR: the normalized vector is not a unit vector");
-
+        assertTrue(isZero(normalized.length() - 1),"ERROR: the normalized vector is not a unit vector");
         //TC00.2 checking that the normalized vector is parallel to the original vector
-        assertThrows(IllegalArgumentException.class,
-                ()->v.crossProduct(u),
-                "ERROR: the normalized vector is not parallel to the original one");
-
+        assertThrows(IllegalArgumentException.class, ()->v.crossProduct(normalized), "ERROR: the normalized vector is not parallel to the original one");
         //TC00.3 checking that the normalized vector is in the same direction as the original vector
-        assertTrue(v.dotProduct(u) > 0, "ERROR: the normalized vector is opposite to the original one");
+        assertTrue(v.dotProduct(normalized) > 0, "ERROR: the normalized vector is opposite to the original one");
 
         // ============ Equivalence Partitions Tests ==============
         //TC01: checking that the vector was normalized correctly
-        assertEquals(new Vector (0,0,1),u, "Vector was normalized incorrectly");
+        assertEquals(new Vector (0,0,1), normalized, "Vector was normalized incorrectly");
     }
 }

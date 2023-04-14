@@ -8,7 +8,7 @@ import primitives.Vector;
  * represents a sphere in 3D Cartesian coordinate system
  */
 public class Sphere extends RadialGeometry {
-    private Point center;
+    final private Point center;
 
     /**
      * constructor

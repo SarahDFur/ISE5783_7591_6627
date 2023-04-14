@@ -8,6 +8,7 @@ import primitives.Vector;
 
 /**
  * Unit tests for geometries.Plane class
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public class PlaneTests {
 
