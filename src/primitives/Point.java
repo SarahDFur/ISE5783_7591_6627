@@ -56,18 +56,18 @@ public class Point {
     }
 
     /**
-     *
-     * @param vector to add to vector
-     * @return point result of vector addition
+     * calculate caller point plus param vector
+     * @param vector to add to caller point
+     * @return a point result of vector addition
      */
     public Point add(Vector vector) {
         return new Point(xyz.add(vector.xyz));
     }
 
     /**
-     * vector is in the direction from the other to me
-     * @param other is other vector
-     * @return my vector minus other vector
+     * calculate caller point minus param point
+     * @param other is other point
+     * @return a vector starting at caller and ending at other
      */
     public Vector subtract(Point other) {
         if (other.xyz.equals(xyz)) {
@@ -86,7 +86,7 @@ public class Point {
     }
 
     /**
-     *
+     * finds the squared distance between two points
      * @param p one of the points for comparison
      * @return returns the distance between two points
      */
