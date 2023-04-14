@@ -4,16 +4,17 @@ import primitives.Point;
 import primitives.Vector;
 
 /**
- *Sphere class extending abstract class RadialGeometry,
+ * Sphere class extending abstract class RadialGeometry,
  * represents a sphere in 3D Cartesian coordinate system
  */
-public class Sphere extends RadialGeometry{
+public class Sphere extends RadialGeometry {
     private Point center;
 
     /**
      * constructor
+     *
      * @param radius radius of geometry
-     * @param point center of sphere
+     * @param point  center of sphere
      */
     public Sphere(double radius, Point point) {
         super(radius);
@@ -26,6 +27,6 @@ public class Sphere extends RadialGeometry{
 
     @Override
     public Vector getNormal(Point point) {
-        return null;
+        return point.subtract(center).normalize();
     }
 }
