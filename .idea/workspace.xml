@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="geometries - implementing getNormal(Point)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/primitives/PointTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/primitives/PointTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/primitives/VectorTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/primitives/VectorTests.java" afterDir="false" />
-    </list>
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="adding tag for stage 2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,7 +210,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1681390220244</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL‎-00004" summary="adding tag for stage 2">
+      <created>1681579924787</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL‎-00004" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1681579924787</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,6 +264,7 @@
     <MESSAGE value="-&gt; unittests - opened files for each class&#10;(implementation pending)&#10;-&gt; renamed fields in class Point.java" />
     <MESSAGE value="unittests - geometries getNormal tests" />
     <MESSAGE value="geometries - implementing getNormal(Point)" />
-    <option name="LAST_COMMIT_MESSAGE" value="geometries - implementing getNormal(Point)" />
+    <MESSAGE value="adding tag for stage 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding tag for stage 2" />
   </component>
 </project>
