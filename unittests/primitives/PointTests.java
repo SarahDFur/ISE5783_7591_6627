@@ -18,7 +18,7 @@ public class PointTests {
      *  Checks addition
      */
     @Test
-    void add() {
+    void testAdd() {
         Point p0 = new Point(0,0,0);
         Vector v1 = new Vector(1,1,1);
         // ============ Equivalence Partitions Tests ==============
@@ -35,7 +35,7 @@ public class PointTests {
      *  Checks subtraction
      */
     @Test
-    void subtract() {
+    void testSubtract() {
         Point p1 = new Point(2, 4, 3);
         Point p2 = new Point(1,1,1);
         Point p3 = new Point (-5,-6,-7);
@@ -58,7 +58,7 @@ public class PointTests {
      *  Checks distance calculation
      */
     @Test
-    void distance() {
+    void testDistance() {
         // ============ Equivalence Partitions Tests ==============
         //TC00: Distance between two points is calculated correctly
         assertEquals(9, new Point (0,0,0).distance(new Point (0,0,9)), "Problem with distance calculation");
@@ -69,7 +69,7 @@ public class PointTests {
      *  Checks distance (squared) calculation - sum of squared coordinates
      */
     @Test
-    void distanceSquared() {
+    void testDistanceSquared() {
         // ============ Equivalence Partitions Tests ==============
         //TC00: Squared distance between two points is calculated correctly
         assertEquals(3, new Point (0,0,0).distanceSquared(new Point (1,1,1)), "Problem with distance calculation");

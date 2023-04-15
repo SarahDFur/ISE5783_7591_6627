@@ -18,7 +18,7 @@ public class VectorTests {
      * Checking BVA & EP between 2 vectors (additions)
      */
     @Test
-    public void add() {
+    public void testAdd() {
         Vector v1 = new Vector(1,1,1);
         Vector v2 = new Vector (-1,-1,-1);
         Vector v3 = new Vector (-5,-6,-7);
@@ -34,7 +34,7 @@ public class VectorTests {
         //TC02: Result is positive
         assertEquals(new Vector(3,5,7), v4.add(v1), "Error in addition calculation");
         //TC03: Result is negative
-        assertEquals(new Vector(-3,-2,-4), v4.add(v3), "Error in addition calculation");
+        assertEquals(new Vector(-3,-2,-1), v4.add(v3), "Error in addition calculation");
     }
 
     /**
@@ -42,7 +42,7 @@ public class VectorTests {
      * Checks scalar multiplication
      */
     @Test
-    public void scale() {
+    public void testScale() {
         Vector v1 = new Vector(1,1,1);
         Vector v2 = new Vector(-1,-1,-1);
 
@@ -66,7 +66,7 @@ public class VectorTests {
      * Checks that the method for length (squared) works
      */
     @Test
-    public void lengthSquared() {
+    public void testLengthSquared() {
         Vector v1 = new Vector(1, 2, 3);
 
         // ============ Equivalence Partitions Tests ==============
@@ -79,7 +79,7 @@ public class VectorTests {
      * Checks that correct length is calculated
      */
     @Test
-    public void length() {
+    public void testLength() {
         // ============ Equivalence Partitions Tests ==============
         //TC00: Length is calculated correctly
         assertTrue(isZero(new Vector(0, 3, 4).length() - 5),"ERROR: length() wrong value");
@@ -90,7 +90,7 @@ public class VectorTests {
      * Checks if the dot product is correct
      */
     @Test
-    public void dotProduct() {
+    public void dtestDotProduct() {
         Vector v1 = new Vector(1, 2, 3);
         Vector v2 = new Vector(-2, -4, -6);
         Vector v3 = new Vector(0, 3, -2);
@@ -109,7 +109,7 @@ public class VectorTests {
      * Checks that the cross product is correct
      */
     @Test
-    public void crossProduct() {
+    public void testCrossProduct() {
         Vector v1 = new Vector(1, 2, 3);
         Vector v2 = new Vector(-2, -4, -6);
         Vector v3 = new Vector(0, 3, -2);
@@ -131,7 +131,7 @@ public class VectorTests {
      * Checks that normalize() functions properly
      */
     @Test
-    public void normalize() {
+    public void testNormalize() {
         Vector v = new Vector(0, 0, 9);
         Vector normalized = v.normalize();
 
