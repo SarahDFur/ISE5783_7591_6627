@@ -4,6 +4,8 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.List;
+
 import static primitives.Util.isZero;
 
 /**
@@ -48,11 +50,14 @@ public class Cylinder extends Tube {
         }
         //point is on the round surface
         return super.getNormal(point);
-
-        //@TODO: ask Yair - is it better to have more readable code, or to avoid creating "extra" objects? in relation to this code
     }
 
     public double getHeight() {
         return height;
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return super.findIntersections(ray);
     }
 }

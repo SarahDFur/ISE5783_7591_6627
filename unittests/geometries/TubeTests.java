@@ -17,7 +17,7 @@ public class TubeTests {
      * Test method for {@link geometries.Tube#getNormal(Point)}
      */
     @Test
-    void testGetNormal() {
+    public void testGetNormal() {
         Tube tube = new Tube(1, new Ray(new Point(0, 0, 0), new Vector(0, 0, 1)));
         // ============ Equivalence Partitions Tests ==============
         //TC01: test normal vector
@@ -30,4 +30,8 @@ public class TubeTests {
                 "Bad normal to tube - point forms a right angle with ray's head");
     }
 
+    @Test
+    public void testFindIntersections() {
+
+    }
 }

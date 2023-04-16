@@ -17,7 +17,7 @@ public class CylinderTests {
      * Test method for {@link geometries.Cylinder#getNormal(Point)}
      */
     @Test
-    void testGetNormal() {
+    public void testGetNormal() {
         Cylinder cylinder = new Cylinder(1, new Ray(new Point(0, 0, 0), new Vector(0, 0, 1)), 1);
         // ============ Equivalence Partitions Tests ==============
         //TC01: test normal vector using point on top base of cylinder
@@ -37,5 +37,10 @@ public class CylinderTests {
         //TC12: test normal vector using point at center of bottom base of cylinder
         assertEquals(new Vector(0, 0, -1), cylinder.getNormal(new Point(0, 0, 0)),
                 "Bad normal to Cylinder - center of bottom base");
+    }
+
+    @Test
+    public void testFindIntersections() {
+
     }
 }

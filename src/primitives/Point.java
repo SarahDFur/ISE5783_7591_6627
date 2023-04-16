@@ -70,9 +70,6 @@ public class Point {
      * @return a vector starting at caller and ending at other
      */
     public Vector subtract(Point other) {
-        if (other.xyz.equals(xyz)) {
-            throw new IllegalArgumentException("Cannot create Vector (0,0,0)");
-        }
         return new Vector(xyz.subtract(other.xyz));
     }
 
@@ -96,5 +93,13 @@ public class Point {
         double c = xyz.d3 - p.xyz.d3;
 
         return a * a + b * b + c * c;
+    }
+
+    /**
+     * get method - created for use in tests in sphere (initially)
+     * @return coordinate x in point (x,y,z)
+     */
+    public double getX() {
+        return xyz.d1;
     }
 }

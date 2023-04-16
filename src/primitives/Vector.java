@@ -113,10 +113,8 @@ public class Vector extends Point {
      * @return new vector which is the original vector normalized
      */
     public Vector normalize() {
-        double size = alignZero(length());
-        if(isZero(size)){
-            throw new ArithmeticException("normalizing resulting in Vector 0"); // check done also by builder
-        }
+        double size =length();
+
         return new Vector(
                 xyz.d1/size,
                 xyz.d2/size,

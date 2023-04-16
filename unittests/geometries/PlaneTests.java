@@ -16,7 +16,7 @@ public class PlaneTests {
      * Test method for {@link geometries.Plane#Plane(Point, Point, Point)}
      */
     @Test
-    void testConstructor() {
+    public void testConstructor() {
         // =============== Boundary Values Tests ==================
         //TC01: two points are the same
         assertThrows(IllegalArgumentException.class,
@@ -33,7 +33,7 @@ public class PlaneTests {
      * Test method for {@link geometries.Plane#getNormal(Point)}
      */
     @Test
-    void testGetNormal() {
+    public void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============
         //TC01: test normal vector
         Plane plane = new Plane(new Point(0, 0, 1), new Point(0, 1, 0), new Point(1, 0, 0));
@@ -48,4 +48,8 @@ public class PlaneTests {
                 "Plane's normal is not a unit vector");
     }
 
+    @Test
+    public void testFindIntersections() {
+
+    }
 }

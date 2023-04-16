@@ -16,7 +16,7 @@ public class TriangleTests {
      * Test method for {@link geometries.Triangle#getNormal(Point)}
      */
     @Test
-    void testGetNormal() {
+    public void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============
         //TC01: test normal vector
         Triangle triangle = new Triangle(new Point(0, 0, 1), new Point(0, 1, 0), new Point(1, 0, 0));
@@ -31,4 +31,8 @@ public class TriangleTests {
                 "Triangle's normal is not a unit vector");
     }
 
+    @Test
+    public void testFindIntersections() {
+
+    }
 }
