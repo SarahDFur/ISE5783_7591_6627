@@ -48,9 +48,7 @@ public class VectorTests {
 
         // =============== Boundary Values Tests ==================
         //TC00: Scaled with 0
-        assertThrows(IllegalArgumentException.class,
-                ()->v1.scale(0),
-                "Scaling with 0 failed");
+        assertThrows(IllegalArgumentException.class, ()->v1.scale(0), "Scaling with 0 failed");
 
         // ============ Equivalence Partitions Tests ==============
         //TC01: Scaled with positive number
@@ -90,7 +88,7 @@ public class VectorTests {
      * Checks if the dot product is correct
      */
     @Test
-    public void dtestDotProduct() {
+    public void testDotProduct() {
         Vector v1 = new Vector(1, 2, 3);
         Vector v2 = new Vector(-2, -4, -6);
         Vector v3 = new Vector(0, 3, -2);
