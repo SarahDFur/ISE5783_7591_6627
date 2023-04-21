@@ -11,6 +11,7 @@ import static primitives.Util.isZero;
 /**
  * Cylinder class extending class Tube
  * represents a cylinder in 3D Cartesian coordinate system
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public class Cylinder extends Tube {
     private double height;
@@ -58,6 +59,7 @@ public class Cylinder extends Tube {
 
     @Override
     public List<Point> findIntersections(Ray ray) {
+        //@TODO: Cylinder - findIntersections()
         return super.findIntersections(ray);
     }
 }

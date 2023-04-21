@@ -41,6 +41,6 @@ public class CylinderTests {
 
     @Test
     public void testFindIntersections() {
-
+        //@TODO: cylinder - test findIntersections()
     }
 }

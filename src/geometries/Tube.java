@@ -11,6 +11,7 @@ import static primitives.Util.isZero;
 /**
  * Tube class extending abstract class RadialGeometry,
  * represents a tube in 3D Cartesian coordinate system
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public class Tube extends RadialGeometry {
     protected Ray axisRay;
@@ -52,6 +53,7 @@ public class Tube extends RadialGeometry {
 
     @Override
     public List<Point> findIntersections(Ray ray) {
+        //@TODO: Tube - findIntersections()
         return null;
     }
 }
