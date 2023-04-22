@@ -1,9 +1,12 @@
 package geometries;
+
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
 import java.util.List;
+
+import static primitives.Util.*;
 
 /**
  * Plane class represents a plane,
@@ -16,7 +19,8 @@ public class Plane implements Geometry {
     /**
      * constructor
      * normalize the vector received
-     * @param q0 point
+     *
+     * @param q0     point
      * @param normal direction vector
      */
     public Plane(Point q0, Vector normal) {
@@ -26,6 +30,7 @@ public class Plane implements Geometry {
 
     /**
      * constructor that received 3 points
+     *
      * @param p1 first point
      * @param p2 second point
      * @param p3 third point
@@ -59,6 +64,21 @@ public class Plane implements Geometry {
 
     @Override
     public List<Point> findIntersections(Ray ray) {
-        return null;
+        Vector QMinusP0;
+        try {
+            QMinusP0 = q0.subtract(ray.getP0());
+        } catch (IllegalArgumentException ex) {
+            return null; // ray begins at plane's reference point
+        }
+        double nv = normal.dotProduct(ray.getDir());
+        if (isZero(nv))
+            return null; // ray is parallel to plane
+
+        double nQMinusP0 = normal.dotProduct(QMinusP0);
+        double t = alignZero(nQMinusP0 / nv);
+        if (t > 0)
+            return List.of(ray.getP0().add(ray.getDir().scale(t)));
+
+        return null; // no intersection with plane
     }
 }

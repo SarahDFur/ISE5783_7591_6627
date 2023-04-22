@@ -1,5 +1,7 @@
 package primitives;
 
+import static primitives.Util.isZero;
+
 /**
  * Ray class represents a ray in 3D Cartesian coordinate system,
  * using a point and a vector
@@ -19,7 +21,9 @@ public class Ray {
         this.dir = dir.normalize();
     }
 
-    public Point getPoint(double t) { return p0.add(dir.scale(t)); }
+    public Point getPoint(double t) {
+        return isZero(t) ? p0 : p0.add(dir.scale(t));
+    }
 
     public Point getP0() {
         return p0;

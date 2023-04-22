@@ -24,7 +24,7 @@ public class SphereTests {
     @Test
     public void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============
-        //TC01: test normal vector
+        // EP1: test normal vector
         Sphere sphere = new Sphere(1, new Point(0, 0, 0));
         Vector result = sphere.getNormal(new Point(0, 0, 1));
         //ensure the result is correct
