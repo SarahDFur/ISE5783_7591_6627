@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="">
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="-&gt; SphereTests - findIntersections() test&#10;-&gt; Sphere.java - findIntersections() method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unittests/geometries/CylinderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/geometries/CylinderTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unittests/geometries/SphereTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/geometries/SphereTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unittests/geometries/TubeTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/geometries/TubeTests.java" afterDir="false" />
@@ -233,7 +231,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1681675667730</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL‎-00006" summary="-&gt; SphereTests - findIntersections() test&#10;-&gt; Sphere.java - findIntersections() method">
+      <created>1682085473936</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL‎-00006" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682085473936</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,15 +287,16 @@
     <MESSAGE value="geometries - implementing getNormal(Point)" />
     <MESSAGE value="fixed typos" />
     <MESSAGE value="-&gt; created Intersectable (interface) with findIntersections()&#10;-&gt; added function (^) to all necessary classes (regular &amp; tests)&#10;-&gt; typo fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="-&gt; created Intersectable (interface) with findIntersections()&#10;-&gt; added function (^) to all necessary classes (regular &amp; tests)&#10;-&gt; typo fixes" />
+    <MESSAGE value="-&gt; SphereTests - findIntersections() test&#10;-&gt; Sphere.java - findIntersections() method" />
+    <option name="LAST_COMMIT_MESSAGE" value="-&gt; SphereTests - findIntersections() test&#10;-&gt; Sphere.java - findIntersections() method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/unittests/geometries/SphereTests.java</url>
-          <line>109</line>
-          <option name="timeStamp" value="13" />
+          <url>file://$PROJECT_DIR$/unittests/geometries/CylinderTests.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

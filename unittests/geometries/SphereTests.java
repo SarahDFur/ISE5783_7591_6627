@@ -107,10 +107,7 @@ public class SphereTests {
 
         // **** Group: Special cases
         // BVA12: Ray's line is outside, ray is orthogonal to ray start to sphere's center line
-        Ray result14 = new Ray(new Point(3,-2,1),new Vector(0,-2,1));
-        assertDoesNotThrow(()-> result14.getDir().crossProduct(sphere1.getNormal(sphere1.getCenter())),
-                "Ray is orthogonal to the center line of the sphere");
-
-      //  assertNull(sphere1.getNormal(sphere.getCenter()), "Ray is orthogonal to the center line of the sphere");
+        List<Point> result14 = sphere1.findIntersections( new Ray(new Point(3,-2,1),new Vector(0,-2,1)));
+        assertNull(result14, "Ray is orthogonal to the center line of the sphere");
     }
 }
