@@ -72,7 +72,8 @@ public class Tube extends RadialGeometry {
         if(ray.getP0().equals(axisRay.getP0())){ //ray start on axis's head point
             if(isZero(vDotVa)) //ray orthogonal to axis
                 return List.of(ray.getPoint(radius));
-            double t = radius * radius / v.subtract(va.scale(vDotVa)).lengthSquared();
+            //double t = Math.sqrt( radius * radius / (v.subtract(va.scale(vDotVa)).lengthSquared()));
+            double t = radius / (v.subtract(va.scale(vDotVa)).length());
             return List.of(ray.getPoint(t));
         }
         Vector vecDeltaP = ray.getP0().subtract(axisRay.getP0());
@@ -80,20 +81,24 @@ public class Tube extends RadialGeometry {
         if(va.equals(vecDeltaP.normalize()) || va.equals(vecDeltaP.normalize())){ //ray start along axis
             if(isZero(vDotVa)) //ray orthogonal to axis
                 return List.of(ray.getPoint(radius));
-            double t = radius * radius / v.subtract(va.scale(vDotVa)).lengthSquared();
+            double t = radius / (v.subtract(va.scale(vDotVa)).length());
             return List.of(ray.getPoint(t));
         }
 
-        if(isZero(vDotVa)){ // ray orthogonal to axis
-            boolean vDotVaIsZero = true;
-        }
-        if(isZero(deltaPqDotVa)){ //ray's head in front of axis's head
-            boolean deltaPqDotVaIsZero = true;
-        }
+        Vector v1 = isZero(vDotVa)? v : v.subtract(va.scale(vDotVa));
+        Vector v2 = isZero(deltaPqDotVa) ? vecDeltaP : vecDeltaP.subtract(va.scale(deltaPqDotVa));
 
-        double a = (v.subtract(va.scale(vDotVa))).lengthSquared();
-        double b = ((vecDeltaP.subtract(va.scale(deltaPqDotVa))).dotProduct(v.subtract(va.scale(vDotVa)))) * 2;
-        double c = (vecDeltaP.subtract(va.scale(deltaPqDotVa))).lengthSquared() - radius * radius;
+//        if(isZero(vDotVa)){ // ray orthogonal to axis
+//
+//            boolean vDotVaIsZero = true;
+//        }
+//        if(isZero(deltaPqDotVa)){ //ray's head in front of axis's head
+//            boolean deltaPqDotVaIsZero = true;
+//        }
+
+        double a = v1.lengthSquared();
+        double b = v1.dotProduct(v2) * 2;
+        double c = v2.lengthSquared() - radius * radius;
 
         double discriminant = b * b - 4 * a * c;
 
