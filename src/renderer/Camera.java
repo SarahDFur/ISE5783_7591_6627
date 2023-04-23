@@ -5,46 +5,99 @@ import primitives.Ray;
 import primitives.Vector;
 
 public class Camera {
-    private Point P0;
+    private Point CenterPoint;
     //all normalized
-    private Vector Vto;
-    private Vector Vup;
-    private Vector Vright;
+    private Vector Vto; //x
+    private Vector Vup; //y
+    private Vector Vright; //z
 
 
     //------View Plane-------
     //size
-    private double width;
-    private double height;
-    private double distance; // distance between camera and shape (focus)
-    //setViewPlaneSize()
-    public Camera(Point p0, Vector vto, Vector vup) {
-        P0 = p0;
-        Vto = vto;
-        Vup = vup;
-        Vright = Vto.crossProduct(Vup); //vright = vto.cross(vup) - (vup.cross(vto) = back)
+    private double Width;
+    private double Height;
+    private double Distance; // distance between camera and shape (focus)
+
+    /**
+     * Camera constructor
+     * @param centerPoint center point
+     * @param vto x axis
+     * @param vup y axis
+     */
+    public Camera(Point centerPoint, Vector vto, Vector vup) {
+        CenterPoint = centerPoint;
+        Vto = vto.normalize();
+        Vup = vup.normalize();
+        if(vto.dotProduct(vup) != 90) {
+            throw new IllegalArgumentException("Vto & Vup aren't orthogonal");
+        }
+        Vright = Vto.crossProduct(Vup).normalize(); //vright = vto.cross(vup) - (vup.cross(vto) = back)
+
     }
 
-    public Point getP0() { return P0; }
+    /**
+     * Sets width and height for View Plane (size)
+     * @param w width
+     * @param h height
+     * @return camera (this)
+     */
+    public Camera setViewPlaneSize(double w, double h){
+        Width = w;
+        Height = h;
+        return this;
+    }
 
-    public void setP0(Point p0) { P0 = p0; }
+    /**
+     * Sets distance of camera (from View Plane)
+     * @param distance distance of camera from View Plane (VP)
+     * @return camera (this)
+     */
+    public Camera setViewPlaneDistance(double distance){
+        Distance = distance;
+        return this;
+    }
 
-    public Vector getVright() { return Vright; }
-
-    public void setVright(Vector vright) { Vright = vright; }
-
-    public Vector getVto() { return Vto; }
-
-    public void setVto(Vector vto) { Vto = vto; }
-
-    public Vector getVup() { return Vup; }
-
-    public void setVup(Vector vup) { Vup = vup; }
-
-
-
+    /**
+     *
+     * @param nX columns (pixels)
+     * @param nY rows (pixels)
+     * @param j rows
+     * @param i columns
+     * @return ray
+     */
     public Ray constructRay(int nX, int nY, int j, int i) {
+        //nx - columns, ny - rows (pixels)
         return null;
     }
+//region getters
 
+    public Point getCenterPoint() {
+        return CenterPoint;
+    }
+
+    public Vector getVto() {
+        return Vto;
+    }
+
+    public Vector getVup() {
+        return Vup;
+    }
+
+    public Vector getVright() {
+        return Vright;
+    }
+
+    public double getWidth() {
+        return Width;
+    }
+
+    public double getHeight() {
+        return Height;
+    }
+
+    public double getDistance() {
+        return Distance;
+    }
+
+    //endregion
 }
