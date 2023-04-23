@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="plane, triangle, polygon - findIntersections - tests and implement" />
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="tag for stage 3">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,7 +104,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.TubeTests.testFindIntersections">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="test.Main" />
       <module name="ISE5783_7591_6627" />
@@ -119,21 +122,6 @@
       <module name="ISE5783_7591_6627" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PointTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_7591_6627" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="primitives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="primitives" />
-      <option name="MAIN_CLASS_NAME" value="primitives.PointTests" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -169,13 +157,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TubeTests.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_7591_6627" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.TubeTests" />
+      <option name="METHOD_NAME" value="testFindIntersections" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TubeTests.testFindIntersections" />
         <item itemvalue="JUnit.SphereTests.testFindIntersections" />
         <item itemvalue="JUnit.SphereTests" />
         <item itemvalue="JUnit.All in ISE5783_7591_6627" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.PointTests" />
       </list>
     </recent_temporary>
   </component>
@@ -189,6 +193,7 @@
       <updated>1677401526457</updated>
       <workItem from="1681373578284" duration="12706000" />
       <workItem from="1681468432411" duration="9552000" />
+      <workItem from="1682197879511" duration="12577000" />
     </task>
     <task id="LOCAL‎-00001" summary="Geometries &amp; Primitives&#10;- files">
       <created>1678360334430</created>
@@ -239,7 +244,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1682195415149</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL‎-00008" summary="tag for stage 3">
+      <created>1682195622025</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL‎-00008" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682195622025</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,6 +302,18 @@
     <MESSAGE value="-&gt; created Intersectable (interface) with findIntersections()&#10;-&gt; added function (^) to all necessary classes (regular &amp; tests)&#10;-&gt; typo fixes" />
     <MESSAGE value="-&gt; SphereTests - findIntersections() test&#10;-&gt; Sphere.java - findIntersections() method" />
     <MESSAGE value="plane, triangle, polygon - findIntersections - tests and implement" />
-    <option name="LAST_COMMIT_MESSAGE" value="plane, triangle, polygon - findIntersections - tests and implement" />
+    <MESSAGE value="tag for stage 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="tag for stage 3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/unittests/geometries/TubeTests.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
