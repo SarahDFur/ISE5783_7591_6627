@@ -19,6 +19,7 @@ public class CameraTests {
     }
 
     /**
+     * Test method for constructRay()
      * {@link renderer.Camera#constructRay(int, int, int, int)}
      */
     @Test
