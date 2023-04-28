@@ -6,7 +6,12 @@ import primitives.Ray;
 import primitives.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Testing Camera Class
+ *
+ * @author Dan
+ *
+ */
 public class CameraTests {
     static final Point ZERO_POINT = new Point(0, 0, 0);
 
