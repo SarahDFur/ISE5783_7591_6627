@@ -28,7 +28,7 @@ public class Camera {
         CenterPoint = centerPoint;
         Vto = vto.normalize();
         Vup = vup.normalize();
-        if(vto.dotProduct(vup) != 90) {
+        if(vto.dotProduct(vup) != 0) {
             throw new IllegalArgumentException("Vto & Vup aren't orthogonal");
         }
         Vright = Vto.crossProduct(Vup).normalize(); //vright = vto.cross(vup) - (vup.cross(vto) = back)
