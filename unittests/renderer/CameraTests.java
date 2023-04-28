@@ -11,14 +11,6 @@ public class CameraTests {
     static final Point ZERO_POINT = new Point(0, 0, 0);
 
     /**
-     * {@link renderer.Camera#Camera(Point, Vector, Vector)}
-     */
-    @Test
-    public void testConstructor(){
-
-    }
-
-    /**
      * Test method for constructRay()
      * {@link renderer.Camera#constructRay(int, int, int, int)}
      */
@@ -28,7 +20,7 @@ public class CameraTests {
         String badRay = "Bad ray";
 
         // ============ Equivalence Partitions Tests ==============
-        // EP01: 4X4 Inside (1,1)
+        // EP1: 4X4 Inside (1,1)
         assertEquals(new Ray(ZERO_POINT, new Vector(1, -1, -10)),
                 camera.setViewPlaneSize(8, 8).constructRay(4, 4, 1, 1), badRay);
 
