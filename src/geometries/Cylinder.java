@@ -4,8 +4,10 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.LinkedList;
 import java.util.List;
 
+import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
@@ -32,7 +34,7 @@ public class Cylinder extends Tube {
     public Vector getNormal(Point point) {
         //check if point in center of one of the bases
         Point centerBase1 = axisRay.getP0();
-        Point centerBase2 = axisRay.getP0().add(axisRay.getDir().scale(height));
+        Point centerBase2 = axisRay.getPoint(height); //axisRay.getP0().add(axisRay.getDir().scale(height));
         if (point.equals(centerBase1)) {
             return axisRay.getDir().scale(-1);
         }
@@ -60,6 +62,88 @@ public class Cylinder extends Tube {
     @Override
     public List<Point> findIntersections(Ray ray) {
         //@TODO: Cylinder - findIntersections()
-        return super.findIntersections(ray);
+//        List<Point> intersections = super.findIntersections(ray);
+//        if(intersections == null){
+//            if(ray.getDir().equals(this.axisRay.getDir()) || ray.getDir().equals(this.axisRay.getDir().scale(-1))){
+//                //ray is parallel to cylinder's axis
+//                if(){ //ray's head is inside tube
+//                    // find two "t", return if positives
+//                }
+//            }
+//            return null;
+//        }
+//        if(intersections.size()==1){
+//
+//        }
+//        if (intersections.size()==2){
+//
+//        }
+        Vector va = axisRay.getDir();
+        Point p1 = axisRay.getP0();
+        Point p2 = axisRay.getPoint(height);
+
+        List<Point> interactions = null;
+        List<Point> tubeIntersections = super.findIntersections(ray);
+        if(tubeIntersections != null){
+            for (Point q : tubeIntersections){
+                Vector qMinusP = q.subtract(p1);
+                double vaDotQMinusP1 = alignZero(va.dotProduct(qMinusP));
+                qMinusP = q.subtract(p2);
+                double vaDotQMinusP2 = alignZero(va.dotProduct(qMinusP));
+                if (vaDotQMinusP1 >0 && vaDotQMinusP2 <0){
+                    if(interactions==null)
+                        interactions = new LinkedList<>();
+                    interactions.add(q);
+                }
+            }
+            if (interactions != null && interactions.size() == 2)
+                return interactions;
+        }
+
+        Plane base = new Plane(axisRay.getP0(), getAxisRay().getDir());
+        List<Point> baseInteraction = base.findIntersections(ray);
+        if (baseInteraction != null){
+            Point q = baseInteraction.get(0);
+            if(q.equals(p1)){
+                if (interactions == null)
+                    interactions = new LinkedList<>();
+                interactions.add(q);
+            }
+            else {
+                Vector qMinusP = q.subtract(p1);
+                if (qMinusP.lengthSquared() < radius * radius) {
+                    if (interactions == null)
+                        interactions = new LinkedList<>();
+                    interactions.add(q);
+                }
+            }
+            if (interactions != null && interactions.size() == 2)
+                return interactions;
+
+        }
+
+        base = new Plane(axisRay.getPoint(height)/*=p2*/, getAxisRay().getDir());
+        baseInteraction = base.findIntersections(ray);
+        if (baseInteraction != null){
+            Point q = baseInteraction.get(0);
+            if(q.equals(p2)){
+                if (interactions == null)
+                    interactions = new LinkedList<>();
+                interactions.add(q);
+            }
+            else {
+                Vector qMinusP = q.subtract(p2);
+                if (qMinusP.lengthSquared() < radius * radius) {
+                    if (interactions == null)
+                        interactions = new LinkedList<>();
+                    interactions.add(q);
+                }
+            }
+            if (interactions != null && interactions.size() == 2)
+                return interactions;
+
+        }
+
+        return interactions;
     }
 }

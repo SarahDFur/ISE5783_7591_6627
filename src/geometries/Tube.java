@@ -56,37 +56,37 @@ public class Tube extends RadialGeometry {
     @Override
     public List<Point> findIntersections(Ray ray) {
         // solve for t : At^2 + Bt + C = 0
-        // A = (v - (v,va)va)^2
-        // B = 2(v-(v,va)va , deltaP-(deltaP,va)va)
+        // A = (vr - (vr,va)va)^2
+        // B = 2(vr-(vr,va)va , deltaP-(deltaP,va)va)
         // C = (deltaP - (deltaP,va)va)^2 - r^2
-        // where: deltaP: p-pa , (x,y): dot product
-        //          axisRay params: pa,va, ray params: p,v
+        // where: deltaP: pr-pa , (x,y): dot product
+        //          axisRay params: pa,va, ray params: pr,vr
 
-        Vector v = ray.getDir();
+        Vector vr = ray.getDir();
         Vector va = axisRay.getDir();
-        if (v.equals(va) || v.equals(va.scale(-1))) { //ray parallel to axis
+        if (vr.equals(va) || vr.equals(va.scale(-1))) { //ray parallel to axis
             return null;
         }
-        double vDotVa = v.dotProduct(va);
+        double vDotVa = vr.dotProduct(va);
 
         if (ray.getP0().equals(axisRay.getP0())) { //ray start on axis's head point
             if (isZero(vDotVa)) //ray also orthogonal to axis
                 return List.of(ray.getPoint(radius));
-            double t = radius / (v.subtract(va.scale(vDotVa)).length());
+            double t = alignZero(radius / (vr.subtract(va.scale(vDotVa)).length()));
             return List.of(ray.getPoint(t));
         }
 
         Vector vecDeltaP = ray.getP0().subtract(axisRay.getP0());
         double deltaPDotVa = vecDeltaP.dotProduct(va);
-        if (va.equals(vecDeltaP.normalize()) || va.equals(vecDeltaP.normalize())) { //ray start along axis
+        if (va.equals(vecDeltaP.normalize()) || va.equals(vecDeltaP.normalize().scale(-1))) { //ray start along axis
             if (isZero(vDotVa)) //ray also orthogonal to axis
                 return List.of(ray.getPoint(radius));
-            double t = radius / (v.subtract(va.scale(vDotVa)).length());
+            double t = alignZero(radius / (vr.subtract(va.scale(vDotVa)).length()));
             return List.of(ray.getPoint(t));
         }
 
-        // is either of the vectors, v or deltaP, orthogonal to the vector va?
-        Vector v1 = isZero(vDotVa) ? v : v.subtract(va.scale(vDotVa));
+        // is either of the vectors, vr or deltaP, orthogonal to the vector va?
+        Vector v1 = isZero(vDotVa) ? vr : vr.subtract(va.scale(vDotVa));
         Vector v2 = isZero(deltaPDotVa) ? vecDeltaP : vecDeltaP.subtract(va.scale(deltaPDotVa));
 
         double a = v1.lengthSquared();

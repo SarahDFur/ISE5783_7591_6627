@@ -42,7 +42,6 @@ public class TubeTests {
      */
     @Test
     public void testFindIntersections() {
-        //@TODO: Tube - test findIntersections()
         Tube tube1 = new Tube(1d, new Ray(new Point(1, 0, 0), new Vector(0, 1, 0)));
         Vector vAxis = new Vector(0, 0, 1);
         Tube tube2 = new Tube(1d, new Ray(new Point(1, 1, 1), vAxis));
