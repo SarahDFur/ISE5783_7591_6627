@@ -104,7 +104,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CylinderTests.testFindIntersections">
+  <component name="RunManager">
     <configuration name="All in ISE5783_7591_6627" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <option name="PACKAGE_NAME" value="" />
@@ -121,10 +121,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTests" />
-      <option name="METHOD_NAME" value="testFindIntersections" />
-      <option name="TEST_OBJECT" value="method" />
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.CameraTests" />
       <option name="METHOD_NAME" value="testConstructRay" />
@@ -182,13 +178,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CylinderTests.testFindIntersections" />
         <item itemvalue="JUnit.CylinderTests.testGetNormal" />
         <item itemvalue="JUnit.CameraTests.testConstructRay" />
         <item itemvalue="JUnit.TubeTests" />
         <item itemvalue="JUnit.TubeTests.testFindIntersections" />
         <item itemvalue="JUnit.All in ISE5783_7591_6627" />
-        <item itemvalue="JUnit.SphereTests.testFindIntersections" />
       </list>
     </recent_temporary>
   </component>
