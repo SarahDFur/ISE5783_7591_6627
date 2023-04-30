@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/CameraTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/CameraTests.java" afterDir="false" />
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="-&gt; construction of classes (all are unfinished):&#10;  -lighting package: AmbientLight class&#10;  -scene package: Scene class&#10;  -primitives: Color class + Ray: method definition">
+      <change afterPath="$PROJECT_DIR$/src/lighting/AmbientLight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/primitives/Color.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/ImageWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unittests/renderer/RenderTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +29,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -105,14 +112,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.CylinderTests.testFindIntersections">
-    <configuration name="All in ISE5783_7591_6627" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_7591_6627" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="CameraTests.testConstructRay" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
@@ -121,13 +120,25 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTests" />
-      <option name="METHOD_NAME" value="testFindIntersections" />
-      <option name="TEST_OBJECT" value="method" />
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.CameraTests" />
       <option name="METHOD_NAME" value="testConstructRay" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CylinderTests.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_7591_6627" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTests" />
+      <option name="METHOD_NAME" value="testFindIntersections" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -187,8 +198,6 @@
         <item itemvalue="JUnit.CameraTests.testConstructRay" />
         <item itemvalue="JUnit.TubeTests" />
         <item itemvalue="JUnit.TubeTests.testFindIntersections" />
-        <item itemvalue="JUnit.All in ISE5783_7591_6627" />
-        <item itemvalue="JUnit.SphereTests.testFindIntersections" />
       </list>
     </recent_temporary>
   </component>
@@ -289,14 +298,6 @@
       <option name="project" value="LOCAL‎" />
       <updated>1682280509943</updated>
     </task>
-    <task id="LOCAL‎-00013" summary="Cylinder.findIntersections - tests and implementation">
-      <created>1682674290584</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL‎-00013" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1682674290584</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
     <task id="LOCAL‎-00013" summary="-&gt; Camera &amp; CameraTests methods">
       <created>1682428166723</created>
       <option name="number" value="00013" />
@@ -338,7 +339,6 @@
         <entry key="117c15d9-4321-4583-9ab0-ccde8aabfc13">
           <value>
             <State>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -357,6 +357,7 @@
                   </entry>
                 </map>
               </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
             </State>
           </value>
         </entry>
@@ -383,7 +384,6 @@
     <MESSAGE value="-&gt; SphereTests &amp; GeometriesTests reformatting" />
     <MESSAGE value="-&gt; Camera &amp; CameraTests methods" />
     <MESSAGE value="Cylinder.findIntersections - tests and implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cylinder.findIntersections - tests and implementation" />
     <MESSAGE value="Camera =&gt; methods: &#10;-constructRay(int,int,int,int)&#10;-findMiddleOfPixel(int,int,int,int)&#10;       =&gt; tests:&#10;-passed" />
     <option name="LAST_COMMIT_MESSAGE" value="Camera =&gt; methods: &#10;-constructRay(int,int,int,int)&#10;-findMiddleOfPixel(int,int,int,int)&#10;       =&gt; tests:&#10;-passed" />
   </component>
