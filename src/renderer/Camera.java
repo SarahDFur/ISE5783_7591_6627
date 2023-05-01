@@ -1,10 +1,14 @@
 package renderer;
 
+import primitives.Color;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.MissingResourceException;
+
 import static primitives.Util.isZero;
+
 /**
  * Camera class that will create a camera in our scene,
  * and capture our images
@@ -26,6 +30,10 @@ public class Camera {
     private double height;
     private double distance; // distance between camera and shape (focus)
 
+    //----------
+    ImageWriter imageWriter;
+    RayTracerBase rayTracerBase;
+
     /**
      * Camera constructor
      * @param centerPoint center point
@@ -41,28 +49,6 @@ public class Camera {
         }
         Vright = Vto.crossProduct(Vup).normalize(); //vright = vto.cross(vup)
                                                     //-vright = back = vup.cross(vto)
-    }
-
-    /**
-     * Sets width and height for View Plane (size)
-     * @param w width (units)
-     * @param h height (units)
-     * @return camera (this)
-     */
-    public Camera setViewPlaneSize(double w, double h){
-        width = w;
-        height = h;
-        return this;
-    }
-
-    /**
-     * Sets distance of camera (from View Plane)
-     * @param distance distance of camera from View Plane (VP)
-     * @return camera (this)
-     */
-    public Camera setViewPlaneDistance(double distance){
-        this.distance = distance;
-        return this;
     }
 
     /**
@@ -107,7 +93,6 @@ public class Camera {
         return Pij;
     }
 //region getters
-
     public Point getCenterPoint() {
         return centerPoint;
     }
@@ -136,5 +121,85 @@ public class Camera {
         return distance;
     }
 
+    public ImageWriter getImageWriter() { return imageWriter; }
+
+    public RayTracerBase getRayTracerBase() { return rayTracerBase; }
     //endregion
+
+//region setters
+    public Camera setCenterPoint(Point centerPoint) {
+        this.centerPoint = centerPoint;
+        return this;
+    }
+
+    public Camera setVto(Vector vto) {
+        Vto = vto;
+        return this;
+    }
+
+    public Camera setVup(Vector vup) {
+        Vup = vup;
+        return this;
+    }
+
+    public Camera setWidth(double width) {
+        this.width = width;
+        return this;
+    }
+
+    public Camera setHeight(double height) {
+        this.height = height;
+        return this;
+    }
+
+    public Camera setDistance(double distance) {
+        this.distance = distance;
+        return this;
+    }
+
+    /**
+     * Sets width and height for View Plane (size)
+     * @param w width (units)
+     * @param h height (units)
+     * @return camera (this)
+     */
+    public Camera setViewPlaneSize(double w, double h){
+        width = w;
+        height = h;
+        return this;
+    }
+
+    /**
+     * Sets distance of camera (from View Plane)
+     * @param distance distance of camera from View Plane (VP)
+     * @return camera (this)
+     */
+    public Camera setViewPlaneDistance(double distance){
+        this.distance = distance;
+        return this;
+    }
+    //endregion
+     public void printGrid(int interval, Color color) {
+
+     }
+
+     public void renderImage() {
+        if(this.Vto == null) {
+            throw new MissingResourceException("missing vto", "Camera", "Vto");
+        }
+        if(this.Vup == null) {
+            throw new MissingResourceException("missing vup", "Camera", "Vup");
+        }
+        throw new UnsupportedOperationException();
+     }
+
+     public void writeToImage() { imageWriter.writeToImage(); }//call image writer
+
+     public Camera setImageWriter(ImageWriter imageWriter) {
+            return this;
+     }
+
+        public Camera setRayTracer(RayTracerBasic rayTracerBasic) {
+            return this;
+        }
 }

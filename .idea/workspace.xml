@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/CameraTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/CameraTests.java" afterDir="false" />
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="Camera =&gt; methods: &#10;-constructRay(int,int,int,int)&#10;-findMiddleOfPixel(int,int,int,int)&#10;       =&gt; tests:&#10;-passed">
+      <change afterPath="$PROJECT_DIR$/src/renderer/RayTracerBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unittests/renderer/IntegrationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/RenderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/RenderTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +28,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -68,33 +74,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "17",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "inlay.hints",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="renderer" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
@@ -104,15 +114,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="All in ISE5783_7591_6627" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_7591_6627" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.CameraTests.testConstructRay">
     <configuration name="CameraTests.testConstructRay" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
@@ -129,23 +131,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CylinderTests.testGetNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IntegrationTests.cameraRayPlaneIntegration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="geometries.*" />
+          <option name="PATTERN" value="renderer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTests" />
-      <option name="METHOD_NAME" value="testGetNormal" />
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.IntegrationTests" />
+      <option name="METHOD_NAME" value="cameraRayPlaneIntegration" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TubeTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SphereTests.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
         <pattern>
@@ -154,22 +156,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.TubeTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TubeTests.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_7591_6627" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="geometries.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.TubeTests" />
+      <option name="MAIN_CLASS_NAME" value="geometries.SphereTests" />
       <option name="METHOD_NAME" value="testFindIntersections" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -178,11 +165,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CylinderTests.testGetNormal" />
+        <item itemvalue="JUnit.IntegrationTests.cameraRayPlaneIntegration" />
+        <item itemvalue="JUnit.SphereTests.testFindIntersections" />
         <item itemvalue="JUnit.CameraTests.testConstructRay" />
-        <item itemvalue="JUnit.TubeTests" />
-        <item itemvalue="JUnit.TubeTests.testFindIntersections" />
-        <item itemvalue="JUnit.All in ISE5783_7591_6627" />
       </list>
     </recent_temporary>
   </component>
@@ -283,14 +268,6 @@
       <option name="project" value="LOCAL‎" />
       <updated>1682280509943</updated>
     </task>
-    <task id="LOCAL‎-00013" summary="Cylinder.findIntersections - tests and implementation">
-      <created>1682674290584</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL‎-00013" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1682674290584</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
     <task id="LOCAL‎-00013" summary="-&gt; Camera &amp; CameraTests methods">
       <created>1682428166723</created>
       <option name="number" value="00013" />
@@ -332,7 +309,6 @@
         <entry key="117c15d9-4321-4583-9ab0-ccde8aabfc13">
           <value>
             <State>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -351,6 +327,7 @@
                   </entry>
                 </map>
               </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
             </State>
           </value>
         </entry>
@@ -377,7 +354,6 @@
     <MESSAGE value="-&gt; SphereTests &amp; GeometriesTests reformatting" />
     <MESSAGE value="-&gt; Camera &amp; CameraTests methods" />
     <MESSAGE value="Cylinder.findIntersections - tests and implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cylinder.findIntersections - tests and implementation" />
     <MESSAGE value="Camera =&gt; methods: &#10;-constructRay(int,int,int,int)&#10;-findMiddleOfPixel(int,int,int,int)&#10;       =&gt; tests:&#10;-passed" />
     <option name="LAST_COMMIT_MESSAGE" value="Camera =&gt; methods: &#10;-constructRay(int,int,int,int)&#10;-findMiddleOfPixel(int,int,int,int)&#10;       =&gt; tests:&#10;-passed" />
   </component>
