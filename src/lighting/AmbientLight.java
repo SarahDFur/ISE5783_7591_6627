@@ -4,26 +4,31 @@ import primitives.Color;
 import primitives.Double3;
 
 public class AmbientLight {
-    private Color intensity;
-    static Color NONE = Color.BLACK;
+    private final Color intensity;
+    //@TODO: check the NONE - how is it supposed to be created ??
+    public static final AmbientLight NONE = new AmbientLight();
 
-    //-----------------------
-    private Color Ia;
-    private Double3 Ka = Double3.ZERO;
-    //-----------------------
+    /***
+     * Constructor
+     * @param Ia basic light intensity
+     * @param Ka factor of intensity
+     */
+    public AmbientLight(Color Ia, Double3 Ka){
+        intensity = Ia.scale(Ka);
+    } //Ip = Ia*Ka
 
-    public AmbientLight(Color ia, Double3 ka) {
-        Ia = ia;
-        Ka = ka;
+    /***
+     * Constructor
+     */
+    public AmbientLight(){
+        intensity = Color.BLACK;
     }
 
-    public AmbientLight(Color intensity, Color ia, Double3 ka) {
-        this.intensity = intensity;
-        Ia = ia;
-        Ka = ka;
-    }
-
-    public AmbientLight(Double3 ka) {
-        Ka = ka;
+    /***
+     * getter for ambient light intensity
+     * @return intensity of ambient light
+     */
+    public Color getIntensity() {
+        return intensity;
     }
 }

@@ -196,10 +196,10 @@ public class Camera {
      public void writeToImage() { imageWriter.writeToImage(); }//call image writer
 
      public Camera setImageWriter(ImageWriter imageWriter) {
-            return this;
+        return this;
      }
 
-        public Camera setRayTracer(RayTracerBasic rayTracerBasic) {
-            return this;
-        }
+     public Camera setRayTracer(RayTracerBasic rayTracerBasic) {
+        return this;
+     }
 }
