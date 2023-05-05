@@ -179,27 +179,64 @@ public class Camera {
         return this;
     }
     //endregion
-     public void printGrid(int interval, Color color) {
 
-     }
-
+    /**
+     * Renders an image
+     */
      public void renderImage() {
-        if(this.Vto == null) {
-            throw new MissingResourceException("missing vto", "Camera", "Vto");
-        }
-        if(this.Vup == null) {
-            throw new MissingResourceException("missing vup", "Camera", "Vup");
-        }
-        throw new UnsupportedOperationException();
+         //info: coordinates of the camera != null
+         if((Vright == null) || (Vup == null) || (Vto == null) || (centerPoint == null))
+             throw new MissingResourceException("Camera coordinates are not initialized","Camera","coordinates");
+
+         //info: view plane variables != null (doubles != null)
+
+         //info: final image creation
+         if((imageWriter == null)||(rayTracerBase == null))
+             throw new MissingResourceException("Image creation details are not initialized","Camera","Writer info");
+
+         for (int i = 0; i < imageWriter.getNy(); i++) { //row
+             for (int j = 0; j < imageWriter.getNx() ; j++) { //column
+                 Ray thisPixelRay = constructRay(imageWriter.getNx(), imageWriter.getNy(), j, i);
+                 Color thisPixelColor = rayTracerBase.traceRay(thisPixelRay);
+                 imageWriter.writePixel(j,i,thisPixelColor);
+             }
+         }
      }
 
-     public void writeToImage() { imageWriter.writeToImage(); }//call image writer
+    /**
+     * Prints a grid to the image
+     * @param interval size of squares in the grid
+     * @param color color for the grid
+     */
+    public void printGrid(int interval, Color color) {
+        if(imageWriter == null)
+            throw new MissingResourceException("Image creation details are not initialized","Camera","Writer info");
 
-     public Camera setImageWriter(ImageWriter imageWriter) {
+        for (int i = 0; i < imageWriter.getNx(); i++) { // row
+            for (int j = 0; j < imageWriter.getNy(); j++) { // column
+                //grid: 800/50 = 16, 500/50 = 10
+                if((i % interval == 0) || (j % interval == 0)){
+                    imageWriter.writePixel(i,j, color);
+                }
+            }
+        }
+    }
+
+    /**
+     * Creates image - sends to method inside ImageWriter class
+     */
+    public void writeToImage() {
+        if(imageWriter == null)
+            throw new MissingResourceException("Image creation details are not initialized","Camera","Writer info");
+        //call image writer
+        imageWriter.writeToImage();
+    }
+
+    public Camera setImageWriter(ImageWriter imageWriter) {
         return this;
-     }
+    }
 
-     public Camera setRayTracer(RayTracerBasic rayTracerBasic) {
+    public Camera setRayTracer(RayTracerBasic rayTracerBasic) {
         return this;
      }
 }
