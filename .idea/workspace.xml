@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="- HW 5: stage 3 - &#10;Ray (findClosestPoint method - &#10;test and implementation)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="- HW 5: stage 1 - ImageWriterTest">
       <change beforePath="$PROJECT_DIR$/unittests/renderer/ImageWriterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ImageWriterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -338,7 +336,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1683293647359</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL‎-00019" summary="- HW 5: stage 1 - ImageWriterTest">
+      <created>1683403639246</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL‎-00019" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1683403639246</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -415,6 +420,7 @@
     <MESSAGE value="-ImageWriterTest: creation" />
     <MESSAGE value="- HW 5: stage 2 (includes some TODO points)" />
     <MESSAGE value="- HW 5: stage 3 - &#10;Ray (findClosestPoint method - &#10;test and implementation)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- HW 5: stage 3 - &#10;Ray (findClosestPoint method - &#10;test and implementation)" />
+    <MESSAGE value="- HW 5: stage 1 - ImageWriterTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="- HW 5: stage 1 - ImageWriterTest" />
   </component>
 </project>
