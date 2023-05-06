@@ -233,10 +233,12 @@ public class Camera {
     }
 
     public Camera setImageWriter(ImageWriter imageWriter) {
+        this.imageWriter = imageWriter;
         return this;
     }
 
-    public Camera setRayTracer(RayTracerBasic rayTracerBasic) {
+    public Camera setRayTracer(RayTracerBase rayTracerBase) {
+        this.rayTracerBase = rayTracerBase;
         return this;
      }
 }
