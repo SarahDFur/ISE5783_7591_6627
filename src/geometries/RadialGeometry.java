@@ -1,8 +1,9 @@
 package geometries;
 
 /**
- *RadialGeometry abstract class implementing Geometry interface,
- *served all geometric classes that use a radius
+ * RadialGeometry abstract class implementing Geometry interface,
+ * served all geometric classes that use a radius
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public abstract class RadialGeometry implements Geometry{
     protected final double radius;

@@ -3,6 +3,10 @@ package lighting;
 import primitives.Color;
 import primitives.Double3;
 
+/**
+ * Class for ambient lighting of a scene
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
+ */
 public class AmbientLight {
     private final Color intensity;
     //@TODO: check the NONE - how is it supposed to be created ??

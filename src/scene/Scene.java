@@ -6,6 +6,10 @@ import primitives.Color;
 
 import java.awt.*;
 
+/**
+ * Class for creating a scene
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
+ */
 public class Scene {
 
     public  String name;

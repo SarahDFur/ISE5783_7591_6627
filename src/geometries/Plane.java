@@ -11,6 +11,7 @@ import static primitives.Util.*;
 /**
  * Plane class represents a plane,
  * based on a point and normal vector
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public class Plane implements Geometry {
     final private Point q0;

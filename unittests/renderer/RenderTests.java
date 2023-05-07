@@ -1,5 +1,6 @@
 package renderer;
 
+import static java.awt.Color.BLACK;
 import static java.awt.Color.YELLOW;
 
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,11 @@ import lighting.AmbientLight;
 import primitives.*;
 import renderer.*;
 import scene.Scene;
+
+import org.xml.sax.SAXException;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import static scene.XML.sceneParser;
 
 /** Test rendering a basic image
  * @author Dan */
@@ -80,19 +86,20 @@ public class RenderTests {
 
     /** Test for XML based scene - for bonus */
     @Test
-    public void basicRenderXml() {
+    public void basicRenderXml() throws ParserConfigurationException, IOException, SAXException {
         Scene  scene  = new Scene("XML Test scene");
         // enter XML file name and parse from XML file into scene object
         // using the code you added in appropriate packages
         // ...
         // NB: unit tests is not the correct place to put XML parsing code
+        sceneParser(scene, "basicRenderTestTwoColors.xml");
 
         Camera camera = new Camera(Point.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0))     //
                 .setViewPlaneDistance(100)                                                                //
                 .setViewPlaneSize(500, 500).setImageWriter(new ImageWriter("xml render test", 1000, 1000))
                 .setRayTracer(new RayTracerBasic(scene));
         camera.renderImage();
-        camera.printGrid(100, new Color(YELLOW));
+        camera.printGrid(100, new Color(BLACK));
         camera.writeToImage();
     }
 }

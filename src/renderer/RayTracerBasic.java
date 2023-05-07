@@ -7,6 +7,10 @@ import scene.Scene;
 
 import java.util.LinkedList;
 
+/**
+ * (Extends) class for ray tracing
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
+ */
 public class RayTracerBasic extends RayTracerBase {
 
     /**

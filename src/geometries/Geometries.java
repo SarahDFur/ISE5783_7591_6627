@@ -6,6 +6,10 @@ import primitives.Ray;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class creates a list of geometries (Composite)
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
+ */
 public class Geometries implements Intersectable {
 
     private List<Intersectable> geometries;

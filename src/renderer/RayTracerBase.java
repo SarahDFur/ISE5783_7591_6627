@@ -5,7 +5,8 @@ import primitives.Ray;
 import scene.Scene;
 
 /**
- *
+ * Class for ray tracing
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public abstract class RayTracerBase {
     protected Scene scene;

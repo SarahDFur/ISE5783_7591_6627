@@ -7,6 +7,7 @@ import static primitives.Util.isZero;
 /**
  * Ray class represents a ray in 3D Cartesian coordinate system,
  * using a point and a vector
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public class Ray {
     final private Point p0;

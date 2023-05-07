@@ -6,6 +6,7 @@ import static java.lang.Math.max;
 
 /**
  * Point class represents a point in 3D Cartesian coordinate system
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public class Point {
     /**

@@ -6,6 +6,7 @@ import static primitives.Util.isZero;
 /**
  * Vector class extending Point class,
  * represents a vector in 3D Cartesian coordinate system
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public class Vector extends Point {
     /**

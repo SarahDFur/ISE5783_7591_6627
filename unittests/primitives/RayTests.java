@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit testing for Ray class
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
+ */
 public class RayTests {
 
     /**

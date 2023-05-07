@@ -11,6 +11,7 @@ import static primitives.Util.*;
 /**
  * Triangle class extending Polygon class,
  * represents two-dimensional triangle in 3D Cartesian coordinate system
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public class Triangle extends Polygon {
     /**
