@@ -4,6 +4,7 @@ import primitives.Color;
 import primitives.Point;
 import primitives.Ray;
 import scene.Scene;
+import geometries.Intersectable.GeoPoint;
 
 import java.util.LinkedList;
 
@@ -23,6 +24,7 @@ public class RayTracerBasic extends RayTracerBase {
 
     @Override
     public Color traceRay(Ray ray) {
+        //@TODO: traceRay - change it for stage 6
         LinkedList<Point> listPointsIntersections = (LinkedList<Point>) scene.geometries.findIntersections(ray);
         if(listPointsIntersections ==null || listPointsIntersections.isEmpty()){
             return scene.background;
@@ -33,6 +35,7 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     private Color calcColor(Point closestPoint) {
+        //@TODO: calcColor - change it for stage 6
         Color pointColor = new Color (java.awt.Color.MAGENTA);
         return pointColor;
     }

@@ -60,7 +60,7 @@ public class Cylinder extends Tube {
     }
 
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         //@TODO: Cylinder - findIntersections()
 //        List<Point> intersections = super.findIntersections(ray);
 //        if(intersections == null){
@@ -82,16 +82,16 @@ public class Cylinder extends Tube {
         Point p1 = axisRay.getP0();
         Point p2 = axisRay.getPoint(height);
 
-        List<Point> interactions = null;
-        List<Point> tubeIntersections = super.findIntersections(ray);
+        List<GeoPoint> interactions = null;
+        List<GeoPoint> tubeIntersections = super.findGeoIntersectionsHelper(ray);
         if(tubeIntersections != null){
-            for (Point q : tubeIntersections){
-                Vector qMinusP = q.subtract(p1);
+            for (GeoPoint q : tubeIntersections){
+                Vector qMinusP = q.point.subtract(p1);
                 double vaDotQMinusP1 = alignZero(va.dotProduct(qMinusP));
-                qMinusP = q.subtract(p2);
+                qMinusP = q.point.subtract(p2);
                 double vaDotQMinusP2 = alignZero(va.dotProduct(qMinusP));
                 if (vaDotQMinusP1 >0 && vaDotQMinusP2 <0){
-                    if(interactions==null)
+                    if(interactions == null)
                         interactions = new LinkedList<>();
                     interactions.add(q);
                 }
@@ -101,16 +101,16 @@ public class Cylinder extends Tube {
         }
 
         Plane base = new Plane(axisRay.getP0(), getAxisRay().getDir());
-        List<Point> baseInteraction = base.findIntersections(ray);
+        List<GeoPoint> baseInteraction = base.findGeoIntersectionsHelper(ray);
         if (baseInteraction != null){
-            Point q = baseInteraction.get(0);
-            if(q.equals(p1)){
+            GeoPoint q = baseInteraction.get(0);
+            if(q.point.equals(p1)){
                 if (interactions == null)
                     interactions = new LinkedList<>();
                 interactions.add(q);
             }
             else {
-                Vector qMinusP = q.subtract(p1);
+                Vector qMinusP = q.point.subtract(p1);
                 if (qMinusP.lengthSquared() < radius * radius) {
                     if (interactions == null)
                         interactions = new LinkedList<>();
@@ -123,16 +123,16 @@ public class Cylinder extends Tube {
         }
 
         base = new Plane(axisRay.getPoint(height)/*=p2*/, getAxisRay().getDir());
-        baseInteraction = base.findIntersections(ray);
+        baseInteraction = base.findGeoIntersectionsHelper(ray);
         if (baseInteraction != null){
-            Point q = baseInteraction.get(0);
-            if(q.equals(p2)){
+            GeoPoint q = baseInteraction.get(0);
+            if(q.point.equals(p2)){
                 if (interactions == null)
                     interactions = new LinkedList<>();
                 interactions.add(q);
             }
             else {
-                Vector qMinusP = q.subtract(p2);
+                Vector qMinusP = q.point.subtract(p2);
                 if (qMinusP.lengthSquared() < radius * radius) {
                     if (interactions == null)
                         interactions = new LinkedList<>();

@@ -1,6 +1,8 @@
 package primitives;
 
+import java.util.LinkedList;
 import java.util.List;
+import geometries.Intersectable.GeoPoint;
 
 import static primitives.Util.isZero;
 
@@ -60,23 +62,47 @@ public class Ray {
                 '}';
     }
 
-    public Point findClosestPoint(List<Point> pointList) {
+    public GeoPoint findClosestGeoPoint(LinkedList<GeoPoint> geoPointList) {
         //if the list is empty return null, there is no closest point
-        if(pointList == null || pointList.isEmpty())
+        if (geoPointList == null || geoPointList.isEmpty())
             return null;
-        //initial initialization of variables:
-        Point closestPoint = pointList.get(0); //closest point starts as first point on the list
-        double distance = Double.MAX_VALUE; //distance initialized to the largest value
-        double tempDist;
+
+        //closest point starts as first point on the list
+        GeoPoint closestPoint = geoPointList.get(0);
+        //distance initialized to the largest value
+        double distance = Double.MAX_VALUE;
+        double d;
 
         //compare the distance of each point, if smaller, then update the closest point and distance
-        for (Point pt: pointList) {
-            tempDist = p0.distance(pt);
-            if (tempDist < distance){
-                distance = tempDist;
+        for (var pt : geoPointList) {
+            d = p0.distance(pt.point);
+            if (d < distance) {
+                distance = d;
                 closestPoint = pt;
             }
         }
         return closestPoint;
+    }
+
+    public Point findClosestPoint(List<Point> pointList) {
+        return pointList == null || pointList.isEmpty() ? null
+                : findClosestGeoPoint((LinkedList<GeoPoint>) pointList.stream().map(p -> new GeoPoint(null, p)).toList()).point;
+//        //if the list is empty return null, there is no closest point
+//        if(pointList == null || pointList.isEmpty())
+//            return null;
+//        //initial initialization of variables:
+//        Point closestPoint = pointList.get(0); //closest point starts as first point on the list
+//        double distance = Double.MAX_VALUE; //distance initialized to the largest value
+//        double tempDist;
+//
+//        //compare the distance of each point, if smaller, then update the closest point and distance
+//        for (Point pt: pointList) {
+//            tempDist = p0.distance(pt);
+//            if (tempDist < distance){
+//                distance = tempDist;
+//                closestPoint = pt;
+//            }
+//        }
+//        return closestPoint;
     }
 }

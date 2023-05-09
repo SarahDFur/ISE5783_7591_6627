@@ -38,13 +38,13 @@ public class Sphere extends RadialGeometry {
     }
 
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         try {
             Point P0 = ray.getP0();
             Vector v = ray.getDir();
 
             if (P0.equals(center)) {
-                return List.of(center.add(v.scale(radius)));
+                return List.of(new GeoPoint(this, center.add(v.scale(radius))));
             }
             Vector u = center.subtract(P0);
 
@@ -68,15 +68,15 @@ public class Sphere extends RadialGeometry {
             if (t1 > 0 && t2 > 0) {
                 Point P1 = ray.getPoint(t1);
                 Point P2 = ray.getPoint(t2);
-                return List.of(P1, P2);
+                return List.of(new GeoPoint(this, P1), new GeoPoint(this, P2));
             }
             if (t1 > 0) {
                 Point P1 = ray.getPoint(t1);
-                return List.of(P1);
+                return List.of(new GeoPoint(this, P1));
             }
             if (t2 > 0) {
                 Point P2 = ray.getPoint(t2);
-                return List.of(P2);
+                return List.of(new GeoPoint(this, P2));
             }
             return null;
         } catch(IllegalArgumentException e) { //ray is orthogonal to sphere center line

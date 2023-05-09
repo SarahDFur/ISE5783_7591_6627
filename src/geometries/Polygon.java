@@ -14,7 +14,7 @@ import primitives.Vector;
  *
  * @author Dan
  */
-public class Polygon implements Geometry {
+public class Polygon extends Geometry {
     /**
      * List of polygon's vertices
      */
@@ -93,21 +93,21 @@ public class Polygon implements Geometry {
     }
 
     @Override
-    public List<Point> findIntersections(Ray ray) {
-        List<Point> intersection = plane.findIntersections(ray);
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        List<GeoPoint> intersection = plane.findGeoIntersectionsHelper(ray);
         if (intersection == null)
             return null; //ray doesn't intersect with plane
 
-        Point p = intersection.get(0);
+        GeoPoint p = intersection.get(0);
         try {
             Vector vecEdge = vertices.get(0).subtract(vertices.get(vertices.size() - 1));
-            Vector vecVertexToP = vertices.get(vertices.size() - 1).subtract(p);
+            Vector vecVertexToP = vertices.get(vertices.size() - 1).subtract(p.point);
             Vector vecNk = vecEdge.crossProduct(vecVertexToP); // first vector to
 
             for (int i = 0; i < vertices.size() - 1; i++) {
 
                 vecEdge = vertices.get(i + 1).subtract(vertices.get(i)).normalize();
-                vecVertexToP = vertices.get(i).subtract(p).normalize();
+                vecVertexToP = vertices.get(i).subtract(p.point).normalize();
 
                 // @TODO: what better - call twice normalize plus if-block, OR call cross product that may throw?
                 if (vecEdge.equals(vecVertexToP) || vecEdge.equals(vecVertexToP.scale(-1)))

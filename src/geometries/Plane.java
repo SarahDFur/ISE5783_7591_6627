@@ -13,7 +13,7 @@ import static primitives.Util.*;
  * based on a point and normal vector
  * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
-public class Plane implements Geometry {
+public class Plane extends Geometry {
     final private Point q0;
     final private Vector normal;
 
@@ -64,7 +64,7 @@ public class Plane implements Geometry {
     }
 
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         Vector QMinusP0;
         try {
             QMinusP0 = q0.subtract(ray.getP0());
@@ -78,7 +78,7 @@ public class Plane implements Geometry {
         double nQMinusP0 = normal.dotProduct(QMinusP0);
         double t = alignZero(nQMinusP0 / nv);
         if (t > 0)
-            return List.of(ray.getP0().add(ray.getDir().scale(t)));
+            return List.of(new GeoPoint(this, ray.getP0().add(ray.getDir().scale(t))));
 
         return null; // no intersection with plane
     }
