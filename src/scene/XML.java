@@ -17,6 +17,8 @@ import java.io.*;
  */
 public class XML {
 
+    //@TODO: add material (variable) to all geometry options
+
     /**
      * Method parses XML file
      * @param scene the scene to add the objects to

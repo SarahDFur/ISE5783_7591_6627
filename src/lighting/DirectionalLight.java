@@ -4,18 +4,30 @@ import primitives.Color;
 import primitives.Point;
 import primitives.Vector;
 
+/**
+ *
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
+ */
 public class DirectionalLight extends Light implements LightSource {
-    protected DirectionalLight(Color intensity) {
+    private Vector direction;
+
+    /**
+     * Constructor for Directional Light
+     * @param intensity color of light
+     * @param direction direction of the illumination
+     */
+    protected DirectionalLight(Color intensity, Vector direction) {
         super(intensity);
+        this.direction = direction;
     }
 
     @Override
     public Color getIntensity(Point p) {
-        return null;
+        return super.intensity;
     }
 
     @Override
     public Vector getL(Point p) {
-        return null;
+        return direction.normalize();
     }
 }
