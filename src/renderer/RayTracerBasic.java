@@ -25,11 +25,11 @@ public class RayTracerBasic extends RayTracerBase {
     @Override
     public Color traceRay(Ray ray) {
         //@TODO: traceRay - change it for stage 6
-        LinkedList<Point> listPointsIntersections = (LinkedList<Point>) scene.geometries.findIntersections(ray);
-        if(listPointsIntersections ==null || listPointsIntersections.isEmpty()){
+        LinkedList<Point> intersections = (LinkedList<Point>) scene.geometries.findIntersections(ray);
+        if(intersections ==null || intersections.isEmpty()){
             return scene.background;
         }
-        Point closestPoint = ray.findClosestPoint(listPointsIntersections);
+        Point closestPoint = ray.findClosestPoint(intersections);
         Color currentPixelColor = calcColor(closestPoint);
         return currentPixelColor;
     }
