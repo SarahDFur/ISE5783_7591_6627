@@ -12,11 +12,23 @@ import java.util.Objects;
 public abstract class Intersectable {
     //region GeoPoint
     /**
-     * Nested class for geo-point
+     * Nested class for geo-point - to connect point to Geometry
      */
     public static class GeoPoint {
+        /**
+         * Geometric entity
+         */
         public Geometry geometry;
+        /**
+         * point on the geometric entity
+         */
         public Point point;
+
+        /**
+         * constructor
+         * @param geo Geometric entity
+         * @param p point on the geometric entity
+         */
         public GeoPoint(Geometry geo, Point p){
             geometry = geo;
             point = p;

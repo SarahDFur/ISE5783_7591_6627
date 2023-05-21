@@ -1,5 +1,9 @@
 package primitives;
 
+/**
+ * represents the material a Geometry is made of
+ * @author Sarah Daatyah Furmanski and Efrat Kartman
+ */
 public class Material {
     public Double3 kD = Double3.ZERO;
     public Double3 kS = Double3.ZERO;

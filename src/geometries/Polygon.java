@@ -102,14 +102,13 @@ public class Polygon extends Geometry {
         try {
             Vector vecEdge = vertices.get(0).subtract(vertices.get(vertices.size() - 1));
             Vector vecVertexToP = vertices.get(vertices.size() - 1).subtract(p.point);
-            Vector vecNk = vecEdge.crossProduct(vecVertexToP); // first vector to
+            Vector vecNk = vecEdge.crossProduct(vecVertexToP); // first vector for comparison
 
             for (int i = 0; i < vertices.size() - 1; i++) {
 
                 vecEdge = vertices.get(i + 1).subtract(vertices.get(i)).normalize();
                 vecVertexToP = vertices.get(i).subtract(p.point).normalize();
 
-                // @TODO: what better - call twice normalize plus if-block, OR call cross product that may throw?
                 if (vecEdge.equals(vecVertexToP) || vecEdge.equals(vecVertexToP.scale(-1)))
                     return null; //point on edge or edge's vector
 
@@ -117,7 +116,9 @@ public class Polygon extends Geometry {
                 if (vecNk.dotProduct(vecNi) < 0) // not all Ni-vectors aer in the same direction
                     return null;
             }
-            return intersection;
+
+            // make new list of geopoints with polygon as geometry
+            return List.of(new GeoPoint(this,intersection.get(0).point));
 
         } catch (
                 IllegalArgumentException ex) {

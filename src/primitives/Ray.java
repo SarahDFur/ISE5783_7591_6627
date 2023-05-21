@@ -62,7 +62,7 @@ public class Ray {
                 '}';
     }
 
-    public GeoPoint findClosestGeoPoint(LinkedList<GeoPoint> geoPointList) {
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPointList) {
         //if the list is empty return null, there is no closest point
         if (geoPointList == null || geoPointList.isEmpty())
             return null;
@@ -84,19 +84,21 @@ public class Ray {
         return closestPoint;
     }
 
-    public Point findClosestPoint(List<Point> pointList) {
-        return pointList == null || pointList.isEmpty() ? null
-                : findClosestGeoPoint((LinkedList<GeoPoint>) pointList.stream().map(p -> new GeoPoint(null, p)).toList()).point;
+    public Point findClosestPoint(List<Point> points) {
+        return points == null || points.isEmpty() ? null
+                : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
+
+
 //        //if the list is empty return null, there is no closest point
-//        if(pointList == null || pointList.isEmpty())
+//        if(points == null || points.isEmpty())
 //            return null;
 //        //initial initialization of variables:
-//        Point closestPoint = pointList.get(0); //closest point starts as first point on the list
+//        Point closestPoint = points.get(0); //closest point starts as first point on the list
 //        double distance = Double.MAX_VALUE; //distance initialized to the largest value
 //        double tempDist;
 //
 //        //compare the distance of each point, if smaller, then update the closest point and distance
-//        for (Point pt: pointList) {
+//        for (Point pt: points) {
 //            tempDist = p0.distance(pt);
 //            if (tempDist < distance){
 //                distance = tempDist;

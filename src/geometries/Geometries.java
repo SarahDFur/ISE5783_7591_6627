@@ -40,20 +40,20 @@ public class Geometries extends Intersectable {
             this.geometries.addAll(List.of(geometries));
     }
 
-    @Override
-    public List<Point> findIntersections(Ray ray) {
-        List<Point> intersections = null;
-        for (Intersectable geo : geometries) {
-            var temp = geo.findIntersections(ray);
-            if (temp != null) {
-                if (intersections == null)
-                    intersections = new LinkedList<>(temp);
-                else
-                    intersections.addAll(temp);
-            }
-        }
-        return intersections;
-    }
+//    @Override
+//    public List<Point> findIntersections(Ray ray) {
+//        List<Point> intersections = null;
+//        for (Intersectable geo : geometries) {
+//            var temp = geo.findIntersections(ray);
+//            if (temp != null) {
+//                if (intersections == null)
+//                    intersections = new LinkedList<>(temp);
+//                else
+//                    intersections.addAll(temp);
+//            }
+//        }
+//        return intersections;
+//    }
 
     @Override
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {

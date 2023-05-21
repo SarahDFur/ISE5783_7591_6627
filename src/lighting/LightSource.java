@@ -2,7 +2,7 @@ package lighting;
 
 import primitives.*;
 /**
- *
+ * Interface for light sources
  * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public interface LightSource {

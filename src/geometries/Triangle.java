@@ -46,7 +46,8 @@ public class Triangle extends Polygon {
         double sign3 = alignZero(ray.getDir().dotProduct(n3));
         if (sign1 * sign3 <= 0) return null;
 
-        return intersection;
+        // make new list of geopoints with triangle as geometry
+        return List.of(new GeoPoint(this,intersection.get(0).point));
     }
 
     @Override

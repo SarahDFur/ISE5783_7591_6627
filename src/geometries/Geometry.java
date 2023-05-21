@@ -14,6 +14,10 @@ public abstract class Geometry extends Intersectable {
 
     private Material material = new Material();
 
+    /**
+     * getter for field emission
+     * @return emission
+     */
     public Color getEmission() {
         return emission;
     }

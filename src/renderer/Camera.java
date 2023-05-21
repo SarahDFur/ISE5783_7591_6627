@@ -20,9 +20,9 @@ public class Camera {
     private Point centerPoint;
 
     //all normalized
-    private Vector Vto; //x
-    private Vector Vup; //y
-    private Vector Vright; //z
+    private Vector vTo; //x
+    private Vector vUp; //y
+    private Vector vRight; //z
 
 
     //------View Plane-------
@@ -44,12 +44,12 @@ public class Camera {
      */
     public Camera(Point centerPoint, Vector vto, Vector vup) {
         this.centerPoint = centerPoint;
-        Vto = vto.normalize();
-        Vup = vup.normalize();
+        vTo = vto.normalize();
+        vUp = vup.normalize();
         if (vto.dotProduct(vup) != 0) {
             throw new IllegalArgumentException("Vto & Vup aren't orthogonal");
         }
-        Vright = Vto.crossProduct(Vup).normalize(); //vright = vto.cross(vup)
+        vRight = vTo.crossProduct(vUp).normalize(); //vright = vto.cross(vup)
         //-vright = back = vup.cross(vto)
     }
 
@@ -63,7 +63,7 @@ public class Camera {
      * @return ray
      */
     public Ray constructRay(int nX, int nY, int j, int i) {
-        Point Pij = findMiddleOfPixel(nX, nY, j, i);
+        Point Pij = findPixelCenter(nX, nY, j, i);
         //pc != p0 => subtract() will not return vector 0
         //pc = centerPoint.add(Vto.scale(distance));
         Vector Vij = Pij.subtract(centerPoint);
@@ -80,10 +80,10 @@ public class Camera {
      * @param i  column in view plane (current)
      * @return Point at the middle of a pixel
      */
-    private Point findMiddleOfPixel(int nX, int nY, int j, int i) {
+    private Point findPixelCenter(int nX, int nY, int j, int i) {
         //Pc = centerPoint + d*v
         //calculating middle of view plane
-        Point Pc = centerPoint.add(Vto.scale(distance));
+        Point Pc = centerPoint.add(vTo.scale(distance));
         //calculating size of each pixel
         double rY = height / nY;
         double rX = width / nX;
@@ -93,10 +93,10 @@ public class Camera {
         //Pi,j = pc + (xj*Vright + yi*Vup) <=> calculation based on formula (need to prevent addition with 0)
         Point Pij = Pc;
         if (!isZero(xj)) {
-            Pij = Pij.add(Vright.scale(xj));
+            Pij = Pij.add(vRight.scale(xj));
         }
         if (!isZero(yi)) {
-            Pij = Pij.add(Vup.scale(yi));
+            Pij = Pij.add(vUp.scale(yi));
         }
         return Pij;
     }
@@ -107,15 +107,15 @@ public class Camera {
     }
 
     public Vector getVto() {
-        return Vto;
+        return vTo;
     }
 
     public Vector getVup() {
-        return Vup;
+        return vUp;
     }
 
     public Vector getVright() {
-        return Vright;
+        return vRight;
     }
 
     public double getWidth() {
@@ -146,12 +146,12 @@ public class Camera {
     }
 
     public Camera setVto(Vector vto) {
-        Vto = vto;
+        vTo = vto;
         return this;
     }
 
     public Camera setVup(Vector vup) {
-        Vup = vup;
+        vUp = vup;
         return this;
     }
 
@@ -198,9 +198,9 @@ public class Camera {
     /**
      * Renders an image
      */
-    public void renderImage() {
+    public Camera renderImage() {
         //info: coordinates of the camera != null
-        if ((Vright == null) || (Vup == null) || (Vto == null) || (centerPoint == null))
+        if ((vRight == null) || (vUp == null) || (vTo == null) || (centerPoint == null))
             throw new MissingResourceException("Camera coordinates are not initialized", "Camera", "coordinates");
 
         //info: view plane variables != null (doubles != null)
@@ -218,6 +218,7 @@ public class Camera {
                 imageWriter.writePixel(j, i, thisPixelColor);
             }
         }
+        return this;
     }
 
     /**

@@ -17,9 +17,7 @@ public class AmbientLight extends Light{
      * @param Ia basic light intensity
      * @param Ka factor of intensity
      */
-    public AmbientLight(Color Ia, Double3 Ka){
-        super(Ia.scale(Ka));
-    } //Ip = Ia*Ka
+    public AmbientLight(Color Ia, Double3 Ka){ super(Ia.scale(Ka)); } //Ip = Ia*Ka
 
     /***
      * Constructor

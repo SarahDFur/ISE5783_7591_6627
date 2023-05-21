@@ -3,12 +3,16 @@ package lighting;
 import primitives.Color;
 
 /**
- *
+ * abstract class for representation of light in general
  * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 abstract class Light {
     protected Color intensity;
 
+    /**
+     * constructor
+     * @param intensity intensity of light's color
+     */
     protected Light(Color intensity) {
         this.intensity = intensity;
     }
