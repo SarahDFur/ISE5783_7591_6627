@@ -26,7 +26,6 @@ public class RayTracerBasic extends RayTracerBase {
 
     @Override
     public Color traceRay(Ray ray) {
-
         List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
         if(intersections ==null || intersections.isEmpty()){
             return scene.background;
@@ -37,7 +36,6 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     private Color calcColor(GeoPoint geoPoint, Ray ray) {
-        //@TODO: calcColor - change it for stage 6
         return scene.ambientLight.getIntensity().add(calcLocalEffects(geoPoint, ray));
 
     }
