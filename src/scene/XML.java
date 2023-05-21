@@ -43,6 +43,10 @@ public class XML {
         var ambient = (Element) root.getChildNodes().item(1); // scene - ambient light
         scene.setAmbientLight(new AmbientLight(parseColor(ambient.getAttribute("color")), new Double3(1d, 1d, 1d)));
         //3:
+        setGeometries(scene, root);
+    }
+
+    private static void setGeometries(Scene scene, Element root) {
         var geometriesList = root.getChildNodes().item(3).getChildNodes(); // scene - geometries in scene
 
         //-------------parse geometries in scene---------------
@@ -84,8 +88,8 @@ public class XML {
                     }
                 }
             }
-            scene.setGeometries(geometries);
         }
+        scene.setGeometries(geometries);
     }
 
     /**
@@ -94,8 +98,13 @@ public class XML {
      * @return the vector parsed
      */
     private static Vector parseVector(String toParse) {
+        Double3 double3 = parseDouble3(toParse);
+        return new Vector(double3);
+    }
+
+    private static Double3 parseDouble3(String toParse) {
         var parsed = toParse.split(" ");
-        return new Vector(Integer.parseInt(parsed[0]), Integer.parseInt(parsed[1]), Integer.parseInt(parsed[2]));
+        return new Double3(Integer.parseInt(parsed[0]), Integer.parseInt(parsed[1]), Integer.parseInt(parsed[2]));
     }
 
     /**

@@ -182,8 +182,8 @@ public class LightsTests {
     @Test
     public void triangleWithMultipleLights() {
         scene2.geometries.add(triangle1, triangle2);
-        scene2.lights.add(new PointLight(trianglesLightColor, trianglesLightPosition).setKl(0.001).setKq(0.02));
-        scene2.lights.add(new DirectionalLight(trianglesLightColor, trianglesLightDirection));
+        scene2.lights.add(new PointLight(new Color(RED), trianglesLightPosition).setKl(0.001).setKq(0.02));
+        scene2.lights.add(new DirectionalLight(new Color(CYAN), trianglesLightDirection));
         scene2.lights.add(new SpotLight(trianglesLightColor, trianglesLightPosition, trianglesLightDirection).setKl(0.01).setKq(0.001));
 
         ImageWriter imageWriter = new ImageWriter("triangleWithMultipleLights", 500, 500);
