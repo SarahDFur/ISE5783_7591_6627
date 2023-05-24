@@ -98,8 +98,7 @@ public class XML {
      * @return the vector parsed
      */
     private static Vector parseVector(String toParse) {
-        Double3 double3 = parseDouble3(toParse);
-        return new Vector(double3);
+        return new Vector(parseDouble3(toParse));
     }
 
     private static Double3 parseDouble3(String toParse) {
@@ -113,8 +112,7 @@ public class XML {
      * @return the point parsed
      */
     public static Point parsePoint(String toParse) {
-        var parsed = toParse.split(" ");
-        return new Point(Integer.parseInt(parsed[0]), Integer.parseInt(parsed[1]), Integer.parseInt(parsed[2]));
+        return new Point(parseDouble3(toParse));
     }
 
     /**
@@ -123,7 +121,6 @@ public class XML {
      * @return the color parsed
      */
     public static Color parseColor(String toParse) {
-        var parsed = toParse.split(" ");
-        return new Color(Integer.parseInt(parsed[0]), Integer.parseInt(parsed[1]), Integer.parseInt(parsed[2]));
+        return new Color(parseDouble3(toParse));
     }
 }
