@@ -53,6 +53,7 @@ public class Camera {
         //-vright = back = vup.cross(vto)
     }
 
+    //region construct ray calculations
     /**
      * Calculates ray that crosses the center of a pixel
      *
@@ -63,7 +64,7 @@ public class Camera {
      * @return ray
      */
     public Ray constructRay(int nX, int nY, int j, int i) {
-        Point Pij = findPixelCenter(nX, nY, j, i);
+        Point Pij = getPixelCenter(nX, nY, j, i);
         //pc != p0 => subtract() will not return vector 0
         //pc = centerPoint.add(Vto.scale(distance));
         Vector Vij = Pij.subtract(centerPoint);
@@ -80,7 +81,7 @@ public class Camera {
      * @param i  column in view plane (current)
      * @return Point at the middle of a pixel
      */
-    private Point findPixelCenter(int nX, int nY, int j, int i) {
+    private Point getPixelCenter(int nX, int nY, int j, int i) {
         //Pc = centerPoint + d*v
         //calculating middle of view plane
         Point Pc = centerPoint.add(vTo.scale(distance));
@@ -100,6 +101,7 @@ public class Camera {
         }
         return Pij;
     }
+    //endregion
 
     //region getters
     public Point getCenterPoint() {
@@ -193,8 +195,70 @@ public class Camera {
         this.distance = distance;
         return this;
     }
+
+    public Camera setImageWriter(ImageWriter imageWriter) {
+        this.imageWriter = imageWriter;
+        return this;
+    }
+
+    public Camera setRayTracer(RayTracerBase rayTracer) {
+        this.rayTracer = rayTracer;
+        return this;
+    }
     //endregion
 
+    //region stage 4 bonus - Camera transformation
+    /**
+     * Rotate the vUp and vRight vectors by deg degrees
+     * @param deg Angle of rotation in degrees clockwise
+     * @return Returns rotated camera.
+     */
+    public Camera rotateCamera(double deg) {
+        if (deg == 0) return this; //there is nothing to turn
+        this.vUp = this.vUp.rotateVector(this.vTo, deg);
+        this.vRight = this.vRight.rotateVector(this.vTo, deg);
+        return this;
+    }
+
+    /**
+     * Moves camera to certain location and points to a single point
+     * @param location the camera's new location
+     * @param to   the point the camera points to
+     * @return Returns moved camera
+     */
+    public Camera moveCamera(Point location, Point to) {
+        Vector vec;
+        try {
+            vec = to.subtract(location);
+        } catch (IllegalArgumentException ignore) {
+            throw new IllegalArgumentException("The camera cannot point at its starting location");
+        }
+        this.centerPoint = location;
+        this.vTo = vec.normalize();
+        //in order to determine Vup, we will find the intersection vector of two planes, the plane that Vto is represented
+        //as its normal, and the plane that includes the Y axis and the Vto vector (as demanded in the instructions).
+
+        //if the Vto is already on the Y axis, we will use the Z axis instead
+        if (this.vTo.equals(Vector.Y) || this.vTo.equals(Vector.Y.scale(-1))) {
+            this.vUp = (vTo.crossProduct(Vector.Z)).crossProduct(vTo).normalize();
+        } else {
+            this.vUp = (vTo.crossProduct(Vector.Y)).crossProduct(vTo).normalize();
+        }
+        this.vRight = vTo.crossProduct(vUp).normalize();
+        return this;
+    }
+
+    /**
+     * Flips the picture to left-right axis
+     * @return Returns object (self)
+     */
+    public Camera flipCamera() {
+        this.vRight = this.vRight.scale(-1);
+        return this;
+    }
+    //endregion
+
+    //region rendering & writing images
     /**
      * Renders an image
      */
@@ -250,14 +314,5 @@ public class Camera {
         //call image writer
         imageWriter.writeToImage();
     }
-
-    public Camera setImageWriter(ImageWriter imageWriter) {
-        this.imageWriter = imageWriter;
-        return this;
-    }
-
-    public Camera setRayTracer(RayTracerBase rayTracer) {
-        this.rayTracer = rayTracer;
-        return this;
-    }
+    //endregion
 }

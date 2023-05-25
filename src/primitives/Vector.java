@@ -1,7 +1,7 @@
 package primitives;
 
+import static java.lang.Math.*;
 import static primitives.Util.alignZero;
-import static primitives.Util.isZero;
 
 /**
  * Vector class extending Point class,
@@ -9,6 +9,19 @@ import static primitives.Util.isZero;
  * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public class Vector extends Point {
+    /**
+     * x Axis
+     */
+    public static final Vector X = new Vector(1,0,0);
+    /**
+     * y Axis
+     */
+    public static final Vector Y = new Vector(0,1,0);
+    /**
+     * z Axis
+     */
+    public static final Vector Z = new Vector(0,0,1);
+
     /**
      * constructor
      * @param x first coordinate
@@ -46,6 +59,13 @@ public class Vector extends Point {
                 '}';
     }
 
+    //region vector calculation methods
+
+    /**
+     * Vector addition
+     * @param other to add to caller point
+     * @return returns vector a + vector b
+     */
     public Vector add(Vector other)
     {
         return new Vector(xyz.add(other.xyz));
@@ -53,7 +73,7 @@ public class Vector extends Point {
 
 
     /**
-     *
+     * Vector scaling
      * @param s is a scalar
      * @return a new Vector which is scaled
      */
@@ -87,7 +107,7 @@ public class Vector extends Point {
     }
 
     /**
-     *
+     * Vector cross-product
      * @param other second vector
      * @return new Vector resulting from cross product
      *(ax,ay,az)x(bx,by,bz)=(aybz-azby,azbx-axbz,axby-aybx)
@@ -110,7 +130,7 @@ public class Vector extends Point {
     }
 
     /**
-     *
+     * Vector normalization
      * @return new vector which is the original vector normalized
      */
     public Vector normalize() {
@@ -121,5 +141,31 @@ public class Vector extends Point {
                 xyz.d2/size,
                 xyz.d3/size
         );
+    }
+    //endregion
+
+    /**
+     * Given a vector and an angle, rotate the vector about the given axis by the given angle
+     * @param axis Axis of rotation.
+     * @param alpha Angle of rotation in degrees
+     * @return Return the new rotated vector.
+     */
+    public Vector rotateVector(Vector axis, double alpha) {
+        double x = xyz.d1;
+        double y = xyz.d2;
+        double z = xyz.d3;
+        double u = axis.getX();
+        double v = axis.getY();
+        double w = axis.getZ();
+        double v1 = u * x + v * y + w * z;
+        double alphaRad = toRadians(alpha);
+        double alphaCos = cos(alphaRad);
+        double alphaSin = sin(alphaRad);
+        double diff = 1d - alphaCos;
+        double xPrime = u * v1 * diff + x * alphaCos + (-w * y + v * z) * alphaSin;
+        double yPrime = v * v1 * diff + y * alphaCos + (w * x - u * z) * alphaSin;
+        double zPrime = w * v1 * diff + z * alphaCos + (-v * x + u * y) * alphaSin;
+
+        return new Vector(alignZero(xPrime), alignZero(yPrime), alignZero(zPrime));
     }
 }

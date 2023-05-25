@@ -10,6 +10,7 @@ import javax.xml.parsers.*;
 import org.w3c.dom.*;
 
 import java.io.*;
+import java.util.List;
 
 /**
  * Class responsible for parsing the XML file and creating the scene
@@ -27,7 +28,7 @@ public class XML {
      * @throws IOException exception
      * @throws SAXException exception
      */
-    public static void sceneParser(Scene scene, String fileName) throws ParserConfigurationException, IOException, SAXException {
+    public void sceneParser(Scene scene, String fileName) throws ParserConfigurationException, IOException, SAXException {
         //build the parser
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -43,10 +44,10 @@ public class XML {
         var ambient = (Element) root.getChildNodes().item(1); // scene - ambient light
         scene.setAmbientLight(new AmbientLight(parseColor(ambient.getAttribute("color")), new Double3(1d, 1d, 1d)));
         //3:
-        setGeometries(scene, root);
+        scene.geometries = getGeometries(scene, root);
     }
 
-    private static void setGeometries(Scene scene, Element root) {
+    private Geometries getGeometries(Scene scene, Element root) {
         var geometriesList = root.getChildNodes().item(3).getChildNodes(); // scene - geometries in scene
 
         //-------------parse geometries in scene---------------
@@ -89,7 +90,17 @@ public class XML {
                 }
             }
         }
-        scene.setGeometries(geometries);
+        return geometries;
+    }
+
+    /**
+     * Parses Double3 from a string
+     * @param toParse string of 3 numbers to be changed into Double3
+     * @return returns a Double3 variable
+     */
+    private static Double3 parseDouble3(String toParse) {
+        var parsed = toParse.split(" ");
+        return new Double3(Integer.parseInt(parsed[0]), Integer.parseInt(parsed[1]), Integer.parseInt(parsed[2]));
     }
 
     /**
@@ -99,11 +110,6 @@ public class XML {
      */
     private static Vector parseVector(String toParse) {
         return new Vector(parseDouble3(toParse));
-    }
-
-    private static Double3 parseDouble3(String toParse) {
-        var parsed = toParse.split(" ");
-        return new Double3(Integer.parseInt(parsed[0]), Integer.parseInt(parsed[1]), Integer.parseInt(parsed[2]));
     }
 
     /**

@@ -16,6 +16,7 @@ import static primitives.Util.alignZero;
  */
 public class RayTracerBasic extends RayTracerBase {
 
+    private static final double DELTA = 0.1;
     /**
      * Constructor (sends to super)
      * @param scene given scene
@@ -88,6 +89,10 @@ public class RayTracerBasic extends RayTracerBase {
      */
     private Double3 calcDiffusive(Material mat, double nl) {
         return mat.kD.scale(Math.abs(nl));
+    }
+
+    private boolean unshaded(GeoPoint gp, Vector l, Vector n){
+        return true;
     }
 
 }

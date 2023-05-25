@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="calc effects, tag 6">
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scene/XML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/XML.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -381,7 +382,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1684637512840</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL‎-00025" summary="HW7: a few additions">
+      <created>1684922008863</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL‎-00025" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1684922008863</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,6 +472,7 @@
     <MESSAGE value="HW 6: part 1: sections 1-3" />
     <MESSAGE value="HW 6: part 2: all lighting implementation except for camera methods (need update)" />
     <MESSAGE value="- some reformat from Yair" />
-    <option name="LAST_COMMIT_MESSAGE" value="- some reformat from Yair" />
+    <MESSAGE value="HW7: a few additions" />
+    <option name="LAST_COMMIT_MESSAGE" value="HW7: a few additions" />
   </component>
 </project>
