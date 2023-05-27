@@ -11,7 +11,7 @@ import java.util.List;
 import static primitives.Util.alignZero;
 
 /**
- * (Extends) class for ray tracing
+ * (Extends) class for ray tracing - calculates color of pixels
  * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public class RayTracerBasic extends RayTracerBase {
