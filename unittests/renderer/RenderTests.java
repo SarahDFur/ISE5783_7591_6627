@@ -1,20 +1,21 @@
 package renderer;
 
-import org.junit.jupiter.api.Test;
-
 import geometries.Sphere;
 import geometries.Triangle;
 import lighting.AmbientLight;
-import primitives.*;
-import renderer.*;
-import scene.Scene;
-
+import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
+import primitives.Color;
+import primitives.Double3;
+import primitives.Point;
+import primitives.Vector;
+import scene.Scene;
+import scene.SceneBuilder;
+
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 import static java.awt.Color.*;
-import static scene.XML.sceneParser;
 
 /** Test rendering a basic image
  * @author Dan */
@@ -87,7 +88,7 @@ public class RenderTests {
         // using the code you added in appropriate packages
         // ...
         // NB: unit tests is not the correct place to put XML parsing code
-        sceneParser(scene, "basicRenderTestTwoColors.xml");
+        SceneBuilder.sceneParser(scene, "basicRenderTestTwoColors.xml");
 
         Camera camera = new Camera(Point.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0))     //
                 .setViewPlaneDistance(100)                                                                //

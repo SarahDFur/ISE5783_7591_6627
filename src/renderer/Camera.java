@@ -277,12 +277,15 @@ public class Camera {
         int nY = imageWriter.getNy();
         for (int i = 0; i < nY; i++) { //row
             for (int j = 0; j < nX; j++) { //column
-                Ray thisPixelRay = constructRay(nX, nY, j, i);
-                Color thisPixelColor = rayTracer.traceRay(thisPixelRay);
-                imageWriter.writePixel(j, i, thisPixelColor);
+                Color pixelColor = castRay(nX, nY, i, j);
+                imageWriter.writePixel(j, i, pixelColor);
             }
         }
         return this;
+    }
+
+    private Color castRay(int nX, int nY, int i, int j) {
+        return rayTracer.traceRay(constructRay(nX, nY, j, i));
     }
 
     /**

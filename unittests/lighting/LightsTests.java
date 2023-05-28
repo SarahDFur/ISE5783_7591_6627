@@ -1,14 +1,21 @@
 package lighting;
 
-import static java.awt.Color.*;
-
+import geometries.Geometry;
+import geometries.Sphere;
+import geometries.Triangle;
 import org.junit.jupiter.api.Test;
-
-import geometries.*;
-import lighting.*;
+import org.xml.sax.SAXException;
 import primitives.*;
-import renderer.*;
+import renderer.Camera;
+import renderer.ImageWriter;
+import renderer.RayTracerBasic;
 import scene.Scene;
+import scene.SceneBuilder;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+
+import static java.awt.Color.*;
 
 /**
  * Test rendering a basic image
@@ -185,8 +192,19 @@ public class LightsTests {
         scene2.lights.add(new PointLight(new Color(RED), trianglesLightPosition).setKl(0.001).setKq(0.02));
         scene2.lights.add(new DirectionalLight(new Color(CYAN), trianglesLightDirection));
         scene2.lights.add(new SpotLight(trianglesLightColor, trianglesLightPosition, trianglesLightDirection).setKl(0.01).setKq(0.001));
-
         ImageWriter imageWriter = new ImageWriter("triangleWithMultipleLights", 500, 500);
+        camera2.setImageWriter(imageWriter) //
+                .setRayTracer(new RayTracerBasic(scene2)) //
+                .renderImage() //
+                .writeToImage(); //
+    }
+    @Test
+    public void xmlTriangleWithMultipleLights() throws ParserConfigurationException, IOException, SAXException {
+        SceneBuilder.sceneParser(scene2, "lightTestXml.xml");
+//        scene2.lights.add(new PointLight(new Color(RED), trianglesLightPosition).setKl(0.001).setKq(0.02));
+//        scene2.lights.add(new DirectionalLight(new Color(CYAN), trianglesLightDirection));
+//        scene2.lights.add(new SpotLight(trianglesLightColor, trianglesLightPosition, trianglesLightDirection).setKl(0.01).setKq(0.001));
+        ImageWriter imageWriter = new ImageWriter("xmlTriangleWithMultipleLights", 500, 500);
         camera2.setImageWriter(imageWriter) //
                 .setRayTracer(new RayTracerBasic(scene2)) //
                 .renderImage() //
