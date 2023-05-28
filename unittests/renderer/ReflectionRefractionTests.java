@@ -1,7 +1,7 @@
 /**
  *
  */
-package unittests.renderer;
+package renderer;
 
 import geometries.Sphere;
 import geometries.Triangle;
@@ -9,9 +9,6 @@ import lighting.AmbientLight;
 import lighting.SpotLight;
 import org.junit.jupiter.api.Test;
 import primitives.*;
-import renderer.Camera;
-import renderer.ImageWriter;
-import renderer.RayTracerBasic;
 import scene.Scene;
 
 import static java.awt.Color.*;

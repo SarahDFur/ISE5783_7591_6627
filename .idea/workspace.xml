@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="HW7.1 - shading and refactoring">
-      <change afterPath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/lighting/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/lighting/LightsTests.java" afterDir="false" />
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="HW7.2 - reflection and refraction">
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -410,7 +406,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1685268732783</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL‎-00028" summary="HW7.2 - reflection and refraction">
+      <created>1685294491300</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL‎-00028" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1685294491300</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -469,7 +472,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="unittests - geometries getNormal tests" />
     <MESSAGE value="geometries - implementing getNormal(Point)" />
     <MESSAGE value="fixed typos" />
     <MESSAGE value="-&gt; created Intersectable (interface) with findIntersections()&#10;-&gt; added function (^) to all necessary classes (regular &amp; tests)&#10;-&gt; typo fixes" />
@@ -494,7 +496,8 @@
     <MESSAGE value="HW7: a few additions" />
     <MESSAGE value="HW7: xml updates" />
     <MESSAGE value="HW7.1 - shading and refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="HW7.1 - shading and refactoring" />
+    <MESSAGE value="HW7.2 - reflection and refraction" />
+    <option name="LAST_COMMIT_MESSAGE" value="HW7.2 - reflection and refraction" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
