@@ -200,13 +200,14 @@ public class LightsTests {
     }
     @Test
     public void xmlTriangleWithMultipleLights() throws ParserConfigurationException, IOException, SAXException {
-        SceneBuilder.sceneParser(scene2, "lightTestXml.xml");
+        Scene scene = new Scene("light xml test");
+        SceneBuilder.sceneParser(scene, "lightTestXml.xml");
 //        scene2.lights.add(new PointLight(new Color(RED), trianglesLightPosition).setKl(0.001).setKq(0.02));
 //        scene2.lights.add(new DirectionalLight(new Color(CYAN), trianglesLightDirection));
 //        scene2.lights.add(new SpotLight(trianglesLightColor, trianglesLightPosition, trianglesLightDirection).setKl(0.01).setKq(0.001));
         ImageWriter imageWriter = new ImageWriter("xmlTriangleWithMultipleLights", 500, 500);
         camera2.setImageWriter(imageWriter) //
-                .setRayTracer(new RayTracerBasic(scene2)) //
+                .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage() //
                 .writeToImage(); //
     }

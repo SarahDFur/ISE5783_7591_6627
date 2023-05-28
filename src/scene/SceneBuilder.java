@@ -1,8 +1,7 @@
 package scene;
 
 import geometries.*;
-import lighting.AmbientLight;
-import lighting.LightSource;
+import lighting.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -13,6 +12,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -49,11 +49,7 @@ public class SceneBuilder {
         scene.lights = getLights(root);
     }
 
-    private static List<LightSource> getLights(Element root) {
-        var geometriesList = root.getChildNodes().item(4).getChildNodes(); // scene - geometries in scene
-
-    }
-
+    //region geometry parsing
     private static Geometries getGeometries(Element root) {
         var geometriesList = root.getChildNodes().item(3).getChildNodes(); // scene - geometries in scene
         //-------------parse geometries in scene---------------
@@ -107,6 +103,7 @@ public class SceneBuilder {
                 parsePoint(elem.getAttribute("p2"))
         );
         triangle.setMaterial(parseMaterial(elem));
+        //triangle.setEmission(new Color(0,255,255));
         return triangle;
     }
 
@@ -141,6 +138,60 @@ public class SceneBuilder {
     }
 
     //endregion
+    //endregion
+
+    //region light sources parsing
+    private static List<LightSource> getLights(Element root) {
+        var lightSourceList = root.getChildNodes().item(4).getChildNodes();
+        List<LightSource> lightSources = new LinkedList<LightSource>();
+        for (int i = 0; i < lightSourceList.getLength(); i++) {
+            var light = lightSourceList.item(i);
+            if (light instanceof Element elem) {
+                switch (light.getNodeName()) {
+                    case "Point" -> {
+                        lightSources.add(parsePointLight(elem));
+                    }
+                    case "Directional" -> {
+                        lightSources.add(parseDirectionalLight(elem));
+                    }
+                    case "Spot" -> {
+                        lightSources.add(parseSpotLight(elem));
+                    }
+                }
+            }
+        }
+        return lightSources;
+    }
+
+    private static LightSource parsePointLight(Element elem) {
+        PointLight pointLight = new PointLight(
+                parseColor(elem.getAttribute("intensity")),
+                parsePoint(elem.getAttribute("p0"))
+        );
+        pointLight.setKl(Double.parseDouble(elem.getAttribute("kl")))
+                .setKq(Double.parseDouble(elem.getAttribute("kq")));
+        return pointLight;
+    }
+
+    private static LightSource parseDirectionalLight(Element elem) {
+        return new DirectionalLight(
+                parseColor(elem.getAttribute("intensity")),
+                parseVector(elem.getAttribute("vector"))
+        );
+    }
+
+    private static LightSource parseSpotLight(Element elem) {
+        SpotLight spotLight = new SpotLight(
+                parseColor(elem.getAttribute("intensity")),
+                parsePoint(elem.getAttribute("p0")),
+                parseVector(elem.getAttribute("vector"))
+        );
+        spotLight.setKl(Double.parseDouble(elem.getAttribute("kl")))
+                .setKq(Double.parseDouble(elem.getAttribute("kq")));
+        return spotLight;
+    }
+
+    //endregion
 
     //region regular parsers
     /**
@@ -150,7 +201,14 @@ public class SceneBuilder {
      */
     private static Double3 parseDouble3(String toParse) {
         var parsed = toParse.split(" ");
-        return new Double3(Integer.parseInt(parsed[0]), Integer.parseInt(parsed[1]), Integer.parseInt(parsed[2]));
+        if(parsed.length == 3)
+            return new Double3(
+                    Double.parseDouble(parsed[0]),
+                    Double.parseDouble(parsed[1]),
+                    Double.parseDouble(parsed[2])
+            );
+        else
+            return new Double3(Double.parseDouble(parsed[0]));
     }
 
     /**

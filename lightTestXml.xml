@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scene background-color="75 127 190">
+<scene background-color="0 0 0">
     <ambient-light color="255 255 255" ka="0.15"/>
     <geometries>
-        <triangle p0="-110 -110 -150" p1="95 100 -150" p2="110 -110 -150">
-        <material kd3="0.2 0.6 0.4" ks3="0.2 0.4 0.3" shininess="301"/>
-        </triangle>
+        <triangle p0="-110 -110 -150" p1="95 100 -150" p2="110 -110 -150" kd3="0.2 0.6 0.4" ks3="0.2 0.4 0.3" shininess="301"/>
         <triangle p0="-110 -110 -150" p1="95 100 -1500" p2="-75 78 100" kd3="0.2 0.6 0.4" ks3="0.2 0.4 0.3" shininess="301"/>
     </geometries>
-<!--    <light-source>-->
-<!--        <Point>-->
-<!--            <color intensity="255 0 0"/>-->
-<!--            <location p0="30 10 -100"/>-->
-<!--        </Point>-->
-<!--        <Dircectional>-->
-<!--            <color intensity="0 255 255"/>-->
-<!--            <vector dir="-2 -2 -2"/>-->
-<!--        </Dircectional>-->
-<!--        <Spot>-->
-<!--            <color intensity="255 0 0"/>-->
-<!--            <location p0="30 10 -100"/>-->
-<!--            <vector dir="-2 -2 -2"/>-->
-<!--        </Spot>-->
-<!--    </light-source>-->
+    <light-source>
+        <Point intensity="255 0 0" p0="30 10 -100" kl="0.001" kq="0.02"/>
+        <Dircectional intensity="0 255 255" dir="-2 -2 -2"/>
+        <Spot intensity="255 0 0" p0="30 10 -100" dir="-2 -2 -2" kl="0.01" kq="0.001"/>
+    </light-source>
 </scene>
