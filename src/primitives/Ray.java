@@ -1,8 +1,8 @@
 package primitives;
 
-import java.util.LinkedList;
-import java.util.List;
 import geometries.Intersectable.GeoPoint;
+
+import java.util.List;
 
 import static primitives.Util.isZero;
 
@@ -12,6 +12,10 @@ import static primitives.Util.isZero;
  * @author Sarah Daatyah Furmanski and Efrat Kartman
  */
 public class Ray {
+    /**
+     * value for moving GoePoint, for shading bug
+     */
+    private static final double DELTA = 0.1;
     final private Point p0;
     final private Vector dir;
 
@@ -24,6 +28,19 @@ public class Ray {
     public Ray(Point p0, Vector dir) {
         this.p0 = p0;
         this.dir = dir.normalize();
+    }
+
+    /**
+     * constructor - move ray by DELTA along normal vector
+     * normalize the vector received
+     * @param p0 point
+     * @param direction ray's direction vector
+     * @param normal normal vector
+     */
+    public Ray(Point p0, Vector direction, Vector normal) {
+        Vector delta = normal.scale(normal.dotProduct(direction) > 0 ? DELTA : - DELTA);
+        this.p0 = p0.add(delta);
+        this.dir = direction.normalize();
     }
 
     public Point getPoint(double t) {
