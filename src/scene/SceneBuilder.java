@@ -2,6 +2,7 @@ package scene;
 
 import geometries.*;
 import lighting.AmbientLight;
+import lighting.LightSource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -12,6 +13,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Class responsible for parsing the XML file and creating the scene
@@ -41,9 +43,15 @@ public class SceneBuilder {
         scene.setBackground(parseColor(root.getAttribute("background-color"))); // scene - background
         //2:
         var ambient = (Element) root.getChildNodes().item(1); // scene - ambient light
-        scene.setAmbientLight(new AmbientLight(parseColor(ambient.getAttribute("color")), new Double3(1d, 1d, 1d)));
+        scene.setAmbientLight(new AmbientLight(parseColor(ambient.getAttribute("color")), parseDouble3(ambient.getAttribute("ka"))));
         //3:
         scene.geometries = getGeometries(root);
+        scene.lights = getLights(root);
+    }
+
+    private static List<LightSource> getLights(Element root) {
+        var geometriesList = root.getChildNodes().item(4).getChildNodes(); // scene - geometries in scene
+
     }
 
     private static Geometries getGeometries(Element root) {
@@ -98,10 +106,7 @@ public class SceneBuilder {
                 parsePoint(elem.getAttribute("p1")),
                 parsePoint(elem.getAttribute("p2"))
         );
-        triangle.setMaterial(new Material()
-                .setKd(parseDouble3(elem.getAttribute("kd3")))
-                .setKs(parseDouble3(elem.getAttribute("ks3")))
-                .setShininess((int)Double.parseDouble(elem.getAttribute("shininess"))));
+        triangle.setMaterial(parseMaterial(elem));
         return triangle;
     }
 
