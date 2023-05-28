@@ -1,20 +1,25 @@
 package lighting;
 
+import geometries.Intersectable;
+import geometries.Sphere;
+import geometries.Triangle;
 import org.junit.jupiter.api.Test;
-
-import static java.awt.Color.*;
-
-import geometries.*;
-import lighting.*;
 import primitives.*;
-import renderer.*;
+import renderer.Camera;
+import renderer.ImageWriter;
+import renderer.RayTracerBasic;
 import scene.Scene;
+
+import static java.awt.Color.BLUE;
+import static java.awt.Color.WHITE;
 
 /**
  * Testing basic shadows
  *
  * @author Dan
  */
+
+
 public class ShadowTests {
     private Intersectable sphere = new Sphere(60d, new Point(0, 0, -200))
             .setEmission(new Color(BLUE))
