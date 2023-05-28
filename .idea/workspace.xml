@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="HW7.1 - shading and refactoring" />
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lightTestXml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lightTestXml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scene/SceneBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/SceneBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/lighting/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/lighting/LightsTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,6 +129,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LightsTests.triangleWithMultipleLights" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_7591_6627" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lighting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="lighting" />
+      <option name="MAIN_CLASS_NAME" value="lighting.LightsTests" />
+      <option name="METHOD_NAME" value="triangleWithMultipleLights" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LightsTests.xmlTriangleWithMultipleLights" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
@@ -135,22 +156,6 @@
       <option name="PACKAGE_NAME" value="lighting" />
       <option name="MAIN_CLASS_NAME" value="lighting.LightsTests" />
       <option name="METHOD_NAME" value="xmlTriangleWithMultipleLights" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RayTests.findClosestPoint" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_7591_6627" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="primitives" />
-      <option name="MAIN_CLASS_NAME" value="primitives.RayTests" />
-      <option name="METHOD_NAME" value="findClosestPoint" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -190,10 +195,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.LightsTests.xmlTriangleWithMultipleLights" />
+        <item itemvalue="JUnit.LightsTests.triangleWithMultipleLights" />
         <item itemvalue="JUnit.RenderTests.basicRenderXml" />
         <item itemvalue="JUnit.ShadowTests" />
         <item itemvalue="JUnit.All in ISE5783_7591_6627" />
-        <item itemvalue="JUnit.RayTests.findClosestPoint" />
       </list>
     </recent_temporary>
   </component>
@@ -403,7 +408,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1685268732783</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL‎-00028" summary="HW7.1 - shadows">
+      <created>1685269068342</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL‎-00028" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1685269068342</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,7 +474,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="unittests - geometries getNormal tests" />
     <MESSAGE value="geometries - implementing getNormal(Point)" />
     <MESSAGE value="fixed typos" />
     <MESSAGE value="-&gt; created Intersectable (interface) with findIntersections()&#10;-&gt; added function (^) to all necessary classes (regular &amp; tests)&#10;-&gt; typo fixes" />
@@ -487,22 +498,28 @@
     <MESSAGE value="HW7: a few additions" />
     <MESSAGE value="HW7: xml updates" />
     <MESSAGE value="HW7.1 - shading and refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="HW7.1 - shading and refactoring" />
+    <MESSAGE value="HW7.1 - shadows" />
+    <option name="LAST_COMMIT_MESSAGE" value="HW7.1 - shadows" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/unittests/lighting/LightsTests.java</url>
-          <line>203</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/unittests/renderer/RenderTests.java</url>
           <line>90</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/unittests/lighting/LightsTests.java</url>
+          <line>190</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="scene.Scene" memberName="lights" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

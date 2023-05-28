@@ -50,6 +50,12 @@ public class SceneBuilder {
     }
 
     //region geometry parsing
+
+    /**
+     * Gets all geometries from xml file - converter
+     * @param root root of file
+     * @return returns all geometries in scene
+     */
     private static Geometries getGeometries(Element root) {
         var geometriesList = root.getChildNodes().item(3).getChildNodes(); // scene - geometries in scene
         //-------------parse geometries in scene---------------
@@ -103,7 +109,6 @@ public class SceneBuilder {
                 parsePoint(elem.getAttribute("p2"))
         );
         triangle.setMaterial(parseMaterial(elem));
-        //triangle.setEmission(new Color(0,255,255));
         return triangle;
     }
 
@@ -142,19 +147,19 @@ public class SceneBuilder {
 
     //region light sources parsing
     private static List<LightSource> getLights(Element root) {
-        var lightSourceList = root.getChildNodes().item(4).getChildNodes();
-        List<LightSource> lightSources = new LinkedList<LightSource>();
+        var lightSourceList = root.getChildNodes().item(3).getNextSibling().getNextSibling().getChildNodes();
+        List<LightSource> lightSources = new LinkedList<>();
         for (int i = 0; i < lightSourceList.getLength(); i++) {
             var light = lightSourceList.item(i);
             if (light instanceof Element elem) {
                 switch (light.getNodeName()) {
-                    case "Point" -> {
+                    case "point" -> {
                         lightSources.add(parsePointLight(elem));
                     }
-                    case "Directional" -> {
+                    case "directional" -> {
                         lightSources.add(parseDirectionalLight(elem));
                     }
-                    case "Spot" -> {
+                    case "spot" -> {
                         lightSources.add(parseSpotLight(elem));
                     }
                 }
@@ -163,24 +168,25 @@ public class SceneBuilder {
         return lightSources;
     }
 
-    private static LightSource parsePointLight(Element elem) {
+    private static PointLight parsePointLight(Element elem) {
         PointLight pointLight = new PointLight(
                 parseColor(elem.getAttribute("intensity")),
                 parsePoint(elem.getAttribute("p0"))
         );
         pointLight.setKl(Double.parseDouble(elem.getAttribute("kl")))
                 .setKq(Double.parseDouble(elem.getAttribute("kq")));
+        //pointLight.setKc(0.15);
         return pointLight;
     }
 
-    private static LightSource parseDirectionalLight(Element elem) {
+    private static DirectionalLight parseDirectionalLight(Element elem) {
         return new DirectionalLight(
                 parseColor(elem.getAttribute("intensity")),
                 parseVector(elem.getAttribute("vector"))
         );
     }
 
-    private static LightSource parseSpotLight(Element elem) {
+    private static SpotLight parseSpotLight(Element elem) {
         SpotLight spotLight = new SpotLight(
                 parseColor(elem.getAttribute("intensity")),
                 parsePoint(elem.getAttribute("p0")),

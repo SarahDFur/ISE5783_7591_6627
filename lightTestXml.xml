@@ -3,11 +3,11 @@
     <ambient-light color="255 255 255" ka="0.15"/>
     <geometries>
         <triangle p0="-110 -110 -150" p1="95 100 -150" p2="110 -110 -150" kd3="0.2 0.6 0.4" ks3="0.2 0.4 0.3" shininess="301"/>
-        <triangle p0="-110 -110 -150" p1="95 100 -1500" p2="-75 78 100" kd3="0.2 0.6 0.4" ks3="0.2 0.4 0.3" shininess="301"/>
+        <triangle p0="-110 -110 -150" p1="95 100 -150" p2="-75 78 100" kd3="0.2 0.6 0.4" ks3="0.2 0.4 0.3" shininess="301"/>
     </geometries>
     <light-source>
-        <Point intensity="255 0 0" p0="30 10 -100" kl="0.001" kq="0.02"/>
-        <Dircectional intensity="0 255 255" dir="-2 -2 -2"/>
-        <Spot intensity="255 0 0" p0="30 10 -100" dir="-2 -2 -2" kl="0.01" kq="0.001"/>
+        <point intensity="800 500 250" p0="30 10 -100" kl="0.001" kq="0.02"/>
+        <directional intensity="800 500 250" vector="-2 -2 -2"/>
+        <spot intensity="800 500 250" p0="30 10 -100" vector="-2 -2 -2" kl="0.01" kq="0.001"/>
     </light-source>
 </scene>
