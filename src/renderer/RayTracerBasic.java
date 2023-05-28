@@ -51,7 +51,7 @@ public class RayTracerBasic extends RayTracerBase {
      * @return color of point, including all effects
      */
     private Color calcColor(GeoPoint geoPoint, Ray ray, int level, Double3 k) {
-        Color color = calcLocalEffects(geoPoint, ray);
+        Color color = calcLocalEffects(geoPoint, ray, k);
         return 1 == level ?
                 color : color.add(calcGlobalEffects(geoPoint, ray, level, k));
     }
@@ -78,9 +78,10 @@ public class RayTracerBasic extends RayTracerBase {
      *
      * @param gp  GeoPoint of point to calculate effects on
      * @param ray camera's ray that intersect Geometry
+     * @param k   k value
      * @return calculated color of point on Geometry in GeoPoint gp
      */
-    private Color calcLocalEffects(GeoPoint gp, Ray ray) {
+    private Color calcLocalEffects(GeoPoint gp, Ray ray, Double3 k) {
         Color color = gp.geometry.getEmission();
         Vector vector = ray.getDir();
         Vector normal = gp.geometry.getNormal(gp.point);
@@ -92,8 +93,10 @@ public class RayTracerBasic extends RayTracerBase {
             Vector lightVector = lightSource.getL(gp.point);
             double nl = alignZero(normal.dotProduct(lightVector));
             if (nl * nv > 0) { // sign(nl) == sign(nv)
-                if (unshaded(gp, lightSource, lightVector, normal, nl)) {
-                    Color lightIntensity = lightSource.getIntensity(gp.point);
+//                if (unshaded(gp, lightSource, lightVector, normal))
+                Double3 ktr = transparency(gp, lightSource, lightVector, normal);
+                if (!ktr.product(k).lowerThan(MIN_CALC_COLOR_K)) {
+                    Color lightIntensity = lightSource.getIntensity(gp.point).scale(ktr);
                     color = color.add(lightIntensity.scale(calcDiffusive(mat, nl)),
                             lightIntensity.scale(calcSpecular(mat, normal, lightVector, nl, vector)));
                 }
@@ -199,12 +202,13 @@ public class RayTracerBasic extends RayTracerBase {
     /**
      * check whether a point is unshaded
      *
-     * @param gp GeoPint to check
-     * @param l  vector light
-     * @param n  vector normal
+     * @param gp          GeoPint to check
+     * @param lightSource light source
+     * @param l           vector light
+     * @param n           vector normal
      * @return true if point gp is unshaded
      */
-    private boolean unshaded(GeoPoint gp, LightSource lightSource, Vector l, Vector n, double nl) {
+    private boolean unshaded(GeoPoint gp, LightSource lightSource, Vector l, Vector n) {
         Ray lightRay = new Ray(gp.point, l.scale(-1), n);
         List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
 
@@ -213,7 +217,7 @@ public class RayTracerBasic extends RayTracerBase {
         double distance = alignZero(lightSource.getDistance(gp.point));
         for (GeoPoint intersection : intersections) {
 
-            if(intersection.geometry.getMaterial().kT != Double3.ZERO)
+            if (intersection.geometry.getMaterial().kT != Double3.ZERO)
                 return true;
 
             if (alignZero(intersection.point.distance(gp.point)) < distance)
@@ -221,6 +225,33 @@ public class RayTracerBasic extends RayTracerBase {
         }
 
         return true;
+    }
+
+    /**
+     * return the transparency factor
+     *
+     * @param gp          GeoPint to check
+     * @param lightSource light source
+     * @param l           vector light
+     * @param n           vector normal
+     * @return Double3 that is the transparency factor
+     */
+    private Double3 transparency(GeoPoint gp, LightSource lightSource, Vector l, Vector n) {
+        Ray lightRay = new Ray(gp.point, l.scale(-1), n);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+
+        Double3 ktr = Double3.ONE;
+        if (intersections == null)
+            return ktr;
+
+        double distance = alignZero(lightSource.getDistance(gp.point));
+        for (GeoPoint intersection : intersections) {
+
+            if (alignZero(intersection.point.distance(gp.point)) < distance)
+                ktr = ktr.product(intersection.geometry.getMaterial().kT);
+        }
+
+        return ktr;
     }
 
     /**

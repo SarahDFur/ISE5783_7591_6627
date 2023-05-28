@@ -4,9 +4,11 @@ import primitives.Color;
 import primitives.Point;
 import primitives.Vector;
 
+import static primitives.Util.alignZero;
+
 public class SpotLight extends PointLight {
     private Vector direction;
-    private int narrowBeam;
+    private double narrowBeam;
 
     /**
      * mConstructor for Spot Light
@@ -23,14 +25,15 @@ public class SpotLight extends PointLight {
 
     @Override
     public Color getIntensity(Point p) {
-        Vector l = getL(p); //vector from light to point p
-        double max = Math.max(0, direction.dotProduct(l));
+        double factor = alignZero(direction.dotProduct(getL(p)));
+        if (factor <= 0)
+            return Color.BLACK;
         if (narrowBeam != 1)
-            return super.getIntensity(p).scale(Math.pow(max, narrowBeam));
-        return super.getIntensity(p).scale(max); //uses parent function to implement DRY
+            factor = Math.pow(factor, narrowBeam);
+        return super.getIntensity(p).scale(factor);
     }
 
-    public PointLight setNarrowBeam(int narrowBeam) {
+    public PointLight setNarrowBeam(double narrowBeam) {
         this.narrowBeam = narrowBeam;
         return this;
     }
