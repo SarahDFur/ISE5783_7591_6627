@@ -4,16 +4,11 @@ import geometries.Sphere;
 import geometries.Triangle;
 import lighting.AmbientLight;
 import org.junit.jupiter.api.Test;
-import org.xml.sax.SAXException;
 import primitives.Color;
 import primitives.Double3;
 import primitives.Point;
 import primitives.Vector;
 import scene.Scene;
-import scene.SceneBuilder;
-
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 
 import static java.awt.Color.*;
 
@@ -80,23 +75,23 @@ public class RenderTests {
         camera.writeToImage();
     }
 
-    /** Test for XML based scene - for bonus */
-    @Test
-    public void basicRenderXml() throws ParserConfigurationException, IOException, SAXException {
-        Scene  scene  = new Scene("XML Test scene");
-        // enter XML file name and parse from XML file into scene object
-        // using the code you added in appropriate packages
-        // ...
-        // NB: unit tests is not the correct place to put XML parsing code
-        SceneBuilder.sceneParser(scene, "basicRenderTestTwoColors.xml");
-
-        Camera camera = new Camera(Point.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0))     //
-                .setViewPlaneDistance(100)                                                                //
-                .setViewPlaneSize(500, 500).setImageWriter(new ImageWriter("xml render test", 1000, 1000))
-                .setRayTracer(new RayTracerBasic(scene));
-        camera.renderImage();
-        camera.printGrid(100, new Color(BLACK));
-        camera.writeToImage();
-    }
+//    /** Test for XML based scene - for bonus */
+//    @Test
+//    public void basicRenderXml() throws ParserConfigurationException, IOException, SAXException {
+//        Scene scene  = new Scene("XML Test scene");
+//        // enter XML file name and parse from XML file into scene object
+//        // using the code you added in appropriate packages
+//        // ...
+//        // NB: unit tests is not the correct place to put XML parsing code
+//        SceneBuilder.sceneParser(scene, "basicRenderTestTwoColors.xml");
+//
+//        Camera camera = new Camera(Point.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0))     //
+//                .setViewPlaneDistance(100)                                                                //
+//                .setViewPlaneSize(500, 500).setImageWriter(new ImageWriter("xml render test", 1000, 1000))
+//                .setRayTracer(new RayTracerBasic(scene));
+//        camera.renderImage();
+//        camera.printGrid(100, new Color(BLACK));
+//        camera.writeToImage();
+//    }
 }
 
