@@ -30,8 +30,8 @@ public class SpotLight extends PointLight {
         return super.getIntensity(p).scale(max); //uses parent function to implement DRY
     }
 
-    public PointLight setNarrowBeam(int narrowbeam) {
-        this.narrowBeam = narrowbeam;
+    public PointLight setNarrowBeam(int narrowBeam) {
+        this.narrowBeam = narrowBeam;
         return this;
     }
 }
