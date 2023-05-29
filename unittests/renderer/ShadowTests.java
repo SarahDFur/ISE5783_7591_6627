@@ -6,8 +6,13 @@ import geometries.Triangle;
 import lighting.AmbientLight;
 import lighting.SpotLight;
 import org.junit.jupiter.api.Test;
+import org.xml.sax.SAXException;
 import primitives.*;
 import scene.Scene;
+import scene.SceneBuilder;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 
 import static java.awt.Color.BLUE;
 import static java.awt.Color.WHITE;
@@ -42,6 +47,7 @@ public class ShadowTests {
                 .renderImage()
                 .writeToImage();
     }
+
 
     /**
      * Produce a picture of a sphere and triangle with point light and shade
@@ -83,6 +89,7 @@ public class ShadowTests {
                 new Point(-88,-88,120));
     }
 
+
     /**
      * Sphere-Triangle shading - move spot even more close
      */
@@ -119,5 +126,20 @@ public class ShadowTests {
                 .renderImage()
                 .writeToImage();
     }
-
+    //region xml experimentation
+     void xmlSphereTriangleHelper(String pictName, Triangle triangle, Point spotLocation) throws ParserConfigurationException, IOException, SAXException {
+            Scene scene1 = new Scene("shadow xml test");
+            SceneBuilder.sceneParser(scene, "shadowTestXml.xml");
+            scene.geometries.add(triangle.setEmission(new Color(BLUE)).setMaterial(trMaterial));
+            camera.setImageWriter(new ImageWriter(pictName, 400, 400))
+                    .renderImage()
+                    .writeToImage();
+        }
+    @Test
+    public void xmlSphereTriangleSpot1() throws ParserConfigurationException, IOException, SAXException {
+        xmlSphereTriangleHelper("xmlShadowSphereTriangleSpot1",
+                new Triangle(new Point(-70, -40, 0), new Point(-40, -70, 0), new Point(-68, -68, -4)),
+                new Point(-88,-88,120));
+    }
+    //endregion
 }

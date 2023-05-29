@@ -97,8 +97,8 @@ public class SceneBuilder {
 
     private static Material parseMaterial(Element elem) {
         return new Material()
-                .setKd(parseDouble3(elem.getAttribute("kd3")))
-                .setKs(parseDouble3(elem.getAttribute("ks3")))
+                .setKd(parseDouble3(elem.getAttribute("kd")))
+                .setKs(parseDouble3(elem.getAttribute("ks")))
                 .setShininess((int)Double.parseDouble(elem.getAttribute("shininess")));
     }
 
@@ -109,37 +109,52 @@ public class SceneBuilder {
                 parsePoint(elem.getAttribute("p2"))
         );
         triangle.setMaterial(parseMaterial(elem));
+        if(elem.hasAttribute("emission"))
+            triangle.setEmission(parseColor(elem.getAttribute("emission")));
         return triangle;
     }
 
     private static Sphere parseSphere(Element elem) {
-        return new Sphere(
+        Sphere sphere = new Sphere(
                 Double.parseDouble(elem.getAttribute("radius")),
                 parsePoint(elem.getAttribute("center"))
-                );
+        );
+        sphere.setMaterial(parseMaterial(elem));
+        if(elem.hasAttribute("emission"))
+            sphere.setEmission(parseColor(elem.getAttribute("emission")));
+        return sphere;
     }
     private static Plane parsePlane(Element elem) {
-        return new Plane(
+        Plane plane = new Plane(
                 parsePoint(elem.getAttribute("point")),
                 parseVector(elem.getAttribute("vector"))
         );
+        if(elem.hasAttribute("emission"))
+            plane.setEmission(parseColor(elem.getAttribute("emission")));
+        return plane;
     }
 
     private static Tube parseTube(Element elem) {
-        return new Tube(
+        Tube tube = new Tube(
                 Double.parseDouble(elem.getAttribute("radius")),
                 new Ray(parsePoint(elem.getAttribute("point")),
                         parseVector(elem.getAttribute("vector")))
-                );
+        );
+        if(elem.hasAttribute("emission"))
+            tube.setEmission(parseColor(elem.getAttribute("emission")));
+        return tube;
     }
 
     private static Cylinder parseCylinder(Element elem) {
-        return new Cylinder(
+        Cylinder cylinder = new Cylinder(
                 Double.parseDouble(elem.getAttribute("radius")),
                 new Ray(parsePoint(elem.getAttribute("point")),
                         parseVector(elem.getAttribute("vector"))),
                 Double.parseDouble(elem.getAttribute("height"))
         );
+        if(elem.hasAttribute("emission"))
+            cylinder.setEmission(parseColor(elem.getAttribute("emission")));
+        return cylinder;
     }
 
     //endregion

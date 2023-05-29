@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scene background-color="0 0 0">
+    <ambient-light color="0 0 0" ka="0.15"/>
+    <geometries>
+        <sphere radius="60" center="0 0 -200" kd="0.5" ks="0.5" shininess="30" emission="0 0 255"/>
+    </geometries>
+    <light-source>
+        <spot intensity="400 240 0" p0="-88 -88 120" vector="1 1 -3" kl="0.00001" kq="0.00000015"/>
+    </light-source>
+</scene>
