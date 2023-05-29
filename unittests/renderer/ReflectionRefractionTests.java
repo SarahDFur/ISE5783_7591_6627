@@ -8,8 +8,13 @@ import geometries.Triangle;
 import lighting.AmbientLight;
 import lighting.SpotLight;
 import org.junit.jupiter.api.Test;
+import org.xml.sax.SAXException;
 import primitives.*;
 import scene.Scene;
+import scene.SceneBuilder;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 
 import static java.awt.Color.*;
 
@@ -75,6 +80,18 @@ public class ReflectionRefractionTests {
                 .setKl(0.00001).setKq(0.000005));
 
         ImageWriter imageWriter = new ImageWriter("reflectionTwoSpheresMirrored", 500, 500);
+        camera.setImageWriter(imageWriter)
+                .setRayTracer(new RayTracerBasic(scene))
+                .renderImage()
+                .writeToImage();
+    }
+    @Test
+    public void xmlTwoSpheresOnMirrors() throws ParserConfigurationException, IOException, SAXException {
+        Camera camera = new Camera(new Point(0, 0, 10000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+                .setViewPlaneSize(2500, 2500).setViewPlaneDistance(10000);
+        SceneBuilder.sceneParser(scene, "reflectionRefractionTestXml.xml");
+
+        ImageWriter imageWriter = new ImageWriter("xmlReflectionTwoSpheresMirrored", 500, 500);
         camera.setImageWriter(imageWriter)
                 .setRayTracer(new RayTracerBasic(scene))
                 .renderImage()

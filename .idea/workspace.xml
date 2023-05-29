@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="HW7.2 - reflection and refraction">
-      <change afterPath="$PROJECT_DIR$/reflectionRefractionTestXml.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shadowTestXml.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xmlMiniBarRoom.xml" afterDir="false" />
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basicRenderTestTwoColors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/basicRenderTestTwoColors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reflectionRefractionTestXml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/reflectionRefractionTestXml.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scene/SceneBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/SceneBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/ShadowTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ShadowTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,6 +112,7 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\Academic studies\שנה ד\ב\מיניפ מלת\ISE5783_7591_6627\images\lighting" />
       <recent name="C:\Users\User\Desktop\Academic studies\שנה ד\ב\מיניפ מלת\ISE5783_7591_6627\images\shadows" />
       <recent name="C:\Users\User\Desktop\Academic studies\שנה ד\ב\מיניפ מלת\ISE5783_7591_6627\images\base renderer" />
     </key>
@@ -127,15 +125,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ShadowTests.xmlSphereTriangleSpot1">
-    <configuration name="All in ISE5783_7591_6627" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_7591_6627" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.xmlTwoSpheresOnMirrors">
     <configuration name="ReflectionRefractionTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
@@ -147,6 +137,22 @@
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReflectionRefractionTests.xmlTwoSpheresOnMirrors" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_7591_6627" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
+      <option name="METHOD_NAME" value="xmlTwoSpheresOnMirrors" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -201,11 +207,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReflectionRefractionTests.xmlTwoSpheresOnMirrors" />
         <item itemvalue="JUnit.ShadowTests.xmlSphereTriangleSpot1" />
         <item itemvalue="JUnit.ShadowTests.sphereTriangleSpot1" />
         <item itemvalue="JUnit.ShadowTests.xmlSphereTriangleInitial" />
         <item itemvalue="JUnit.ReflectionRefractionTests" />
-        <item itemvalue="JUnit.All in ISE5783_7591_6627" />
       </list>
     </recent_temporary>
   </component>
@@ -436,7 +442,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1685296306700</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL‎-00031" summary="HW7.1 - shadow tests in xml work">
+      <created>1685359373328</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL‎-00031" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1685359373328</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -495,7 +508,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="geometries - implementing getNormal(Point)" />
     <MESSAGE value="fixed typos" />
     <MESSAGE value="-&gt; created Intersectable (interface) with findIntersections()&#10;-&gt; added function (^) to all necessary classes (regular &amp; tests)&#10;-&gt; typo fixes" />
     <MESSAGE value="-&gt; SphereTests - findIntersections() test&#10;-&gt; Sphere.java - findIntersections() method" />
@@ -520,15 +532,16 @@
     <MESSAGE value="HW7: xml updates" />
     <MESSAGE value="HW7.1 - shading and refactoring" />
     <MESSAGE value="HW7.2 - reflection and refraction" />
-    <option name="LAST_COMMIT_MESSAGE" value="HW7.2 - reflection and refraction" />
+    <MESSAGE value="HW7.1 - shadow tests in xml work" />
+    <option name="LAST_COMMIT_MESSAGE" value="HW7.1 - shadow tests in xml work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/scene/SceneBuilder.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="27" />
+          <line>47</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
