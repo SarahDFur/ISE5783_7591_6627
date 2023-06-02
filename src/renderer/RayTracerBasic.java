@@ -8,6 +8,7 @@ import scene.Scene;
 import java.util.List;
 
 import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 /**
  * (Extends) class for ray tracing - calculates color of pixels
@@ -161,14 +162,21 @@ public class RayTracerBasic extends RayTracerBase {
      *
      * @param ray   the is used to intersect the geometries
      * @param level the current level
-     * @param kx    a color factor to reduce the color (according to the current level of recursion)
-     * @param kkx   the color factor for the next level of recursion
+     * @param k    a color factor to reduce the color (according to the current level of recursion)
+     * @param kx   the color factor for the next level of recursion
      * @return the new calculated color
      */
-    private Color calcGlobalEffects(Ray ray, int level, Double3 kx, Double3 kkx) {
+    private Color calcGlobalEffects(Ray ray, int level, Double3 k, Double3 kx) {
+        Double3 kkx = k.product(kx);
+        if (kkx.lowerThan(MIN_CALC_COLOR_K))
+            return Color.BLACK;
+
         GeoPoint gp = findClosestIntersection(ray);
-        return (gp == null ?
-                scene.background : calcColor(gp, ray, level - 1, kkx)).scale(kx);
+        if (gp == null)
+            return scene.background.scale(kx);
+
+        return isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDir())) ?
+                Color.BLACK : calcColor(gp, ray, level - 1, kkx).scale(kx);
     }
 
     /**
