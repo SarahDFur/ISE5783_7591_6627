@@ -98,11 +98,11 @@ public class SceneBuilder {
     private static Material parseMaterial(Element elem) {
         Material material = new Material();
         if(elem.hasAttribute("kd"))
-            material.setKr(parseDouble3(elem.getAttribute("kd")));
+            material.setKd(parseDouble3(elem.getAttribute("kd")));
         if(elem.hasAttribute("ks"))
-            material.setKt(parseDouble3(elem.getAttribute("ks")));
+            material.setKs(parseDouble3(elem.getAttribute("ks")));
         if(elem.hasAttribute("shininess"))
-            material.setKt(parseDouble3(elem.getAttribute("shininess")));
+            material.setShininess((int)Double.parseDouble(elem.getAttribute("shininess")));
         if(elem.hasAttribute("kr"))
             material.setKr(parseDouble3(elem.getAttribute("kr")));
         if(elem.hasAttribute("kt"))

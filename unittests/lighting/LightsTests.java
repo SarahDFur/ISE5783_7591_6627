@@ -133,6 +133,20 @@ public class LightsTests {
                 .renderImage() //
                 .writeToImage(); //
     }
+    /**
+     * Produce a picture of two triangles lighted by a directional light
+     */
+    @Test
+    public void xmlTrianglesDirectional() throws ParserConfigurationException, IOException, SAXException {
+        SceneBuilder.sceneParser(scene2, "directionalLightTri.xml");
+
+
+        ImageWriter imageWriter = new ImageWriter("xmlLightTrianglesDirectional", 500, 500);
+        camera2.setImageWriter(imageWriter) //
+                .setRayTracer(new RayTracerBasic(scene2)) //
+                .renderImage() //
+                .writeToImage(); //
+    }
 
     /**
      * Produce a picture of two triangles lighted by a point light
@@ -200,11 +214,7 @@ public class LightsTests {
     }
     @Test
     public void xmlTriangleWithMultipleLights() throws ParserConfigurationException, IOException, SAXException {
-        //Scene scene = new Scene("light xml test");
         SceneBuilder.sceneParser(scene2, "lightTestXml.xml");
-        //scene2.lights.add(new PointLight(trianglesLightColor, trianglesLightPosition).setKl(0.001).setKq(0.02));
-        //scene2.lights.add(new DirectionalLight(trianglesLightColor, trianglesLightDirection));
-        //scene2.lights.add(new SpotLight(trianglesLightColor, trianglesLightPosition, trianglesLightDirection).setKl(0.01).setKq(0.001));
         ImageWriter imageWriter = new ImageWriter("xmlTriangleWithMultipleLights", 500, 500);
         camera2.setImageWriter(imageWriter) //
                 .setRayTracer(new RayTracerBasic(scene2)) //

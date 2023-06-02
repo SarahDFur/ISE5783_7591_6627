@@ -4,7 +4,6 @@ import geometries.Polygon;
 import geometries.Sphere;
 import geometries.Triangle;
 import lighting.AmbientLight;
-import lighting.PointLight;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 import scene.Scene;
@@ -128,12 +127,12 @@ public class RenderTests {
         scene.geometries.add(
                 new Polygon(A, B, F, E)
                         .setEmission(new Color(YELLOW))
-                        //.setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(301))//floor
+                        .setMaterial(new Material().setKd(1).setKs(0).setShininess(0))//floor
                 , new Polygon(A, B, C, D)
                         .setEmission(new Color(BLUE))
-                        //.setMaterial(new Material().setKd(0.5).setKs(0.8).setShininess(301))//back
-                , new Polygon(C, D, H, G)
-                        .setEmission(new Color(RED))
+                        .setMaterial(new Material().setKd(1).setKs(0).setShininess(0))//back
+                //, new Polygon(C, D, H, G)
+                        //.setEmission(new Color(RED))
                         //.setMaterial(new Material().setKd(0.5).setKs(0.99).setShininess(301).setKr(0.1).setKt(0.1))//ceiling
 //                ,new Cylinder(80d,new Ray(new Point(0,-50,-40),new Vector(0,1,0.3)),20d)
 //                        .setEmission(new Color(GREEN))
@@ -162,8 +161,8 @@ public class RenderTests {
 //                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setKt(0.6))
         );
 
-        scene.lights.add(new PointLight(new Color(RED), new Point(30, 70, -100))
-                .setKl(0.001).setKq(0.0000002));
+       // scene.lights.add(new PointLight(new Color(RED), new Point(30, 70, -100))
+               // .setKl(0.001).setKq(0.0000002));
 //        scene.lights.add(new SpotLight(new Color(700, 400, 400),
 //                new Point(30, 50, 0), new Vector(0, 0, -1)).setKl(4E-5).setKq(2E-7));
 //        scene.lights.add(new SpotLight(new Color(400, 400, 700),
