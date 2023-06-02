@@ -156,7 +156,7 @@ public class SceneBuilder {
     private static Cylinder parseCylinder(Element elem) {
         Cylinder cylinder = new Cylinder(
                 Double.parseDouble(elem.getAttribute("radius")),
-                new Ray(parsePoint(elem.getAttribute("point")),
+                new Ray(parsePoint(elem.getAttribute("p0")),
                         parseVector(elem.getAttribute("vector"))),
                 Double.parseDouble(elem.getAttribute("height"))
         );

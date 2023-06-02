@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scene/SceneBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/SceneBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unittests/renderer/RenderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/RenderTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xmlMiniBarRoom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xmlMiniBarRoom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,38 +126,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.RenderTests.myPicture">
-    <configuration name="LightsTests.xmlTriangleWithMultipleLights" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_7591_6627" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="lighting.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="lighting" />
-      <option name="MAIN_CLASS_NAME" value="lighting.LightsTests" />
-      <option name="METHOD_NAME" value="xmlTriangleWithMultipleLights" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LightsTests.xmlTrianglesDirectional" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_7591_6627" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="lighting.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="lighting" />
-      <option name="MAIN_CLASS_NAME" value="lighting.LightsTests" />
-      <option name="METHOD_NAME" value="xmlTrianglesDirectional" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ReflectionRefractionTests.xmlTwoSpheresOnMirrors" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
@@ -172,6 +142,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RenderTests.miniBar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_7591_6627" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
+      <option name="METHOD_NAME" value="miniBar" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RenderTests.myPicture" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
@@ -183,6 +169,22 @@
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
       <option name="METHOD_NAME" value="myPicture" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RenderTests.xmlMiniBar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_7591_6627" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
+      <option name="METHOD_NAME" value="xmlMiniBar" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -207,10 +209,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.RenderTests.myPicture" />
+        <item itemvalue="JUnit.RenderTests.miniBar" />
+        <item itemvalue="JUnit.RenderTests.xmlMiniBar" />
         <item itemvalue="JUnit.ReflectionRefractionTests.xmlTwoSpheresOnMirrors" />
         <item itemvalue="JUnit.ShadowTests.xmlSphereTriangleSpot1" />
-        <item itemvalue="JUnit.LightsTests.xmlTrianglesDirectional" />
-        <item itemvalue="JUnit.LightsTests.xmlTriangleWithMultipleLights" />
       </list>
     </recent_temporary>
   </component>
@@ -455,7 +457,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1685694012930</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL‎-00033" summary="a picture - in progress">
+      <created>1685704709524</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL‎-00033" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1685704709524</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +523,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="-&gt; created Intersectable (interface) with findIntersections()&#10;-&gt; added function (^) to all necessary classes (regular &amp; tests)&#10;-&gt; typo fixes" />
     <MESSAGE value="-&gt; SphereTests - findIntersections() test&#10;-&gt; Sphere.java - findIntersections() method" />
     <MESSAGE value="plane, triangle, polygon - findIntersections - tests and implement" />
     <MESSAGE value="tag for stage 3" />
@@ -539,7 +547,8 @@
     <MESSAGE value="HW7.2 - reflection and refraction" />
     <MESSAGE value="HW7.1 - shadow tests in xml work" />
     <MESSAGE value="Xml Works!!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Xml Works!!!!" />
+    <MESSAGE value="a picture - in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="a picture - in progress" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -548,6 +557,11 @@
           <url>file://$PROJECT_DIR$/src/scene/SceneBuilder.java</url>
           <line>174</line>
           <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/scene/SceneBuilder.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

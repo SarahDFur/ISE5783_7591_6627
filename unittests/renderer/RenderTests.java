@@ -189,5 +189,44 @@ public class RenderTests {
                 .renderImage();
         camera.writeToImage();
     }
+
+//    @Test
+//    public void xmlMiniBar() throws ParserConfigurationException, IOException, SAXException {
+//        Scene scene = new Scene("mini bar test");
+//        SceneBuilder.sceneParser(scene, "xmlMiniBarRoom.xml");
+//
+//        Camera camera = new Camera(new Point(0, 0, 1500), new Vector(0, 0, -1), new Vector(0, 1, 0))
+//                .setViewPlaneSize(200, 200).setViewPlaneDistance(1000)
+//                .setRayTracer(new RayTracerBasic(scene))
+//                .setImageWriter(new ImageWriter("xmlMiniBar", 500, 500))
+//                .renderImage();
+//        camera.writeToImage();
+//    }
+    @Test
+    public void miniBar() {
+        Scene scene = new Scene("mini bar test");
+        scene.setAmbientLight(new AmbientLight(new Color(255,255,255), new Double3(0.2,0,0.4)));
+        scene.geometries.add(
+
+                new Polygon(new Point(80,-80,-150), new Point(-80,-80,-150), new Point(-110,-110,0), new Point(110,-110,0))
+                        //.setEmission(new Color(RED))
+                        .setMaterial(new Material()
+                                .setKd(0.5).setKs(0.5).setShininess(20))
+                , new Polygon(A, B, C, D)
+                        //.setEmission(new Color(BLUE))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(20))//back
+                , new Sphere(300, new Point(2,2,0))
+                    //   .setEmission(new Color(138,0,210))
+                     //   .setMaterial(new Material().setKd(0.001).setKs(0.00001).setKr(1))
+        );
+        scene.lights.add(new PointLight(new Color(orange), new Point(30, 70, -100))
+                .setKl(0.001).setKq(0.0000002));
+        Camera camera = new Camera(new Point(-3.6, -14.39,0), new Vector(0, 0, -1), new Vector(0, 1, 0))
+                .setViewPlaneSize(200, 200).setViewPlaneDistance(1000)
+                .setRayTracer(new RayTracerBasic(scene))
+                .setImageWriter(new ImageWriter("MiniBar", 700, 700))
+                .renderImage();
+        camera.writeToImage();
+    }
 }
 
