@@ -5,6 +5,8 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.MissingResourceException;
 
 import static primitives.Util.isZero;
@@ -35,6 +37,16 @@ public class Camera {
     ImageWriter imageWriter;
     RayTracerBase rayTracer;
 
+    //-----Improvements-----
+    //Anti-Aliasing
+    private static int ANTI_ALIASING_FACTOR = 1;
+
+//    //Focus
+//    private boolean depthOfFieldFlag = false;
+//    private double focalDistance = 2;
+//    private double apertureSize = 0.01;
+//    private static int NUM_OF_APERTURE_POINTS = 2;
+
     /**
      * Camera constructor
      *
@@ -54,6 +66,7 @@ public class Camera {
     }
 
     //region construct ray calculations
+
     /**
      * Calculates ray that crosses the center of a pixel
      *
@@ -101,6 +114,33 @@ public class Camera {
         }
         return Pij;
     }
+
+    public List<Ray> constructRays(int nX, int nY, int j, int i) {
+        List<Ray> rays = new LinkedList<>();
+        Point pixelCenter = getPixelCenter(nX, nY, j, i);
+        double rY = (height / nY) / ANTI_ALIASING_FACTOR;
+        double rX = (width / nX) / ANTI_ALIASING_FACTOR;
+        double x, y;
+
+        for (int rowNumber = 0; rowNumber < ANTI_ALIASING_FACTOR; rowNumber++) {
+            for (int colNumber = 0; colNumber < ANTI_ALIASING_FACTOR; colNumber++) {
+                y = -(rowNumber - (ANTI_ALIASING_FACTOR - 1d) / 2) * rY;
+                x = (colNumber - (ANTI_ALIASING_FACTOR - 1d) / 2) * rX;
+                Point pIJ = pixelCenter;
+                if (y != 0) pIJ = pIJ.add(vUp.scale(y));
+                if (x != 0) pIJ = pIJ.add(vRight.scale(x));
+                rays.add(new Ray(centerPoint, pIJ.subtract(centerPoint)));
+            }
+        }
+        return rays;
+
+//        //pc != p0 => subtract() will not return vector 0
+//        //pc = centerPoint.add(Vto.scale(distance));
+//        Vector Vij = Pij.subtract(centerPoint);
+//        //vi,j = pi,j − p0
+//        return new Ray(centerPoint, Vij);
+    }
+
     //endregion
 
     //region getters
@@ -205,11 +245,40 @@ public class Camera {
         this.rayTracer = rayTracer;
         return this;
     }
+
+    /**
+     * set anti-aliasing factor.
+     * final number of rays will be (factor * factor)
+     *
+     * @param antiAliasingFactor num of rays for anti aliasing
+     * @return this Camera
+     */
+    public Camera setAntiAliasingFactor(int antiAliasingFactor){
+        ANTI_ALIASING_FACTOR = antiAliasingFactor;
+        return this;
+    }
+
+//    public Camera setDepthOfField(boolean flag) {
+//        depthOfFieldFlag = flag;
+//        return this;
+//    }
+//
+//    public Camera setDepthOfField(boolean flag, double focalDistance, double apertureSize) {
+//        this.depthOfFieldFlag = flag;
+//        this.focalDistance = focalDistance;
+//        this.apertureSize = apertureSize;
+//        return this;
+//    }
+
+
+
     //endregion
 
     //region stage 4 bonus - Camera transformation
+
     /**
      * Rotate the vUp and vRight vectors by deg degrees
+     *
      * @param deg Angle of rotation in degrees clockwise
      * @return Returns rotated camera.
      */
@@ -222,8 +291,9 @@ public class Camera {
 
     /**
      * Moves camera to certain location and points to a single point
+     *
      * @param location the camera's new location
-     * @param to   the point the camera points to
+     * @param to       the point the camera points to
      * @return Returns moved camera
      */
     public Camera moveCamera(Point location, Point to) {
@@ -250,6 +320,7 @@ public class Camera {
 
     /**
      * Flips the picture to left-right axis
+     *
      * @return Returns object (self)
      */
     public Camera flipCamera() {
@@ -259,6 +330,7 @@ public class Camera {
     //endregion
 
     //region rendering & writing images
+
     /**
      * Renders an image
      */
@@ -285,7 +357,9 @@ public class Camera {
     }
 
     private Color castRay(int nX, int nY, int i, int j) {
-        return rayTracer.traceRay(constructRay(nX, nY, j, i));
+        if (ANTI_ALIASING_FACTOR ==1)
+            return rayTracer.traceRay(constructRay(nX, nY, j, i));
+        return rayTracer.traceRays(constructRays(nX, nY, j, i));
     }
 
     /**

@@ -39,6 +39,22 @@ public class RayTracerBasic extends RayTracerBase {
         return currentPixelColor;
     }
 
+    @Override
+    public Color traceRays(List<Ray> rays) {
+        Color currentPixelColor = Color.BLACK;
+        for(Ray ray :rays)
+            currentPixelColor = currentPixelColor.add(traceRay(ray));
+        return  currentPixelColor.reduce(rays.size());
+
+//        GeoPoint closestGeoPoint = findClosestIntersection(ray);
+//        if (closestGeoPoint == null)
+//            return scene.background;
+//        Color currentPixelColor = calcColor(closestGeoPoint, ray);
+//        return currentPixelColor;
+    }
+
+
+
     //region CalcColor
 
     /**
@@ -133,6 +149,61 @@ public class RayTracerBasic extends RayTracerBase {
         return mat.kD.scale(Math.abs(nl));
     }
 
+    /**
+     * check whether a point is unshaded
+     *
+     * @param gp          GeoPint to check
+     * @param lightSource light source
+     * @param l           vector light
+     * @param n           vector normal
+     * @return true if point gp is unshaded
+     */
+    private boolean unshaded(GeoPoint gp, LightSource lightSource, Vector l, Vector n) {
+        Ray lightRay = new Ray(gp.point, l.scale(-1), n);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+
+        if (intersections == null) return true;
+
+        double distance = alignZero(lightSource.getDistance(gp.point));
+        for (GeoPoint intersection : intersections) {
+
+            if (intersection.geometry.getMaterial().kT != Double3.ZERO)
+                return true;
+
+            if (alignZero(intersection.point.distance(gp.point)) < distance)
+                return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * return the transparency factor
+     *
+     * @param gp          GeoPint to check
+     * @param lightSource light source
+     * @param l           vector light
+     * @param n           vector normal
+     * @return Double3 that is the transparency factor
+     */
+    private Double3 transparency(GeoPoint gp, LightSource lightSource, Vector l, Vector n) {
+        Ray lightRay = new Ray(gp.point, l.scale(-1), n);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+
+        Double3 ktr = Double3.ONE;
+        if (intersections == null)
+            return ktr;
+
+        double distance = alignZero(lightSource.getDistance(gp.point));
+        for (GeoPoint intersection : intersections) {
+
+            if (alignZero(intersection.point.distance(gp.point)) < distance)
+                ktr = ktr.product(intersection.geometry.getMaterial().kT);
+        }
+
+        return ktr;
+    }
+
     //endregion
 
     //region Global Effects
@@ -205,62 +276,6 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     //endregion
-
-
-    /**
-     * check whether a point is unshaded
-     *
-     * @param gp          GeoPint to check
-     * @param lightSource light source
-     * @param l           vector light
-     * @param n           vector normal
-     * @return true if point gp is unshaded
-     */
-    private boolean unshaded(GeoPoint gp, LightSource lightSource, Vector l, Vector n) {
-        Ray lightRay = new Ray(gp.point, l.scale(-1), n);
-        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
-
-        if (intersections == null) return true;
-
-        double distance = alignZero(lightSource.getDistance(gp.point));
-        for (GeoPoint intersection : intersections) {
-
-            if (intersection.geometry.getMaterial().kT != Double3.ZERO)
-                return true;
-
-            if (alignZero(intersection.point.distance(gp.point)) < distance)
-                return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * return the transparency factor
-     *
-     * @param gp          GeoPint to check
-     * @param lightSource light source
-     * @param l           vector light
-     * @param n           vector normal
-     * @return Double3 that is the transparency factor
-     */
-    private Double3 transparency(GeoPoint gp, LightSource lightSource, Vector l, Vector n) {
-        Ray lightRay = new Ray(gp.point, l.scale(-1), n);
-        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
-
-        Double3 ktr = Double3.ONE;
-        if (intersections == null)
-            return ktr;
-
-        double distance = alignZero(lightSource.getDistance(gp.point));
-        for (GeoPoint intersection : intersections) {
-
-            if (alignZero(intersection.point.distance(gp.point)) < distance)
-                ktr = ktr.product(intersection.geometry.getMaterial().kT);
-        }
-
-        return ktr;
-    }
 
     /**
      * find the closest intersection point with ray
