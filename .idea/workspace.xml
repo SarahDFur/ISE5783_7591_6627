@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="fixed calcGlobalEffects">
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="anti-aliasing&#10;* need testing">
+      <change afterPath="$PROJECT_DIR$/unittests/renderer/ProjectsTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/RenderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/RenderTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +124,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in ISE5783_7591_6627">
+  <component name="RunManager" selected="JUnit.ProjectsTests.sphereTriangleMove2_AntiAliasing">
     <configuration name="All in ISE5783_7591_6627" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <option name="PACKAGE_NAME" value="" />
@@ -134,17 +133,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LightsTests.xmlTrianglesDirectional" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProjectsTests.sphereTriangleMove2_AntiAliasing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lighting.*" />
+          <option name="PATTERN" value="renderer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="lighting" />
-      <option name="MAIN_CLASS_NAME" value="lighting.LightsTests" />
-      <option name="METHOD_NAME" value="xmlTrianglesDirectional" />
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ProjectsTests" />
+      <option name="METHOD_NAME" value="sphereTriangleMove2_AntiAliasing" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -200,11 +199,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ProjectsTests.sphereTriangleMove2_AntiAliasing" />
         <item itemvalue="JUnit.All in ISE5783_7591_6627" />
         <item itemvalue="JUnit.RenderTests.myPicture" />
         <item itemvalue="JUnit.ReflectionRefractionTests.xmlTwoSpheresOnMirrors" />
         <item itemvalue="JUnit.ShadowTests.xmlSphereTriangleSpot1" />
-        <item itemvalue="JUnit.LightsTests.xmlTrianglesDirectional" />
       </list>
     </recent_temporary>
   </component>
@@ -225,7 +224,8 @@
       <workItem from="1684655069480" duration="3182000" />
       <workItem from="1685257862139" duration="4846000" />
       <workItem from="1685816662095" duration="55000" />
-      <workItem from="1685819152969" duration="8381000" />
+      <workItem from="1685819152969" duration="8700000" />
+      <workItem from="1685854691155" duration="1726000" />
     </task>
     <task id="LOCAL‎-00001" summary="Geometries &amp; Primitives&#10;- files">
       <created>1678360334430</created>
@@ -458,7 +458,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1685716530068</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL‎-00034" summary="anti-aliasing&#10;* need testing">
+      <created>1685835317088</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL‎-00034" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1685835317088</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -517,7 +524,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="-&gt; SphereTests - findIntersections() test&#10;-&gt; Sphere.java - findIntersections() method" />
     <MESSAGE value="plane, triangle, polygon - findIntersections - tests and implement" />
     <MESSAGE value="tag for stage 3" />
     <MESSAGE value="-&gt; Tube tests &amp; getY() method in Point class" />
@@ -542,7 +548,8 @@
     <MESSAGE value="HW7.1 - shadow tests in xml work" />
     <MESSAGE value="Xml Works!!!!" />
     <MESSAGE value="fixed calcGlobalEffects" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed calcGlobalEffects" />
+    <MESSAGE value="anti-aliasing&#10;* need testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="anti-aliasing&#10;* need testing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
