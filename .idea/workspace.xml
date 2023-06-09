@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="anti-aliasing&#10;* need testing">
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unittests/renderer/ProjectsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ProjectsTests.java" afterDir="false" />
     </list>
@@ -123,11 +123,27 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProjectsTests.myPicture">
+  <component name="RunManager" selected="JUnit.ProjectsTests.wisCup">
     <configuration name="All in ISE5783_7591_6627" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProjectsTests.miniBar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_7591_6627" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ProjectsTests" />
+      <option name="METHOD_NAME" value="miniBar" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -164,7 +180,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReflectionRefractionTests.xmlTwoSpheresOnMirrors" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProjectsTests.wisCup" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
         <pattern>
@@ -173,24 +189,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="xmlTwoSpheresOnMirrors" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RenderTests.myPicture" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_7591_6627" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
-      <option name="METHOD_NAME" value="myPicture" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ProjectsTests" />
+      <option name="METHOD_NAME" value="wisCup" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -198,11 +198,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ProjectsTests.wisCup" />
+        <item itemvalue="JUnit.ProjectsTests.miniBar" />
         <item itemvalue="JUnit.ProjectsTests.myPicture" />
         <item itemvalue="JUnit.ProjectsTests.sphereTriangleMove2_AntiAliasing" />
         <item itemvalue="JUnit.All in ISE5783_7591_6627" />
-        <item itemvalue="JUnit.RenderTests.myPicture" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.xmlTwoSpheresOnMirrors" />
       </list>
     </recent_temporary>
   </component>
@@ -464,7 +464,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1685835317088</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL‎-00035" summary="picture - needs fixing">
+      <created>1685963150936</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL‎-00035" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1685963150936</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -523,7 +530,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="plane, triangle, polygon - findIntersections - tests and implement" />
     <MESSAGE value="tag for stage 3" />
     <MESSAGE value="-&gt; Tube tests &amp; getY() method in Point class" />
     <MESSAGE value="-&gt; Tube tests" />
@@ -548,7 +554,8 @@
     <MESSAGE value="Xml Works!!!!" />
     <MESSAGE value="fixed calcGlobalEffects" />
     <MESSAGE value="anti-aliasing&#10;* need testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="anti-aliasing&#10;* need testing" />
+    <MESSAGE value="picture - needs fixing" />
+    <option name="LAST_COMMIT_MESSAGE" value="picture - needs fixing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

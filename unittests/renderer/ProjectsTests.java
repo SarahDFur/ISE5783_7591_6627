@@ -157,6 +157,128 @@ public class ProjectsTests {
         camera.writeToImage();
     }
 
+    @Test
+    public void wisCup()
+    {
+        Scene scene = new Scene("whiskey cup");
+        scene.geometries.add(
+//region geometries
+        //region surfaces
+                new Sphere(500, new Point(100,100,0))
+                        //.setEmission(new Color(20, 0, 80))
+                        .setMaterial(
+                                new Material().setKd(0.25).setKs(0.25).setShininess(61)
+                                        .setKr(0.5).setKt(0.9)
+                        )
+//                , new Polygon(new Point(72.25, 16.74, 68.81), new Point(93.24,256.11,0), new Point(35.72,234.69,0))
+//                        .setMaterial(new Material()
+//                        .setKd(0.5).setKs(0.5).setShininess(20))
+                //floor
+//                , new Polygon(new Point(100,0,-10), new Point(100,0,-10), new Point(-150,50,10), new Point(-150,50,10))
+//                        .setMaterial(new Material()
+//                        .setKd(0.5).setKs(0.5).setShininess(20))
+
+//                ,new Polygon(A, B, F, E)
+//                        //.setEmission(new Color(YELLOW))
+//                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(20))//floor
+                , new Polygon(A, B, C, D)
+                       // .setEmission(new Color(BLUE))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(20))//back
+//                , new Polygon(C, D, H, G)
+//                //.setEmission(new Color(RED))
+//                .setMaterial(new Material()
+//                        .setKd(0.5).setKs(0.5).setShininess(20))
+        //endregion
+        //region cup
+                ,new Cylinder(60d,new Ray(new Point(0,-80,-40),new Vector(0,1,0)),90d)
+                        .setEmission(new Color(50,10,15))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)
+                                .setKr(0.4).setKt(0.99))
+                ,new Cylinder(55d,new Ray(new Point(0,-78,-40),new Vector(0,1,0)),60d)
+                        .setEmission(new Color(53,3,10))
+                        .setMaterial(new Material()
+                                .setKr(0.9).setKt(0.3))
+                ,new Sphere(40d, new Point(0,-40,-40))
+                        //.setEmission(new Color(20, 0, 80))
+                        .setMaterial(
+                                new Material().setKd(0.25).setKs(0.25).setShininess(61)
+                                        .setKt(0.99).setKr(0.4)
+                        )
+        //endregion
+
+        //region bottle
+
+//                ,new Cylinder(30d,new Ray(new Point(100,-80,-70),new Vector(0,1,0)),100d)
+//                        .setEmission(new Color(50,100,150))
+//                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300)
+//                                .setKr(1).setKt(0))
+                //sides:
+                //right side
+                , new Polygon(new Point(120,-80,-50),new Point(120,80,-50), new Point(120,80,-90), new Point(120,-80,-90))
+                        .setEmission(new Color(blue))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setKt(0).setKr(1))
+                //left side
+                , new Polygon(new Point(80,-80,-50),new Point(80,80,-50), new Point(80,80,-90), new Point(80,-80,-90))
+                        .setEmission(new Color(blue))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setKt(0).setKr(1))
+                //front
+                , new Polygon(new Point(120,-80,-50),new Point(120,80,-50), new Point(80,80,-90), new Point(80,-80,-90))
+                        .setEmission(new Color(blue))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setKt(0).setKr(1))
+                //front
+                , new Polygon(new Point(120,-80,-50), new Point(80,-80,-50),new Point(80,80,-50),new Point(120,80,-50))
+                        .setEmission(new Color(blue))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setKt(0).setKr(1))
+                //bottom
+                , new Polygon(new Point(120,-80,-50), new Point(120,-80,-90),new Point(80,-80,-90),new Point(80,-80,-50))
+                        .setEmission(new Color(red))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setKt(0).setKr(1))
+
+        //endregion
+
+        //region rose/flower
+//                , new Sphere(50,new Point(-150,-40,-50))
+//                        .setEmission(new Color(black))
+//                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300)
+//                                .setKr(0).setKt(1))
+//                , new Sphere(5,new Point(-150,-40,-50))
+//                        .setEmission(new Color(black))
+//                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300)
+//                                .setKr(0).setKt(1))
+//                , new Sphere(20,new Point(-150,-40,-50))
+//                        .setEmission(new Color(black))
+//                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300)
+//                                .setKr(0).setKt(1))
+//                , new Triangle(new Point(-150,-50,-20), new Point(-150,-45,-30), new Point(-150,-50,-30))
+//                        .setEmission(new Color(yellow))
+//                , new Triangle(new Point(-120,-50,-10), new Point(-120,-45,-30), new Point(-120,-50,-30))
+//                        .setEmission(new Color(yellow))
+//                , new Triangle(new Point(-140,-50,-10), new Point(-140,-40,-30), new Point(-140,-50,-30))
+//                        .setEmission(new Color(yellow))
+        //endregion
+//endregion
+        );
+    //region lights
+        scene.lights.add(new PointLight(new Color(BLUE), new Point(30, 70, 0))
+                .setKl(0.001).setKq(0.0000002));
+        //light inside sphere
+//        scene.lights.add(new SpotLight(new Color(ORANGE), new Point(0,-80,-40), new Vector(0,1,0))
+//                        .setNarrowBeam(0.0001)
+//                .setKl(0.001).setKq(0.0000002));
+        scene.lights.add(new PointLight(new Color(ORANGE), new Point(0,-60,-40))
+                .setKl(0.001).setKq(0.0000002));
+    //endregion
+//        scene.lights.add(new DirectionalLight(new Color(ORANGE), new Vector(0,-40,-40)));
+        Camera camera = new Camera(new Point(-3.6, -14.39,0), new Vector(0, 0, -1), new Vector(0, 1, 0));
+//-24.43,3273.3,308.49 - more of a top view
+        camera.moveCamera(new Point(80, 10, 300), new Point(0,-40,-40))
+                .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
+                .setRayTracer(new RayTracerBasic(scene))
+                .setImageWriter(new ImageWriter("whiskeyCup", 1000, 1000))
+                .renderImage();
+        camera.writeToImage();
+
+    }
     //endregion
 
     //region stage8 - improvements
