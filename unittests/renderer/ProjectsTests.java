@@ -242,25 +242,25 @@ public class ProjectsTests {
 
         //region bottle
                 //inside bottle:
-                ,new Cylinder(25d,new Ray(new Point(100,-80,-40),new Vector(0,1,0)),100d)
+                ,new Cylinder(25d,new Ray(new Point(100,-75,-40),new Vector(0,1,0)),100d)
                         .setEmission(new Color(169,64,7))
                         .setMaterial(new Material().setKd(0.5).setKs(0.5)
-                                .setKr(0.009).setKt(0.43))
+                                .setKr(0.2).setKt(0.5))
                 //bottle
                 ,new Cylinder(30d,new Ray(new Point(100,-80,-40),new Vector(0,1,0)),170d)
                         .setEmission(new Color(0, 106, 78))
                         .setMaterial(new Material().setKd(0.5).setKs(0.5)
-                                .setKr(0.001).setKt(0.3))
+                                .setKr(0.25).setKt(0.8))
                 //bottleneck
                 ,new Cylinder(10d,new Ray(new Point(100,90,-40),new Vector(0,1,0)),27d)
                         .setEmission(new Color(0, 106, 78))
                         .setMaterial(new Material().setKd(0.5).setKs(0.5)
-                                .setKr(0.009).setKt(0.3))
+                                .setKr(0.25).setKt(0.8))
                 //cap
                 ,new Cylinder(13d,new Ray(new Point(100,110,-40),new Vector(0,1,0)),8d)
                         .setEmission(new Color(110, 106, 78))
                         .setMaterial(new Material().setKd(0.5).setKs(0.5)
-                                .setKr(0.009).setKt(0.3))
+                                .setKr(0.009).setKt(0.095))
         //endregion
 
         //region clouds
@@ -322,15 +322,20 @@ public class ProjectsTests {
 //        scene.lights.add(new SpotLight(new Color(ORANGE), new Point(0,-80,-40), new Vector(0,1,0))
 //                        .setNarrowBeam(0.0001)
 //                .setKl(0.001).setKq(0.0000002));
-        scene.lights.add(new SpotLight(new Color(orange), new Point(0,-60,-40), new Vector(0,1,0))
+        scene.lights.add(new SpotLight(new Color(orange), new Point(100,-75,-40), new Vector(0,1,0))
                         .setNarrowBeam(0.00000000000000000000001)
                 .setKl(0.001).setKq(0.0000002));
-        scene.lights.add(new DirectionalLight(new Color(43, 44, 90), new Vector(0,-40,-40)));
+        scene.lights.add(new DirectionalLight(new Color(orange), new Vector(0,1,0)));
     //endregion
 //        scene.lights.add(new DirectionalLight(new Color(ORANGE), new Vector(0,-40,-40)));
         Camera camera = new Camera(new Point(-3.6, -14.39,0), new Vector(0, 0, -1), new Vector(0, 1, 0));
 //-24.43,3273.3,308.49 - more of a top view
-
+//        camera.moveCamera(new Point(80, 10, 300), new Point(0, -40, -40))
+//                .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
+//                .setRayTracer(new RayTracerBasic(scene))
+//                .setImageWriter(new ImageWriter("whiskeyCup", 1000, 1000))
+//                .renderImage();
+//        camera.writeToImage();
     //region camera movements
         //move right
         for(int i = 0; i < 5; i=i+1) {
