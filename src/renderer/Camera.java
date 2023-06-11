@@ -41,11 +41,17 @@ public class Camera {
     //Anti-Aliasing
     private static int ANTI_ALIASING_FACTOR = 1;
 
-//    //Focus
+    //Focus
 //    private boolean depthOfFieldFlag = false;
 //    private double focalDistance = 2;
 //    private double apertureSize = 0.01;
 //    private static int NUM_OF_APERTURE_POINTS = 2;
+//ON/OFF button default is off
+    private boolean _depthButton = false;
+    //focal length
+    private double _focalLength = 2;
+    private double _apertureSize = 0.01;
+    private static final int NUMBER_OF_APERTURE_POINTS = 10;
 
     /**
      * Camera constructor
@@ -133,12 +139,6 @@ public class Camera {
             }
         }
         return rays;
-
-//        //pc != p0 => subtract() will not return vector 0
-//        //pc = centerPoint.add(Vto.scale(distance));
-//        Vector Vij = Pij.subtract(centerPoint);
-//        //vi,j = pi,j − p0
-//        return new Ray(centerPoint, Vij);
     }
 
     //endregion
@@ -253,12 +253,14 @@ public class Camera {
      * @param antiAliasingFactor num of rays for anti aliasing
      * @return this Camera
      */
-    public Camera setAntiAliasingFactor(int antiAliasingFactor){
+    public Camera setAntiAliasingFactor(int antiAliasingFactor) {
+        if (antiAliasingFactor <= 0)
+            throw new IllegalArgumentException("anti aliasing factor must be positive integer");
         ANTI_ALIASING_FACTOR = antiAliasingFactor;
         return this;
     }
 
-//    public Camera setDepthOfField(boolean flag) {
+    //    public Camera setDepthOfField(boolean flag) {
 //        depthOfFieldFlag = flag;
 //        return this;
 //    }
@@ -269,8 +271,27 @@ public class Camera {
 //        this.apertureSize = apertureSize;
 //        return this;
 //    }
+    public Camera setFocalLength(double focalLength) {
+        _focalLength = focalLength;
+        return this;
+    }
 
-
+    public Camera setApertureSize(double apertureSize) {
+        _apertureSize = apertureSize;
+        return this;
+    }
+    public void setDepthButton(boolean button, double apertureSize, double focalLength) {
+        _depthButton = button;
+        _apertureSize = apertureSize;
+        _focalLength = focalLength;
+    }
+    /***
+     * on/off button for depth of field
+     * @param depthButton on/off
+     */
+    public void setDepthButton(boolean depthButton) {
+        _depthButton = depthButton;
+    }
 
     //endregion
 
@@ -357,7 +378,7 @@ public class Camera {
     }
 
     private Color castRay(int nX, int nY, int i, int j) {
-        if (ANTI_ALIASING_FACTOR ==1)
+        if (ANTI_ALIASING_FACTOR == 1)
             return rayTracer.traceRay(constructRay(nX, nY, j, i));
         return rayTracer.traceRays(constructRays(nX, nY, j, i));
     }
