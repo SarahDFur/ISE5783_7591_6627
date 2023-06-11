@@ -47,10 +47,10 @@ public class Camera {
 //    private double apertureSize = 0.01;
 //    private static int NUM_OF_APERTURE_POINTS = 2;
 //ON/OFF button default is off
-    private boolean _depthButton = false;
+    private boolean depthButton = false;
     //focal length
-    private double _focalLength = 2;
-    private double _apertureSize = 0.01;
+    private double focalLength = 2;
+    private double apertureSize = 0.01;
     private static final int NUMBER_OF_APERTURE_POINTS = 10;
 
     /**
@@ -272,25 +272,25 @@ public class Camera {
 //        return this;
 //    }
     public Camera setFocalLength(double focalLength) {
-        _focalLength = focalLength;
+        this.focalLength = focalLength;
         return this;
     }
 
     public Camera setApertureSize(double apertureSize) {
-        _apertureSize = apertureSize;
+        this.apertureSize = apertureSize;
         return this;
     }
     public void setDepthButton(boolean button, double apertureSize, double focalLength) {
-        _depthButton = button;
-        _apertureSize = apertureSize;
-        _focalLength = focalLength;
+        this.depthButton = button;
+        this.apertureSize = apertureSize;
+        this.focalLength = focalLength;
     }
     /***
      * on/off button for depth of field
      * @param depthButton on/off
      */
     public void setDepthButton(boolean depthButton) {
-        _depthButton = depthButton;
+        this.depthButton = depthButton;
     }
 
     //endregion

@@ -344,7 +344,46 @@ public class ProjectsTests {
                     .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
                     .setRayTracer(new RayTracerBasic(scene))
                     .setImageWriter(new ImageWriter("whiskeyCup"+j, 1000, 1000))
-                    .setAntiAliasingFactor(9)
+                    .renderImage();
+            camera.writeToImage();
+        }
+        //move left
+        for(int i = 0; i < 5; i=i+1) {
+            String j = String.valueOf(i+5);
+            camera.moveCamera(new Point(80-i*80, 10, 300), new Point(0, -40, -40))
+                    .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
+                    .setRayTracer(new RayTracerBasic(scene))
+                    .setImageWriter(new ImageWriter("whiskeyCup"+j, 1000, 1000))
+                    .renderImage();
+            camera.writeToImage();
+        }
+        //move up
+        for(int i = 0; i < 5; i=i+1) {
+            String j = String.valueOf(i+10);
+            camera.moveCamera(new Point(80, 10+i*80, 300), new Point(0, -40, -40))
+                    .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
+                    .setRayTracer(new RayTracerBasic(scene))
+                    .setImageWriter(new ImageWriter("whiskeyCup"+j, 1000, 1000))
+                    .renderImage();
+            camera.writeToImage();
+        }
+        //move down
+        for(int i = 0; i < 5; i=i+1) {
+            String j = String.valueOf(i+15);
+            camera.moveCamera(new Point(80, 10-i*80, 300), new Point(0, -40, -40))
+                    .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
+                    .setRayTracer(new RayTracerBasic(scene))
+                    .setImageWriter(new ImageWriter("whiskeyCup"+j, 1000, 1000))
+                    .renderImage();
+            camera.writeToImage();
+        }
+        //rotate right
+        for(int i = 0; i < 5; i=i+1) {
+            String j = String.valueOf(i+20);
+            camera.rotateCamera(9)
+                    .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
+                    .setRayTracer(new RayTracerBasic(scene))
+                    .setImageWriter(new ImageWriter("whiskeyCup" + j, 1000, 1000))
                     .renderImage();
             camera.writeToImage();
         }
