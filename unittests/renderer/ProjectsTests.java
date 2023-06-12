@@ -216,7 +216,7 @@ public class ProjectsTests {
                                 new Material().setKd(0.25).setKs(0.25).setShininess(61)
                                         .setKr(0.5).setKt(0.9)
                         )
-                ,new Polygon(A, B, F, E)
+                ,new Polygon(new Point(100, -90, -150), new Point(-100, -90, -150), new Point(-100, -90, 0), new Point(100, -90, 0))
                         //.setEmission(new Color(YELLOW))
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(20))//floor
 //                , new Polygon(A, B, C, D)
@@ -233,10 +233,10 @@ public class ProjectsTests {
                         .setMaterial(new Material()
                                 .setKr(0.9).setKt(0.3))
                 ,new Sphere(40d, new Point(0,-40,-40))
-                        //.setEmission(new Color(20, 0, 80))
+                        .setEmission(new Color(20, 0, 80))
                         .setMaterial(
-                                new Material().setKd(0.25).setKs(0.25).setShininess(61)
-                                        .setKt(0.99).setKr(0.4)
+                                new Material().setKd(0.5).setKs(0.25).setShininess(61)
+                                        .setKt(0.99).setKr(0.001)
                         )
         //endregion
 
@@ -293,24 +293,24 @@ public class ProjectsTests {
 //                                .setKr(0.9).setKt(0.00001))
         //endregion
         //region rose/flower
-//                , new Sphere(50,new Point(-150,-40,-50))
-//                        .setEmission(new Color(black))
-//                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300)
-//                                .setKr(0).setKt(1))
-//                , new Sphere(5,new Point(-150,-40,-50))
-//                        .setEmission(new Color(black))
-//                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300)
-//                                .setKr(0).setKt(1))
-//                , new Sphere(20,new Point(-150,-40,-50))
-//                        .setEmission(new Color(black))
-//                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300)
-//                                .setKr(0).setKt(1))
-//                , new Triangle(new Point(-150,-50,-20), new Point(-150,-45,-30), new Point(-150,-50,-30))
-//                        .setEmission(new Color(yellow))
-//                , new Triangle(new Point(-120,-50,-10), new Point(-120,-45,-30), new Point(-120,-50,-30))
-//                        .setEmission(new Color(yellow))
-//                , new Triangle(new Point(-140,-50,-10), new Point(-140,-40,-30), new Point(-140,-50,-30))
-//                        .setEmission(new Color(yellow))
+                , new Sphere(50,new Point(-150,-40,-50))
+                        .setEmission(new Color(black))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300)
+                                .setKr(0).setKt(1))
+                , new Sphere(5,new Point(-150,-40,-50))
+                        .setEmission(new Color(black))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300)
+                                .setKr(0).setKt(1))
+                , new Sphere(20,new Point(-150,-40,-50))
+                        .setEmission(new Color(black))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300)
+                                .setKr(0).setKt(1))
+                , new Triangle(new Point(-150,-50,-20), new Point(-150,-45,-30), new Point(-150,-50,-30))
+                        .setEmission(new Color(yellow))
+                , new Triangle(new Point(-120,-50,-10), new Point(-120,-45,-30), new Point(-120,-50,-30))
+                        .setEmission(new Color(yellow))
+                , new Triangle(new Point(-140,-50,-10), new Point(-140,-40,-30), new Point(-140,-50,-30))
+                        .setEmission(new Color(yellow))
 
         //endregion
 //endregion
@@ -330,63 +330,23 @@ public class ProjectsTests {
 //        scene.lights.add(new DirectionalLight(new Color(ORANGE), new Vector(0,-40,-40)));
         Camera camera = new Camera(new Point(-3.6, -14.39,0), new Vector(0, 0, -1), new Vector(0, 1, 0));
 //-24.43,3273.3,308.49 - more of a top view
-//        camera.moveCamera(new Point(80, 10, 300), new Point(0, -40, -40))
-//                .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
-//                .setRayTracer(new RayTracerBasic(scene))
-//                .setImageWriter(new ImageWriter("whiskeyCup", 1000, 1000))
-//                .renderImage();
-//        camera.writeToImage();
+        camera.moveCamera(new Point(80, 10, 300), new Point(0, -40, -40))
+                .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
+                .setRayTracer(new RayTracerBasic(scene))
+                .setImageWriter(new ImageWriter("whiskeyCup", 1000, 1000))
+                .renderImage();
+        camera.writeToImage();
     //region camera movements
-        //move right
-        for(int i = 0; i < 5; i=i+1) {
-            String j = String.valueOf(i);
-            camera.moveCamera(new Point(80+i*80, 10, 300), new Point(0, -40, -40))
-                    .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
-                    .setRayTracer(new RayTracerBasic(scene))
-                    .setImageWriter(new ImageWriter("whiskeyCup"+j, 1000, 1000))
-                    .renderImage();
-            camera.writeToImage();
-        }
-        //move left
-        for(int i = 0; i < 5; i=i+1) {
-            String j = String.valueOf(i+5);
-            camera.moveCamera(new Point(80-i*80, 10, 300), new Point(0, -40, -40))
-                    .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
-                    .setRayTracer(new RayTracerBasic(scene))
-                    .setImageWriter(new ImageWriter("whiskeyCup"+j, 1000, 1000))
-                    .renderImage();
-            camera.writeToImage();
-        }
-        //move up
-        for(int i = 0; i < 5; i=i+1) {
-            String j = String.valueOf(i+10);
-            camera.moveCamera(new Point(80, 10+i*80, 300), new Point(0, -40, -40))
-                    .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
-                    .setRayTracer(new RayTracerBasic(scene))
-                    .setImageWriter(new ImageWriter("whiskeyCup"+j, 1000, 1000))
-                    .renderImage();
-            camera.writeToImage();
-        }
-        //move down
-        for(int i = 0; i < 5; i=i+1) {
-            String j = String.valueOf(i+15);
-            camera.moveCamera(new Point(80, 10-i*80, 300), new Point(0, -40, -40))
-                    .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
-                    .setRayTracer(new RayTracerBasic(scene))
-                    .setImageWriter(new ImageWriter("whiskeyCup"+j, 1000, 1000))
-                    .renderImage();
-            camera.writeToImage();
-        }
-        //rotate right
-        for(int i = 0; i < 5; i=i+1) {
-            String j = String.valueOf(i+20);
-            camera.rotateCamera(9)
-                    .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
-                    .setRayTracer(new RayTracerBasic(scene))
-                    .setImageWriter(new ImageWriter("whiskeyCup" + j, 1000, 1000))
-                    .renderImage();
-            camera.writeToImage();
-        }
+//        //move right
+//        for(int i = 0; i < 5; i=i+1) {
+//            String j = String.valueOf(i);
+//            camera.moveCamera(new Point(80+i*80, 10, 300), new Point(0, -40, -40))
+//                    .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
+//                    .setRayTracer(new RayTracerBasic(scene))
+//                    .setImageWriter(new ImageWriter("whiskeyCup"+j, 1000, 1000))
+//                    .renderImage();
+//            camera.writeToImage();
+//        }
 //        //move left
 //        for(int i = 0; i < 5; i=i+1) {
 //            String j = String.valueOf(i+5);

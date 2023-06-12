@@ -389,7 +389,7 @@ public class Camera {
      * @param interval size of squares in the grid
      * @param color    color for the grid
      */
-    public void printGrid(int interval, Color color) {
+    public Camera printGrid(int interval, Color color) {
         if (imageWriter == null)
             throw new MissingResourceException("Image creation details are not initialized", "Camera", "Writer info");
 
@@ -401,6 +401,7 @@ public class Camera {
                 }
             }
         }
+        return this;
     }
 
     /**
@@ -411,6 +412,14 @@ public class Camera {
             throw new MissingResourceException("Image creation details are not initialized", "Camera", "Writer info");
         //call image writer
         imageWriter.writeToImage();
+    }
+
+    public Camera setMultithreading(int i) {
+        return this;
+    }
+
+    public Camera setDebugPrint(double v) {
+        return this;
     }
     //endregion
 }
