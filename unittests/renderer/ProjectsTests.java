@@ -113,8 +113,7 @@ public class ProjectsTests {
     public void myPicture() {
         Scene scene = new Scene("Test scene")
                 .setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.15)));
-        // sometimes thing works as they should but usually not,
-        // i dont
+
         scene.geometries.add(
                 new Polygon(A, B, F, E)
                         //.setEmission(new Color(YELLOW))
@@ -519,6 +518,9 @@ public class ProjectsTests {
                 .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
                 .setRayTracer(new RayTracerBasic(scene))
                 .setImageWriter(new ImageWriter("whiskeyCup", 1000, 1000))
+                .setSuperSampling(Camera.SUPER_SAMPLING_TYPE.ADAPTIVE)
+                .setApertureSize(0.01).setFocalDistance(900)
+                .setMultithreading(4)
                 .renderImage();
         camera.writeToImage();
         //region camera movements
@@ -619,7 +621,6 @@ public class ProjectsTests {
                 .setViewPlaneDistance(1000)
                 .setRayTracer(new RayTracerBasic(scene))
                 .setImageWriter(new ImageWriter("antiAliasing_shadowSphereTriangleMove2", 400, 400))
-                .setAntiAliasingFactor(3)
                 .renderImage();
 
         camera.writeToImage();
