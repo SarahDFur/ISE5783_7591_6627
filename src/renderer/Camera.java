@@ -64,8 +64,8 @@ public class Camera {
     private int APERTURE_NUMBER_OF_POINTS = 9; //(e.g. 9 for 9x9 grid)
     private double apertureSize = 0;
     private Point[] aperturePoints;
-    private double focalDistance = 2;
-    private Plane FOCAL_PLANE;
+    private double focalDistance = 2; //dF
+    private Plane FOCAL_PLANE; //FP
 
 
     //multi-threading
