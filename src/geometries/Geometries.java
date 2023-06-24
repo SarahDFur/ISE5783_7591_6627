@@ -1,8 +1,10 @@
 package geometries;
 
-import primitives.Point;
+import primitives.Double3;
 import primitives.Ray;
+import scene.Scene;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -40,6 +42,30 @@ public class Geometries extends Intersectable {
             this.geometries.addAll(List.of(geometries));
     }
 
+    /**
+     * searches for a specific geometry in the list
+     *
+     * @param givenGeometry the geometry we are looking for
+     * @return true if it's in the list and false if not
+     */
+    public boolean contains(Geometry givenGeometry) {
+        if (givenGeometry != null) {
+            for (var geometry : geometries) {
+                if (geometry.equals(givenGeometry))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public Geometries remove(Geometry givenGeometry) {
+        Geometries list = new Geometries();
+        for (var geometry : geometries) {
+            if (!geometry.equals(givenGeometry))
+                list.add(geometry);
+        }
+        return list;
+    }
 //    @Override
 //    public List<Point> findIntersections(Ray ray) {
 //        List<Point> intersections = null;
@@ -76,5 +102,66 @@ public class Geometries extends Intersectable {
         }
 
         return intersectionsWithAllShapes;
+    }
+    @Override
+    public int[][] calcBoundary() {
+        double minX = Double.POSITIVE_INFINITY;
+        double maxX = Double.NEGATIVE_INFINITY;
+        double minY = Double.POSITIVE_INFINITY;
+        double maxY = Double.NEGATIVE_INFINITY;
+        double minZ = Double.POSITIVE_INFINITY;
+        double maxZ = Double.NEGATIVE_INFINITY;
+        for (var geometry : geometries) {
+            if (geometry.boundary[0][0] < minX)
+                minX = geometry.boundary[0][0];
+            if (geometry.boundary[0][1] > maxX)
+                maxX = geometry.boundary[0][1];
+            if (geometry.boundary[1][0] < minY)
+                minY = geometry.boundary[1][0];
+            if (geometry.boundary[1][1] > maxY)
+                maxY = geometry.boundary[1][1];
+            if (geometry.boundary[2][0] < minZ)
+                minZ = geometry.boundary[2][0];
+            if (geometry.boundary[2][1] > maxZ)
+                maxZ = geometry.boundary[2][1];
+        }
+        return new int[][]{{(int) minX, (int) Math.ceil(maxX)},
+                {(int) minY, (int) Math.ceil(maxY)},
+                {(int) minZ, (int) Math.ceil(maxZ)}};
+    }
+
+    /**
+     * move over all geometric entities of a scene and return a hashmap of all the none empty voxels
+     *
+     * @param scene the scene
+     * @return the hash map of voxels
+     */
+    public HashMap<Double3, Geometries> attachVoxel(Scene scene) {
+        HashMap<Double3, Geometries> voxels = new HashMap<>();
+        List<Double3> voxelIndexes;
+        int i = 0;
+        for (var geometry : geometries) {
+            if(i==231){
+                int u = 5;
+            }
+            i++;
+            voxelIndexes = geometry.findVoxels(scene);
+            for (var index : voxelIndexes) {
+                if (!voxels.containsKey(index))//the voxel is already exists in thr map
+                    voxels.put(index, new Geometries(geometry));
+                else {
+                    voxels.get(index).add(geometry);
+                }
+            }
+        }
+        return voxels;
+    }
+
+    /**
+     * boundary getter
+     * @return the matrix of the boundary
+     */
+    public int[][] getBoundary(){
+        return boundary;
     }
 }

@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/renderer/RayTracerRegular.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Geometries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerRegular.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerRegular.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +126,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TeapotTest">
+  <component name="RunManager" selected="JUnit.ProjectsTests.wisCup">
     <configuration name="ProjectsTests.miniBar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
@@ -205,8 +208,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TeapotTest" />
         <item itemvalue="JUnit.ProjectsTests.wisCup" />
+        <item itemvalue="JUnit.TeapotTest" />
         <item itemvalue="JUnit.ProjectsTests.miniBar" />
         <item itemvalue="JUnit.ProjectsTests.myPicture" />
         <item itemvalue="JUnit.ProjectsTests.sphereTriangleMove2_AntiAliasing" />
@@ -506,7 +509,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1687363586165</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL‎-00040" summary="new class - RayTracerRegular (for voxels)">
+      <created>1687428036402</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL‎-00040" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687428036402</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -565,7 +575,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="-&gt; Tube tests &amp; getY() method in Point class" />
     <MESSAGE value="-&gt; Tube tests" />
     <MESSAGE value="-&gt; SphereTests &amp; GeometriesTests reformatting" />
     <MESSAGE value="-&gt; Camera &amp; CameraTests methods" />
@@ -590,7 +599,8 @@
     <MESSAGE value="anti-aliasing&#10;* need testing" />
     <MESSAGE value="picture - needs fixing" />
     <MESSAGE value="picture - whiskey cup, bottle and &quot;clouds&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="picture - whiskey cup, bottle and &quot;clouds&quot;" />
+    <MESSAGE value="new class - RayTracerRegular (for voxels)" />
+    <option name="LAST_COMMIT_MESSAGE" value="new class - RayTracerRegular (for voxels)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
