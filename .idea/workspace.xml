@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Geometries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometries.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerRegular.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerRegular.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -516,7 +516,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1687428036402</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL‎-00041" summary="voxel algorithms implementations">
+      <created>1687630949521</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL‎-00041" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687630949521</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,7 +582,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="-&gt; Tube tests" />
     <MESSAGE value="-&gt; SphereTests &amp; GeometriesTests reformatting" />
     <MESSAGE value="-&gt; Camera &amp; CameraTests methods" />
     <MESSAGE value="Cylinder.findIntersections - tests and implementation" />
@@ -600,7 +606,8 @@
     <MESSAGE value="picture - needs fixing" />
     <MESSAGE value="picture - whiskey cup, bottle and &quot;clouds&quot;" />
     <MESSAGE value="new class - RayTracerRegular (for voxels)" />
-    <option name="LAST_COMMIT_MESSAGE" value="new class - RayTracerRegular (for voxels)" />
+    <MESSAGE value="voxel algorithms implementations" />
+    <option name="LAST_COMMIT_MESSAGE" value="voxel algorithms implementations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

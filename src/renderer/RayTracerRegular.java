@@ -32,6 +32,7 @@ public class RayTracerRegular extends RayTracerBase {
      */
     public RayTracerRegular(Scene scene) {
         super(scene);
+        scene.calcVoxels();
     }
 
     //region traceRay - overrides
@@ -40,6 +41,7 @@ public class RayTracerRegular extends RayTracerBase {
         Intersectable.GeoPoint closestIntersection = traversalAlgorithm(ray);
         return closestIntersection == null ? scene.background : calcColor(closestIntersection, ray);
     }
+    //@TODO: RayTracerRegular - traceRays()
 
     @Override
     public Color traceRays(List<Ray> rays) {
@@ -115,8 +117,10 @@ public class RayTracerRegular extends RayTracerBase {
                 Double3 ktr = transparency(gp, lightSource, lightVector, normal);
                 if (!ktr.product(k).lowerThan(MIN_CALC_COLOR_K)) {
                     Color lightIntensity = lightSource.getIntensity(gp.point).scale(ktr);
-                    color = color.add(lightIntensity.scale(calcDiffusive(mat, nl)),
-                            lightIntensity.scale(calcSpecular(mat, normal, lightVector, nl, vector)));
+                    color = color.add(
+                            lightIntensity.scale(calcDiffusive(mat, nl)),
+                            lightIntensity.scale(calcSpecular(mat, normal, lightVector, nl, vector))
+                    );
                 }
             }
         }
@@ -189,19 +193,17 @@ public class RayTracerRegular extends RayTracerBase {
      */
     private Double3 transparency(Intersectable.GeoPoint gp, LightSource lightSource, Vector l, Vector n) {
         Ray lightRay = new Ray(gp.point, l.scale(-1), n);
-        List<Intersectable.GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
-
         Double3 ktr = Double3.ONE;
-        if (intersections == null)
-            return ktr;
+        Geometries geometries = voxelsPathGeometries(lightRay);
+        if (geometries == null) return ktr;
+        List<Intersectable.GeoPoint> intersections = geometries.findGeoIntersections(lightRay);
+        if (intersections == null) return ktr;
 
         double distance = alignZero(lightSource.getDistance(gp.point));
         for (Intersectable.GeoPoint intersection : intersections) {
-
             if (alignZero(intersection.point.distance(gp.point)) < distance)
                 ktr = ktr.product(intersection.geometry.getMaterial().kT);
         }
-
         return ktr;
     }
 
@@ -225,6 +227,45 @@ public class RayTracerRegular extends RayTracerBase {
 
         Ray reflectedRay = constructReflectionRay(gp.point, normal, v);
         Ray refractedRay = constructRefractionRay(gp.point, normal, v);
+
+        Color diffSamplingSum = Color.BLACK;
+        Color glossSamplingSum = Color.BLACK;
+        //@TODO: RayTracerRegular - SuperSampling in calcGlobalEffects
+
+        //If diffusive glass
+//        if (material.kDg != 0) {
+//            //super sample the refracted ray
+//            LinkedList<Ray> diffusedSampling = Sampling.superSample(refractedRay, material.kDg, normal);
+//            //for each sampling ray calculate the global effect
+//            for (var secondaryRay : diffusedSampling) {
+//                diffSamplingSum = diffSamplingSum.add(calcGlobalEffects(secondaryRay, level, k, material.kT));
+//            }
+//            //take the average of the calculation for all sample rays
+//            diffSamplingSum = diffSamplingSum.reduce(diffusedSampling.size());
+//        }
+//        //If glossy surface
+//        if (material.kSg != 0) {
+//            //super sample the reflected ray
+//            LinkedList<Ray> glossySampling = Sampling.superSample(reflectedRay, material.kSg, normal);
+//            //for each sampling ray calculate the global effect
+//            for (var secondaryRay : glossySampling) {
+//                glossSamplingSum = glossSamplingSum.add(calcGlobalEffects(secondaryRay, level, k, material.kR));
+//            }
+//            //take the average of the calculation for all sample rays
+//            glossSamplingSum = glossSamplingSum.reduce(glossySampling.size());
+//        }
+//
+//        //If diffusive and glossy return both of the results above
+//        if (material.kDg != 0 && material.kSg != 0) {
+//            return glossSamplingSum
+//                    .add(diffSamplingSum);
+//        }
+//        //else return the matching result
+//        else if (material.kDg + material.kSg > 0) {
+//            return material.kDg != 0 ? calcGlobalEffects(reflectedRay, level, k, material.kR).add(diffSamplingSum) :
+//                    calcGlobalEffects(refractedRay, level, k, material.kT).add(glossSamplingSum);
+//        }
+
         return calcGlobalEffects(reflectedRay, level, k, material.kR)
                 .add(calcGlobalEffects(refractedRay, level, k, material.kT));
     }
@@ -239,21 +280,16 @@ public class RayTracerRegular extends RayTracerBase {
      * @return the new calculated color
      */
     private Color calcGlobalEffects(Ray ray, int level, Double3 k, Double3 kx) {
-        Double3 kkx = kx.product(k);
-        //calculate the reflected ray, and the color contribution to the point.
+        Double3 kkx = k.product(kx);
+        if (kkx.lowerThan(MIN_CALC_COLOR_K))
+            return Color.BLACK;
+
         Intersectable.GeoPoint gp = traversalAlgorithm(ray);
-        return gp == null || kkx.lowerThan(MIN_CALC_COLOR_K) ?
+        if (gp == null)
+            return scene.background.scale(kx);
+
+        return isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDir())) ?
                 Color.BLACK : calcColor(gp, ray, level - 1, kkx).scale(kx);
-//        Double3 kkx = k.product(kx);
-//        if (kkx.lowerThan(MIN_CALC_COLOR_K))
-//            return Color.BLACK;
-//
-//        Intersectable.GeoPoint gp = findClosestIntersection(ray);
-//        if (gp == null)
-//            return scene.background.scale(kx);
-//
-//        return isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDir())) ?
-//                Color.BLACK : calcColor(gp, ray, level - 1, kkx).scale(kx);
     }
 
     /**
@@ -293,6 +329,7 @@ public class RayTracerRegular extends RayTracerBase {
         return ray.findClosestGeoPoint(geometries.findGeoIntersections(ray));
     }
 
+    //region voxel algorithms
     /**
      * this function implements the 3dda algorithm. It determines through which voxels the ray goes.
      *
@@ -300,6 +337,7 @@ public class RayTracerRegular extends RayTracerBase {
      * @return the first intersection GeoPoint
      */
     private Intersectable.GeoPoint traversalAlgorithm(Ray ray) {
+        //first sub algo
         //finds the first intersection with the grid
         Point firstIntersection = firstIntersection(ray);
         if (firstIntersection == null) return null;
@@ -329,7 +367,7 @@ public class RayTracerRegular extends RayTracerBase {
             tDelta[i] = Math.abs(voxelEdges[i] / directions[i]);
         }
 
-
+        //second sub algo
         //move over all the geometries of the first voxel and find the closest intersection (if there is any)
         Intersectable.GeoPoint farIntersection = null;
         Geometries list = scene.voxels.get(new Double3(indexes[0], indexes[1], indexes[2]));
@@ -458,32 +496,34 @@ public class RayTracerRegular extends RayTracerBase {
      * @param steps   the direction of the steps
      * @return if moved successfully to the next voxel or got out of the grid
      */
+    //if there is no intersection points in the first voxel search in the rest of the ray's way
+    //since the ray starts in the middle of a voxel (since we moved it on the intersection with the  scene CBR,
+    //or the head is already inside the scene SCR), we had to calculate the remaining distance to the fist voxel's edge.
+    //But from now on, we can use the constant voxel size, since it would always intersect with the edge of the voxel.
+    //now would do the same calculation on the rest of the ray's way in the voxels grid.
     private boolean nextVoxel(double[] tMax, int[] indexes, double[] tDelta, int[] steps) {
-        //if there is no intersection points in the first voxel search in the rest of the ray's way
-        //since the ray starts in the middle of a voxel (since we moved it on the intersection with the  scene CBR,
-        //or the head is already inside the scene SCR), we had to calculate the remaining distance to the fist voxel's edge.
-        //But from now on, we can use the constant voxel size, since it would always intersect with the edge of the voxel.
-        //now would do the same calculation on the rest of the ray's way in the voxels grid.
-
         if (tMax[0] < tMax[1]) {
             if (tMax[0] < tMax[2]) {
                 indexes[0] = indexes[0] + steps[0];
                 if ((indexes[0] > 0 && indexes[0] == scene.resolution + 1) || (indexes[0] < 0))
                     return false; //the ray leaves the scene's CBR with no intersection
                 tMax[0] = tMax[0] + tDelta[0];
-            } else {
+            }
+            else {
                 indexes[2] = indexes[2] + steps[2];
                 if ((indexes[2] > 0 && indexes[2] == scene.resolution + 1) || (indexes[2] < 0))
                     return false;
                 tMax[2] = tMax[2] + tDelta[2];
             }
-        } else {
+        }
+        else {
             if (tMax[1] < tMax[2]) {
                 indexes[1] = indexes[1] + steps[1];
                 if ((indexes[1] > 0 && indexes[1] == scene.resolution + 1) || (indexes[1] < 0))
                     return false;
                 tMax[1] = tMax[1] + tDelta[1];
-            } else {
+            }
+            else {
                 indexes[2] = indexes[2] + steps[2];
                 if ((indexes[2] > 0 && indexes[2] == scene.resolution + 1) || (indexes[2] < 0))
                     return false;
@@ -611,7 +651,7 @@ public class RayTracerRegular extends RayTracerBase {
     }
 
     /**
-     * fixes the intersection of the ray with teh scene CBR on exact intersection with voxel edges
+     * fixes the intersection of the ray with the scene CBR on exact intersection with voxel edges
      *
      * @param p        intersection point with the scene CBR
      * @param boundary the CBR
@@ -638,5 +678,5 @@ public class RayTracerRegular extends RayTracerBase {
         }
         return p;
     }
-
+    //endregion
 }

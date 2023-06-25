@@ -35,10 +35,9 @@ public class RayTracerBasic extends RayTracerBase {
         GeoPoint closestGeoPoint = findClosestIntersection(ray);
         if (closestGeoPoint == null)
             return scene.background;
-        Color currentPixelColor = calcColor(closestGeoPoint, ray);
-        return currentPixelColor;
+        return calcColor(closestGeoPoint, ray);
     }
-
+    //@TODO: RayTracerBasic - traceRays()
     @Override
     public Color traceRays(List<Ray> rays) {
         Color currentPixelColor = Color.BLACK;
@@ -101,21 +100,21 @@ public class RayTracerBasic extends RayTracerBase {
     private Color calcLocalEffects(GeoPoint gp, Ray ray, Double3 k) {
         Color color = gp.geometry.getEmission();
         Vector vector = ray.getDir();
-        Vector normal = gp.geometry.getNormal(gp.point);
+        Vector normal = gp.geometry.getNormal(gp.point);//normal to the geometric body in the intersection (gp) point
         double nv = alignZero(normal.dotProduct(vector));
-        if (nv == 0)
-            return color;
+        if (nv == 0) return color;
         Material mat = gp.geometry.getMaterial();
         for (LightSource lightSource : scene.lights) {
             Vector lightVector = lightSource.getL(gp.point);
             double nl = alignZero(normal.dotProduct(lightVector));
-            if (nl * nv > 0) { // sign(nl) == sign(nv)
-//                if (unshaded(gp, lightSource, lightVector, normal))
+            if (nl * nv > 0) { // sign(nl) == sign(nv)      //if (unshaded(gp, lightSource, lightVector, normal))
                 Double3 ktr = transparency(gp, lightSource, lightVector, normal);
                 if (!ktr.product(k).lowerThan(MIN_CALC_COLOR_K)) {
                     Color lightIntensity = lightSource.getIntensity(gp.point).scale(ktr);
-                    color = color.add(lightIntensity.scale(calcDiffusive(mat, nl)),
-                            lightIntensity.scale(calcSpecular(mat, normal, lightVector, nl, vector)));
+                    color = color.add(
+                            lightIntensity.scale(calcDiffusive(mat, nl)),
+                            lightIntensity.scale(calcSpecular(mat, normal, lightVector, nl, vector))
+                    );
                 }
             }
         }
@@ -196,7 +195,6 @@ public class RayTracerBasic extends RayTracerBase {
 
         double distance = alignZero(lightSource.getDistance(gp.point));
         for (GeoPoint intersection : intersections) {
-
             if (alignZero(intersection.point.distance(gp.point)) < distance)
                 ktr = ktr.product(intersection.geometry.getMaterial().kT);
         }
@@ -224,6 +222,45 @@ public class RayTracerBasic extends RayTracerBase {
 
         Ray reflectedRay = constructReflectionRay(gp.point, normal, v);
         Ray refractedRay = constructRefractionRay(gp.point, normal, v);
+
+        Color diffSamplingSum = Color.BLACK;
+        Color glossSamplingSum = Color.BLACK;
+        //@TODO: RayTracerBasic - SuperSampling in calcGlobalEffects
+
+        //If diffusive glass
+//        if (material.kDg != 0) {
+//            //super sample the refracted ray
+//            LinkedList<Ray> diffusedSampling = Sampling.superSample(refractedRay, material.kDg, normal);
+//            //for each sampling ray calculate the global effect
+//            for (var secondaryRay : diffusedSampling) {
+//                diffSamplingSum = diffSamplingSum.add(calcGlobalEffects(secondaryRay, level, k, material.kT));
+//            }
+//            //take the average of the calculation for all sample rays
+//            diffSamplingSum = diffSamplingSum.reduce(diffusedSampling.size());
+//        }
+//        //If glossy surface
+//        if (material.kSg != 0) {
+//            //super sample the reflected ray
+//            LinkedList<Ray> glossySampling = Sampling.superSample(reflectedRay, material.kSg, normal);
+//            //for each sampling ray calculate the global effect
+//            for (var secondaryRay : glossySampling) {
+//                glossSamplingSum = glossSamplingSum.add(calcGlobalEffects(secondaryRay, level, k, material.kR));
+//            }
+//            //take the average of the calculation for all sample rays
+//            glossSamplingSum = glossSamplingSum.reduce(glossySampling.size());
+//        }
+//
+//        //If diffusive and glossy return both of the results above
+//        if (material.kDg != 0 && material.kSg != 0) {
+//            return glossSamplingSum
+//                    .add(diffSamplingSum);
+//        }
+//        //else return the matching result
+//        else if (material.kDg + material.kSg > 0) {
+//            return material.kDg != 0 ? calcGlobalEffects(reflectedRay, level, k, material.kR).add(diffSamplingSum) :
+//                    calcGlobalEffects(refractedRay, level, k, material.kT).add(glossSamplingSum);
+//        }
+
         return calcGlobalEffects(reflectedRay, level, k, material.kR)
                 .add(calcGlobalEffects(refractedRay, level, k, material.kT));
     }
