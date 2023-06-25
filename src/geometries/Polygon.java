@@ -1,12 +1,12 @@
 package geometries;
 
-import static primitives.Util.isZero;
-
-import java.util.List;
-
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
+
+import static primitives.Util.isZero;
 
 /**
  * Polygon class represents two-dimensional polygon in 3D Cartesian coordinate
@@ -124,5 +124,39 @@ public class Polygon extends Geometry {
                 IllegalArgumentException ex) {
             return null; // point  on vertex or on edge or on edge's vector
         }
+    }
+
+    @Override
+    public int[][] calcBoundary() {
+        double minX = Double.POSITIVE_INFINITY;
+        double maxX = Double.NEGATIVE_INFINITY;
+        double minY = Double.POSITIVE_INFINITY;
+        double maxY = Double.NEGATIVE_INFINITY;
+        double minZ = Double.POSITIVE_INFINITY;
+        double maxZ = Double.NEGATIVE_INFINITY;
+        double x;
+        double y;
+        double z;
+        for (var point : vertices) {
+            x = point.getX();
+            y = point.getY();
+            z = point.getZ();
+            if (x < minX)
+                minX = x;
+            if (x > maxX)
+                maxX = x;
+            if (y < minY)
+                minY = y;
+            if (y > maxY)
+                maxY = y;
+            if (z < minZ)
+                minZ = z;
+            if (z > maxZ)
+                maxZ = z;
+        }
+
+        return new int[][]{{(int) Math.floor(minX), (int) Math.ceil(maxX)},
+                {(int) Math.floor(minY), (int) Math.ceil(maxY)},
+                {(int) Math.floor(minZ), (int) Math.ceil(maxZ)}};
     }
 }
