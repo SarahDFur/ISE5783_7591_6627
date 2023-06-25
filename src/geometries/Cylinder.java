@@ -100,49 +100,49 @@ public class Cylinder extends Tube {
                 return interactions;
         }
 
-        Plane base = new Plane(axisRay.getP0(), getAxisRay().getDir());
-        List<GeoPoint> baseInteraction = base.findGeoIntersectionsHelper(ray);
-        if (baseInteraction != null){
-            GeoPoint q = baseInteraction.get(0);
-            if(q.point.equals(p1)){
-                if (interactions == null)
-                    interactions = new LinkedList<>();
-                interactions.add(q);
-            }
-            else {
-                Vector qMinusP = q.point.subtract(p1);
-                if (qMinusP.lengthSquared() < radius * radius) {
-                    if (interactions == null)
-                        interactions = new LinkedList<>();
-                    interactions.add(q);
-                }
-            }
-            if (interactions != null && interactions.size() == 2)
-                return interactions;
-
-        }
-
-        base = new Plane(axisRay.getPoint(height)/*=p2*/, getAxisRay().getDir());
-        baseInteraction = base.findGeoIntersectionsHelper(ray);
-        if (baseInteraction != null){
-            GeoPoint q = baseInteraction.get(0);
-            if(q.point.equals(p2)){
-                if (interactions == null)
-                    interactions = new LinkedList<>();
-                interactions.add(q);
-            }
-            else {
-                Vector qMinusP = q.point.subtract(p2);
-                if (qMinusP.lengthSquared() < radius * radius) {
-                    if (interactions == null)
-                        interactions = new LinkedList<>();
-                    interactions.add(q);
-                }
-            }
-            if (interactions != null && interactions.size() == 2)
-                return interactions;
-
-        }
+//        Plane base = new Plane(axisRay.getP0(), getAxisRay().getDir());
+//        List<GeoPoint> baseInteraction = base.findGeoIntersectionsHelper(ray);
+//        if (baseInteraction != null){
+//            GeoPoint q = baseInteraction.get(0);
+//            if(q.point.equals(p1)){
+//                if (interactions == null)
+//                    interactions = new LinkedList<>();
+//                interactions.add(q);
+//            }
+//            else {
+//                Vector qMinusP = q.point.subtract(p1);
+//                if (qMinusP.lengthSquared() < radius * radius) {
+//                    if (interactions == null)
+//                        interactions = new LinkedList<>();
+//                    interactions.add(q);
+//                }
+//            }
+//            if (interactions != null && interactions.size() == 2)
+//                return interactions;
+//
+//        }
+//
+//        base = new Plane(axisRay.getPoint(height)/*=p2*/, getAxisRay().getDir());
+//        baseInteraction = base.findGeoIntersectionsHelper(ray);
+//        if (baseInteraction != null){
+//            GeoPoint q = baseInteraction.get(0);
+//            if(q.point.equals(p2)){
+//                if (interactions == null)
+//                    interactions = new LinkedList<>();
+//                interactions.add(q);
+//            }
+//            else {
+//                Vector qMinusP = q.point.subtract(p2);
+//                if (qMinusP.lengthSquared() < radius * radius) {
+//                    if (interactions == null)
+//                        interactions = new LinkedList<>();
+//                    interactions.add(q);
+//                }
+//            }
+//            if (interactions != null && interactions.size() == 2)
+//                return interactions;
+//
+//        }
 
         return interactions;
     }

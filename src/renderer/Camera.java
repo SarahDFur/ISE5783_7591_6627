@@ -5,8 +5,10 @@ import primitives.Color;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
+import renderer.PixelManager.Pixel;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.MissingResourceException;
 
@@ -71,7 +73,15 @@ public class Camera {
     //multi-threading
     private boolean multiThreading = false;
     private double printInterval;
-    private double threadsCount = 3;
+    private double threadsCount = 0;
+
+    /** Pixel manager for supporting:
+     * <ul>
+     * <li>multi-threading</li>
+     * <li>debug print of progress percentage in Console window/tab</li>
+     * <ul>
+     */
+    private PixelManager pixelManager;
     //----------
 
     //endregion
@@ -343,8 +353,9 @@ public class Camera {
 
     //region rendering & writing images
 
-    /**
-     * Renders an image
+    /** This function renders image's pixel color map from the scene
+     * included in the ray tracer object
+     * @return the camera object itself
      */
     public Camera renderImage() {
         //info: coordinates of the camera != null
@@ -359,26 +370,48 @@ public class Camera {
 
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
-        if (multiThreading){
-            Pixel.initialize(nY, nX, printInterval);
-            while (threadsCount-- > 0) {
-                new Thread(() -> {
-                    for (Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone()) {
-                        castRay(nX, nY, pixel.col, pixel.row);
-                    }
-                }).start();
-            }
-            Pixel.waitToFinish();
-        }
-        else {
-            Pixel.initialize(nY, nX, printInterval);
+        pixelManager = new PixelManager(nY, nX, printInterval);
+
+        if (!multiThreading)
             for (int i = 0; i < nY; ++i)
-                for (int j = 0; j < nX; ++j) {
+                for (int j = 0; j < nX; ++j)
                     castRay(nX, nY, j, i);
-                    Pixel.pixelDone();
-                    Pixel.printPixel();
-                }
+        else {
+            var threads = new LinkedList<Thread>(); // list of threads
+            while (threadsCount-- > 0) // add appropriate number of threads
+                threads.add(new Thread(() -> { // add a thread with its code
+                    Pixel pixel; // current pixel(row,col)
+                    // allocate pixel(row,col) in loop until there are no more pixels
+                    while ((pixel = pixelManager.nextPixel()) != null)
+                        // cast ray through pixel (and color it – inside castRay)
+                        castRay(nX, nY, pixel.col(), pixel.row());
+                }));
+            // start all the threads
+            for (var thread : threads) thread.start();
+            // wait until all the threads have finished
+            try { for (var thread : threads) thread.join(); } catch (InterruptedException ignore) {}
         }
+
+//        if (multiThreading){
+//            Pixel.initialize(nY, nX, printInterval);
+//            while (threadsCount-- > 0) {
+//                new Thread(() -> {
+//                    for (Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone()) {
+//                        castRay(nX, nY, pixel.col, pixel.row);
+//                    }
+//                }).start();
+//            }
+//            Pixel.waitToFinish();
+//        }
+//        else {
+//            Pixel.initialize(nY, nX, printInterval);
+//            for (int i = 0; i < nY; ++i)
+//                for (int j = 0; j < nX; ++j) {
+//                    castRay(nX, nY, j, i);
+//                    Pixel.pixelDone();
+//                    Pixel.printPixel();
+//                }
+//        }
         return this;
     }
 
@@ -400,39 +433,49 @@ public class Camera {
 //    }
 
 
-    /**
-     * Constructs a ray through a pixel from the camera and write its color to the
-     * image
-     *
-     * @param numColumns The number of pixels in the x direction
-     * @param numRows    The number of pixels in the y direction
-     * @param col        The pixel's x coordinate
-     * @param row        The pixel's y coordinate
+//    /**
+//     * Constructs a ray through a pixel from the camera and write its color to the
+//     * image
+//     *
+//     * @param numColumns The number of pixels in the x direction
+//     * @param numRows    The number of pixels in the y direction
+//     * @param col        The pixel's x coordinate
+//     * @param row        The pixel's y coordinate
+//     */
+//    public void castRay(int numColumns, int numRows, int col, int row) {
+//        Color color;
+//        // height and width of the pixel
+//        double pixelWidth = width / numColumns;
+//        double pixelHeight = height / numRows;
+//        Ray ray = constructRay(numColumns, numRows, col, row);
+//
+//        if (superSamplingType == SUPER_SAMPLING_TYPE.ADAPTIVE) {
+//            color = calcAdaptiveSupersamplingColor(ray, pixelWidth, pixelHeight,
+//                    adaptiveSuperSamplingMaxRecursionDepth);
+//        } else if (superSamplingType == SUPER_SAMPLING_TYPE.REGULAR) {
+//            color = calcSupersamplingColor(ray, pixelWidth, pixelHeight);
+//        } else {
+//            color = rayTracer.traceRay(ray);
+//        }
+//
+//        if (!isZero(this.apertureSize)) {
+//            color = color.add(averagedBeamColor(ray));
+//            color = color.reduce(2);
+//        }
+//
+//        imageWriter.writePixel(col, row, color);
+//    }
+
+    /** Cast ray from camera and color a pixel
+     * @param nX resolution on X axis (number of pixels in row)
+     * @param nY resolution on Y axis (number of pixels in column)
+     * @param col pixel's column number (pixel index in row)
+     * @param row pixel's row number (pixel index in column)
      */
-    public void castRay(int numColumns, int numRows, int col, int row) {
-        Color color;
-        // height and width of the pixel
-        double pixelWidth = width / numColumns;
-        double pixelHeight = height / numRows;
-        Ray ray = constructRay(numColumns, numRows, col, row);
-
-        if (superSamplingType == SUPER_SAMPLING_TYPE.ADAPTIVE) {
-            color = calcAdaptiveSupersamplingColor(ray, pixelWidth, pixelHeight,
-                    adaptiveSuperSamplingMaxRecursionDepth);
-        } else if (superSamplingType == SUPER_SAMPLING_TYPE.REGULAR) {
-            color = calcSupersamplingColor(ray, pixelWidth, pixelHeight);
-        } else {
-            color = rayTracer.traceRay(ray);
-        }
-
-        if (!isZero(this.apertureSize)) {
-            color = color.add(averagedBeamColor(ray));
-            color = color.reduce(2);
-        }
-
-        imageWriter.writePixel(col, row, color);
+    private void castRay(int nX, int nY, int col, int row) {
+        imageWriter.writePixel(col, row, rayTracer.traceRay(constructRay(nX, nY, col, row)));
+        pixelManager.pixelDone();
     }
-
 
 
     /**
