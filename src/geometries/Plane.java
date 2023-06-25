@@ -82,4 +82,9 @@ public class Plane extends Geometry {
 
         return null; // no intersection with plane
     }
+
+    @Override
+    public int[][] calcBoundary() {//there is no boundary to infinite geometric entity
+        return null;
+    }
 }

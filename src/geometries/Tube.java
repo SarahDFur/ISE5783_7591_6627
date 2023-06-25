@@ -108,4 +108,9 @@ public class Tube extends RadialGeometry {
 
         return null;
     }
+
+    @Override
+    public int[][] calcBoundary() {//there is no boundary to infinite geometric entity
+        return null;
+    }
 }

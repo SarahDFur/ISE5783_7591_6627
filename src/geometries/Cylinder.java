@@ -61,7 +61,6 @@ public class Cylinder extends Tube {
 
     @Override
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-        //@TODO: Cylinder - findIntersections()
 //        List<Point> intersections = super.findIntersections(ray);
 //        if(intersections == null){
 //            if(ray.getDir().equals(this.axisRay.getDir()) || ray.getDir().equals(this.axisRay.getDir().scale(-1))){
@@ -145,5 +144,19 @@ public class Cylinder extends Tube {
 //        }
 
         return interactions;
+    }
+    @Override
+    public int[][] calcBoundary() {
+        Point firstBaseCenter = axisRay.getP0();
+        Point secondBaseCenter = axisRay.getPoint(height);
+
+        return new int[][]{minMax(firstBaseCenter.getX(),secondBaseCenter.getX()),
+                minMax(firstBaseCenter.getY(), secondBaseCenter.getY()),
+                minMax(firstBaseCenter.getZ(), secondBaseCenter.getZ())};
+    }
+
+    private int[] minMax(double first,double second){
+        return first < second? new int[]{(int)Math.floor(first-radius),(int)Math.ceil(second+radius)}:
+                new int[]{(int)Math.floor(second-radius),(int)Math.ceil(first+radius)};
     }
 }

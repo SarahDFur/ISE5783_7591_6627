@@ -2,11 +2,9 @@ package geometries;
 
 import primitives.Point;
 import primitives.Ray;
-import primitives.Util;
 import primitives.Vector;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import static primitives.Util.alignZero;
 
@@ -82,5 +80,16 @@ public class Sphere extends RadialGeometry {
         } catch(IllegalArgumentException e) { //ray is orthogonal to sphere center line
             return null;
         }
+    }
+
+    @Override
+    public int[][] calcBoundary() {
+        double x = center.getX();
+        double y = center.getY();
+        double z = center.getZ();
+
+        return new int[][]{{(int) Math.floor(x - radius), (int) Math.ceil(x + radius)},
+                {(int) Math.floor(y - radius), (int) Math.ceil(y + radius)},
+                {(int) Math.floor(z - radius), (int) Math.ceil(z + radius)}};
     }
 }
