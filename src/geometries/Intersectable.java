@@ -68,6 +68,7 @@ public abstract class Intersectable {
     /**
      * boundary of the entity represented by the array [x[min,max],y[min,max],z[min,max]]
      */
+    //@TODO: allocate appropriate memory
     public int[][] boundary;
 
     /**

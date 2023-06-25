@@ -329,7 +329,8 @@ public class FinalImageTest {
 //-24.43,3273.3,308.49 - more of a top view
         camera.moveCamera(new Point(80, 10, 300), new Point(0, -40, -40))
                 .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
-                .setRayTracer(new RayTracerBasic(scene))
+                //.setRayTracer(new RayTracerBasic(scene))
+                .setRayTracer(new RayTracerRegular(scene))
                 .setImageWriter(new ImageWriter("whiskeyCup", 1000, 1000))
                 //.setSuperSampling(Camera.SUPER_SAMPLING_TYPE.ADAPTIVE)
                 //.setApertureSize(0.01).setFocalDistance(900)
