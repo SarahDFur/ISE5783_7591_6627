@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/renderer/Sampling.java" afterDir="false" />
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="- Fixing multi-threading : PixelManager instead of Pixel&#10;- Moving wisCup test to FinalImageTest&#10;- to do next : a lot... mainly in Camera">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/FinalImageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/FinalImageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerRegular.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerRegular.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/ProjectsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ProjectsTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +124,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.FinalImageTest.wisCup">
+  <component name="RunManager" selected="JUnit.ProjectsTests.wisCup">
     <configuration name="FinalImageTest.wisCup" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
@@ -208,8 +206,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.FinalImageTest.wisCup" />
         <item itemvalue="JUnit.ProjectsTests.wisCup" />
+        <item itemvalue="JUnit.FinalImageTest.wisCup" />
         <item itemvalue="JUnit.TeapotTest" />
         <item itemvalue="JUnit.ProjectsTests.miniBar" />
         <item itemvalue="JUnit.ProjectsTests.myPicture" />
@@ -235,6 +233,10 @@
       <workItem from="1685816662095" duration="55000" />
       <workItem from="1685819152969" duration="8700000" />
       <workItem from="1685854691155" duration="1726000" />
+      <workItem from="1687762170067" duration="225000" />
+      <workItem from="1687763657346" duration="512000" />
+      <workItem from="1687764188320" duration="71000" />
+      <workItem from="1687770285447" duration="1046000" />
     </task>
     <task id="LOCAL‎-00001" summary="Geometries &amp; Primitives&#10;- files">
       <created>1678360334430</created>
@@ -546,26 +548,12 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="HEAD" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="117c15d9-4321-4583-9ab0-ccde8aabfc13">
           <value>
             <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -584,13 +572,27 @@
                   </entry>
                 </map>
               </option>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
             </State>
           </value>
         </entry>
         <entry key="MAIN">
           <value>
             <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>

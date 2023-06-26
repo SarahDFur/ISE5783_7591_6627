@@ -7,6 +7,7 @@ import lighting.LightSource;
 import primitives.*;
 import scene.Scene;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static primitives.Util.alignZero;
@@ -233,38 +234,38 @@ public class RayTracerRegular extends RayTracerBase {
         //@TODO: RayTracerRegular - SuperSampling in calcGlobalEffects
 
         //If diffusive glass
-//        if (material.kDg != 0) {
-//            //super sample the refracted ray
-//            LinkedList<Ray> diffusedSampling = Sampling.superSample(refractedRay, material.kDg, normal);
-//            //for each sampling ray calculate the global effect
-//            for (var secondaryRay : diffusedSampling) {
-//                diffSamplingSum = diffSamplingSum.add(calcGlobalEffects(secondaryRay, level, k, material.kT));
-//            }
-//            //take the average of the calculation for all sample rays
-//            diffSamplingSum = diffSamplingSum.reduce(diffusedSampling.size());
-//        }
-//        //If glossy surface
-//        if (material.kSg != 0) {
-//            //super sample the reflected ray
-//            LinkedList<Ray> glossySampling = Sampling.superSample(reflectedRay, material.kSg, normal);
-//            //for each sampling ray calculate the global effect
-//            for (var secondaryRay : glossySampling) {
-//                glossSamplingSum = glossSamplingSum.add(calcGlobalEffects(secondaryRay, level, k, material.kR));
-//            }
-//            //take the average of the calculation for all sample rays
-//            glossSamplingSum = glossSamplingSum.reduce(glossySampling.size());
-//        }
-//
-//        //If diffusive and glossy return both of the results above
-//        if (material.kDg != 0 && material.kSg != 0) {
-//            return glossSamplingSum
-//                    .add(diffSamplingSum);
-//        }
-//        //else return the matching result
-//        else if (material.kDg + material.kSg > 0) {
-//            return material.kDg != 0 ? calcGlobalEffects(reflectedRay, level, k, material.kR).add(diffSamplingSum) :
-//                    calcGlobalEffects(refractedRay, level, k, material.kT).add(glossSamplingSum);
-//        }
+        if (material.kDg != 0) {
+            //super sample the refracted ray
+            LinkedList<Ray> diffusedSampling = Sampling.superSample(refractedRay, material.kDg, normal);
+            //for each sampling ray calculate the global effect
+            for (var secondaryRay : diffusedSampling) {
+                diffSamplingSum = diffSamplingSum.add(calcGlobalEffects(secondaryRay, level, k, material.kT));
+            }
+            //take the average of the calculation for all sample rays
+            diffSamplingSum = diffSamplingSum.reduce(diffusedSampling.size());
+        }
+        //If glossy surface
+        if (material.kSg != 0) {
+            //super sample the reflected ray
+            LinkedList<Ray> glossySampling = Sampling.superSample(reflectedRay, material.kSg, normal);
+            //for each sampling ray calculate the global effect
+            for (var secondaryRay : glossySampling) {
+                glossSamplingSum = glossSamplingSum.add(calcGlobalEffects(secondaryRay, level, k, material.kR));
+            }
+            //take the average of the calculation for all sample rays
+            glossSamplingSum = glossSamplingSum.reduce(glossySampling.size());
+        }
+
+        //If diffusive and glossy return both of the results above
+        if (material.kDg != 0 && material.kSg != 0) {
+            return glossSamplingSum
+                    .add(diffSamplingSum);
+        }
+        //else return the matching result
+        else if (material.kDg + material.kSg > 0) {
+            return material.kDg != 0 ? calcGlobalEffects(reflectedRay, level, k, material.kR).add(diffSamplingSum) :
+                    calcGlobalEffects(refractedRay, level, k, material.kT).add(glossSamplingSum);
+        }
 
         return calcGlobalEffects(reflectedRay, level, k, material.kR)
                 .add(calcGlobalEffects(refractedRay, level, k, material.kT));
