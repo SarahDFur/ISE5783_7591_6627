@@ -101,7 +101,6 @@ public class FinalImageTest {
     public void wisCup()
     {
         Scene scene = new Scene("whiskey cup");
-        Sampling.setTargetAreaResolution(9);
         scene.geometries.add(
 //region geometries
                 //region surfaces
@@ -156,36 +155,6 @@ public class FinalImageTest {
                         .setEmission(new Color(110, 106, 78))
                         .setMaterial(new Material().setKd(0.5).setKs(0.5)
                                 .setKr(0.009).setKt(0))
-                //endregion
-
-                //region clouds
-                //region bottom left:
-//                ,new Sphere(40, new Point(-130,-70,-90))
-//                        .setEmission(new Color(255,147,41))
-//                        .setMaterial(new Material().setKd(0.99).setKs(0.79)
-//                                .setKr(0.04).setKt(0.00001))
-//                ,new Sphere(30, new Point(-130,-70,-50))
-//                        .setEmission(new Color(255,147,41))
-//                        .setMaterial(new Material().setKd(0.99).setKs(0.79)
-//                                .setKr(0.04).setKt(0.00001))
-//                ,new Sphere(25, new Point(-100,-70,-90))
-//                        .setEmission(new Color(255,147,41))
-//                        .setMaterial(new Material().setKd(0.99).setKs(0.79)
-//                                .setKr(0.04).setKt(0.00001))
-                //endregion
-
-//                ,new Sphere(40, new Point(130,390,-290))
-//                        .setEmission(new Color(208,222,236))
-//                        .setMaterial(new Material().setKd(0.9).setKs(0.7)
-//                                .setKr(0.9).setKt(1).setKdG(1))
-//                ,new Sphere(30, new Point(130,150,-50))
-//                        .setEmission(new Color(208,222,236))
-//                        .setMaterial(new Material().setKd(0.9).setKs(0.7)
-//                                .setKr(0.9).setKt(0.00001))
-//                ,new Sphere(25, new Point(120,70,-90))
-//                        .setEmission(new Color(208,222,236))
-//                        .setMaterial(new Material().setKd(0.9).setKs(0.7)
-//                                .setKr(0.9).setKt(0.00001))
                 //endregion
                 //region rose/flower
                 , new Sphere(50,new Point(-150,-40,-50))
