@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="- Fixing multi-threading : PixelManager instead of Pixel&#10;- Moving wisCup test to FinalImageTest&#10;- to do next : a lot... mainly in Camera">
+    <list default="true" id="30a4b6e5-c63a-491b-a1db-737f62e4dcef" name="Changes" comment="- anti aliasing regular and adaptive improvements working&#10;* maybe move Camera.constructRaysBeam and Camera.adaptiveHelper to another class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/primitives/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Color.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerRegular.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerRegular.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Sampling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Sampling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/FinalImageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/FinalImageTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unittests/renderer/ProjectsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ProjectsTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/special/TeapotTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/special/TeapotTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,37 +75,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "17",
-    "last_directory_selection": "C:/Users/User/Desktop/Academic studies/שנה ד/ב/מיניפ מלת/ISE5783_7591_6627/src/lighting",
-    "last_opened_file_path": "C:/_EFRAT/java/jacobashwall_ISE5782_9135_3349/jacobashwall_ISE5782_9135_3349",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "inlay.hints",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/User/Desktop/Academic studies/שנה ד/ב/מיניפ מלת/ISE5783_7591_6627/src/lighting&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/_EFRAT/java/jacobashwall_ISE5782_9135_3349/jacobashwall_ISE5782_9135_3349&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="primitives" />
@@ -129,24 +128,8 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProjectsTests.miniBar">
-    <configuration name="FinalImageTest.wisCup" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_7591_6627" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.FinalImageTest" />
-      <option name="METHOD_NAME" value="wisCup" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProjectsTests.miniBar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ProjectsTests.testAntiAliasing">
+    <configuration name="ProjectsTests.myPicture" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
         <pattern>
@@ -156,13 +139,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ProjectsTests" />
-      <option name="METHOD_NAME" value="miniBar" />
+      <option name="METHOD_NAME" value="myPicture" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProjectsTests.sphereTriangleMove2_AntiAliasing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProjectsTests.testAntiAliasing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
         <pattern>
@@ -172,13 +155,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ProjectsTests" />
-      <option name="METHOD_NAME" value="sphereTriangleMove2_AntiAliasing" />
+      <option name="METHOD_NAME" value="testAntiAliasing" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProjectsTests.wisCup" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProjectsTests.testDepthOfField" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
         <pattern>
@@ -188,34 +171,51 @@
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ProjectsTests" />
-      <option name="METHOD_NAME" value="wisCup" />
+      <option name="METHOD_NAME" value="testDepthOfField" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TeapotTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProjectsTests.testGlossyAndDiffusive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_7591_6627" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="special.*" />
+          <option name="PATTERN" value="renderer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="special" />
-      <option name="MAIN_CLASS_NAME" value="special.TeapotTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ProjectsTests" />
+      <option name="METHOD_NAME" value="testGlossyAndDiffusive" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProjectsTests.testSpecularAndDiffusive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_7591_6627" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ProjectsTests" />
+      <option name="METHOD_NAME" value="testSpecularAndDiffusive" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ProjectsTests.miniBar" />
-        <item itemvalue="JUnit.ProjectsTests.sphereTriangleMove2_AntiAliasing" />
-        <item itemvalue="JUnit.ProjectsTests.wisCup" />
-        <item itemvalue="JUnit.FinalImageTest.wisCup" />
-        <item itemvalue="JUnit.TeapotTest" />
+        <item itemvalue="JUnit.ProjectsTests.testAntiAliasing" />
+        <item itemvalue="JUnit.ProjectsTests.testDepthOfField" />
+        <item itemvalue="JUnit.ProjectsTests.testGlossyAndDiffusive" />
+        <item itemvalue="JUnit.ProjectsTests.myPicture" />
+        <item itemvalue="JUnit.ProjectsTests.testSpecularAndDiffusive" />
       </list>
     </recent_temporary>
   </component>
@@ -241,7 +241,8 @@
       <workItem from="1687762170067" duration="225000" />
       <workItem from="1687763657346" duration="512000" />
       <workItem from="1687764188320" duration="71000" />
-      <workItem from="1687770285447" duration="17692000" />
+      <workItem from="1687770285447" duration="26654000" />
+      <workItem from="1687838578959" duration="8679000" />
     </task>
     <task id="LOCAL‎-00001" summary="Geometries &amp; Primitives&#10;- files">
       <created>1678360334430</created>
@@ -553,7 +554,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1687773121413</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL‎-00045" summary="- anti aliasing regular and adaptive improvements working&#10;* maybe move Camera.constructRaysBeam and Camera.adaptiveHelper to another class">
+      <created>1687827997808</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL‎-00045" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687827997808</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -612,7 +620,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Cylinder.findIntersections - tests and implementation" />
     <MESSAGE value="Camera =&gt; methods: &#10;-constructRay(int,int,int,int)&#10;-findMiddleOfPixel(int,int,int,int)&#10;       =&gt; tests:&#10;-passed" />
     <MESSAGE value="- Camera methods definition&#10;- stage 5 files opened" />
     <MESSAGE value="-ImageWriterTest: creation" />
@@ -637,7 +644,8 @@
     <MESSAGE value="voxel algorithms implementations" />
     <MESSAGE value="updated function implementations" />
     <MESSAGE value="- Fixing multi-threading : PixelManager instead of Pixel&#10;- Moving wisCup test to FinalImageTest&#10;- to do next : a lot... mainly in Camera" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Fixing multi-threading : PixelManager instead of Pixel&#10;- Moving wisCup test to FinalImageTest&#10;- to do next : a lot... mainly in Camera" />
+    <MESSAGE value="- anti aliasing regular and adaptive improvements working&#10;* maybe move Camera.constructRaysBeam and Camera.adaptiveHelper to another class" />
+    <option name="LAST_COMMIT_MESSAGE" value="- anti aliasing regular and adaptive improvements working&#10;* maybe move Camera.constructRaysBeam and Camera.adaptiveHelper to another class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

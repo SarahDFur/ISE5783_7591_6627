@@ -44,17 +44,22 @@ public class Camera {
     private int maxAdaptiveLevel = 2;
     private boolean useAdaptive = false;
 
+    //depth of field
+    private boolean depthOfField = false;
+    private double focalDistance;
+    private double apertureSize;
+    private int aperturePointNum;
+    private Point[] aperturePoints;
+
 
     //multi-threading
-    private boolean multiThreading = false;
-    private double printInterval;
-    private double threadsCount = 0;
-
     /** Pixel manager for supporting:
      * multi-threading
      * debug print of progress percentage in Console window/tab
      */
     private PixelManager pixelManager;
+    private double printInterval;
+    private double threadsCount = 0;
     //----------
 
     //endregion
@@ -134,6 +139,21 @@ public class Camera {
         return rays;
     }
 
+
+    /**
+     * Calculate a CONVERGENT beam of rays for DOF
+     * @param centerRay the central ray to build beam around
+     * @return list of rays
+     */
+    public List<Ray> constructDOFBeam(Ray centerRay){
+        List<Ray> rays = new ArrayList<>(aperturePointNum * aperturePointNum);
+        Point focalPoint = centerRay.getPoint(focalDistance);
+        for (Point p: aperturePoints)
+            rays.add(new Ray(p, focalPoint.subtract(p)));
+        return rays;
+    }
+
+
     /**
      * Calculate color of pixel, using adaptive antialiasing
      * @param centerRay         the central ray to build beam around
@@ -169,6 +189,31 @@ public class Camera {
                 adaptiveHelper(new Ray(origin, points[2].subtract(origin)), targetAreaSide / 2, level - 1),
                 adaptiveHelper(new Ray(origin, points[3].subtract(origin)), targetAreaSide / 2, level - 1))
                 .reduce(4);
+    }
+
+
+    private Color depthOfFieldHelper(Ray centerRay, double targetAreaSide){
+        Color color = Color.BLACK;
+        List<Ray> rays = constructDOFBeam(centerRay);
+
+        if (useAdaptive) { //DOF + adaptiveAA
+            for (Ray ray : rays){
+                color = color.add(adaptiveHelper(centerRay, targetAreaSide, maxAdaptiveLevel));
+            }
+            color.reduce(aperturePointNum*aperturePointNum);
+        }
+
+        else if (antiAliasingFactor == 1) //DOF only
+            color = rayTracer.traceRays(rays);
+
+        else {
+            for (Ray ray : rays) { //DOF + AA
+                color = color.add(rayTracer.traceRays(
+                        constructRaysBeam(ray, vUp, vRight, distance, targetAreaSide, antiAliasingFactor)));
+            }
+            color.reduce(aperturePointNum*aperturePointNum);
+        }
+        return color;
     }
 
 
@@ -220,7 +265,7 @@ public class Camera {
         int nY = imageWriter.getNy();
         pixelManager = new PixelManager(nY, nX, printInterval);
 
-        if (!multiThreading)
+        if (threadsCount == 0) // no multi threading
             for (int i = 0; i < nY; ++i)
                 for (int j = 0; j < nX; ++j)
                     castRay(nX, nY, j, i);
@@ -251,7 +296,10 @@ public class Camera {
     private void castRay(int nX, int nY, int i, int j) {
         Color color;
         Ray ray = constructRay(nX, nY, i, j);
-        if (useAdaptive)
+        if (depthOfField)
+            //depthOfFieldHelper know to combine DOF with other improvements
+            color = depthOfFieldHelper(ray, height/nY);
+        else if (useAdaptive)
             color = adaptiveHelper(ray,height/nY, maxAdaptiveLevel);
         else if (antiAliasingFactor == 1)
             color = rayTracer.traceRay(ray);
@@ -423,6 +471,35 @@ public class Camera {
         return this;
     }
 
+    public Camera setDepthOfField(double focalDistance,double apertureSize,int aperturePointNum){
+        this.depthOfField = true;
+        this.focalDistance = focalDistance;
+        this.apertureSize = apertureSize;
+        this.aperturePointNum = aperturePointNum;
+        initAperturePoints();
+        return  this;
+    }
+
+    public void initAperturePoints(){
+        aperturePoints = new Point[aperturePointNum * aperturePointNum];
+        double spacing = apertureSize / (aperturePointNum - 1);
+        int k = 0;
+        double scaleUp, scaleRight;
+        for (int i = 0; i < aperturePointNum; i++) {
+            for (int j = 0; j < aperturePointNum; j++) {
+                scaleUp = (-i + (aperturePointNum - 1d) / 2) * spacing;
+                scaleRight = (j - (aperturePointNum - 1d) / 2) * spacing;
+                Point point = centerPoint;
+                if (scaleUp != 0)
+                    point = point.add(vUp.scale(scaleUp));
+                if (scaleRight != 0)
+                    point = point.add(vRight.scale(scaleRight));
+                aperturePoints[k++] = point;
+            }
+        }
+    }
+
+
     /**
      * setter for whether you want to do multi threading
      * on image(x set and not zero) or not(x set to zero)
@@ -431,7 +508,8 @@ public class Camera {
      * @return camera
      */
     public Camera setMultithreading(double threads) {
-        multiThreading = threads != 0;
+        if (threads< 0)
+            throw new IllegalArgumentException("threads count must be non-negative");
         threadsCount = threads;
         return this;
     }

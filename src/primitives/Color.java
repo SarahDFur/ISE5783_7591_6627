@@ -147,6 +147,7 @@ public class Color {
 
     public boolean similar(Color color) {
         Double3 diff = this.rgb.subtract(color.rgb);
-        return (Math.abs(diff.d1) <= 2) && (Math.abs(diff.d2) <= 2) && (Math.abs(diff.d3) <= 2);
+        return (Math.abs(diff.d1) <= 1) && (Math.abs(diff.d2) <= 1) && (Math.abs(diff.d3) <= 1);
+        //return (Math.abs(diff.d1) <= 2) && (Math.abs(diff.d2) <= 2) && (Math.abs(diff.d3) <= 2);
     }
 }

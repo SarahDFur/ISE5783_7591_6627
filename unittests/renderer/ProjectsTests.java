@@ -76,7 +76,10 @@ public class ProjectsTests {
         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
                 .setViewPlaneSize(200, 200).setViewPlaneDistance(1000)
                 .setRayTracer(new RayTracerBasic(scene))
-                .setImageWriter(new ImageWriter("myPicture-7.3", 700, 700))
+//                .setImageWriter(new ImageWriter("myPicture-7.3", 700, 700))
+                .setImageWriter(new ImageWriter("dof_1040_0.1_10", 700, 700))
+                .setDepthOfField(1040, 0.1,5)
+                .setMultithreading(3).setDebugPrint(0.1)
                 .renderImage();
 
         camera.writeToImage();
@@ -98,7 +101,37 @@ public class ProjectsTests {
                 new Sphere(60d, new Point(0, 0, -200))
                         .setEmission(new Color(BLUE))
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)),
-                        new Triangle(new Point(-62, -32, 0), new Point(-32, -62, 0), new Point(-60, -60, -4))
+                new Triangle(new Point(-62, -32, 0), new Point(-32, -62, 0), new Point(-60, -60, -4))
+                        .setEmission(new Color(BLUE))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)));
+
+        scene.lights.add(
+                new SpotLight(new Color(400, 240, 0), new Point(-100, -100, 200), new Vector(1, 1, -3))
+                        .setKl(1E-5).setKq(1.5E-7));
+
+        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+                .setViewPlaneSize(200, 200)
+                .setViewPlaneDistance(1000)
+//                .setRayTracer(new RayTracerBasic(scene))
+                .setRayTracer(new RayTracerRegular(scene))
+                //.setImageWriter(new ImageWriter("antiAliasing9x9", 400, 400))
+                //.setAntiAliasingFactor(9)
+                .setImageWriter(new ImageWriter("antiAliasingAdaptiveRec6", 400, 400))
+                .setUseAdaptive(true).setMaxAdaptiveLevel(6)
+                .renderImage();
+
+        camera.writeToImage();
+    }
+
+    @Test
+    public void testDepthOfField() {
+        Scene scene = new Scene("Test scene");
+
+        scene.geometries.add(
+                new Sphere(60d, new Point(0, 0, -200))
+                        .setEmission(new Color(BLUE))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)),
+                new Triangle(new Point(-62, -32, 0), new Point(-32, -62, 0), new Point(-60, -60, -4))
                         .setEmission(new Color(BLUE))
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)));
 
@@ -110,16 +143,176 @@ public class ProjectsTests {
                 .setViewPlaneSize(200, 200)
                 .setViewPlaneDistance(1000)
                 .setRayTracer(new RayTracerBasic(scene))
-                //.setImageWriter(new ImageWriter("antiAliasing9x9", 400, 400))
-                //.setAntiAliasingFactor(9)
-                .setImageWriter(new ImageWriter("antiAliasingAdaptiveRec6", 400, 400))
-                .setUseAdaptive(true).setMaxAdaptiveLevel(6)
-                .renderImage();
+                .setDepthOfField(1140, 0.5, 9);
 
+//        camera.setImageWriter(new ImageWriter("depthOfField_only", 400, 400));
+
+//        camera.setImageWriter(new ImageWriter("depthOfField_AA", 400, 400))
+//                .setAntiAliasingFactor(9);
+
+        camera.setImageWriter(new ImageWriter("depthOfField_Adaptive", 400, 400))
+                .setUseAdaptive(true).setMaxAdaptiveLevel(4);
+
+        camera.setMultithreading(3).setDebugPrint(0.1).renderImage();
         camera.writeToImage();
     }
 
-    //endregion
+//    @Test
+//    public void testDepthOfField() {
+//        Scene scene = new Scene("Test scene");
+//
+//        scene.geometries.add(
+//                new Sphere(60d, new Point(0, 0, -200))
+//                        .setEmission(new Color(BLUE))
+//                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)),
+//                new Triangle(new Point(-62, -32, 0), new Point(-32, -62, 0), new Point(-60, -60, -4))
+//                        .setEmission(new Color(BLUE))
+//                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)));
+//
+//        scene.lights.add(
+//                new SpotLight(new Color(400, 240, 0), new Point(-100, -100, 200), new Vector(1, 1, -3))
+//                        .setKl(1E-5).setKq(1.5E-7));
+//
+//        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+//                .setViewPlaneSize(200, 200)
+//                .setViewPlaneDistance(1000)
+//                .setRayTracer(new RayTracerBasic(scene))
+//                .setImageWriter(new ImageWriter("depthOfField_1150_0.5_9", 400, 400))
+//                .setDepthOfField(1150, 0.5,9)
+//                .renderImage();
+//
+//        camera.writeToImage();
+//    }
+
+
+//    @Test
+//    public void testSpecularAndDiffusive() {
+//        Scene scene = new Scene("Test scene");
+//
+//        Point[] p = new Point[]{null,
+//                new Point(-50, -50, 0),//1
+//                new Point(-25, -50, 0),
+//                new Point(0, -50, 0),
+//                new Point(25, -50, 0),
+//                new Point(50, -50, 0),
+//
+//                new Point(-50, -25, 0),//6
+//                new Point(-25, -25, 0),
+//                new Point(0, -25, 0),
+//                new Point(25, -25, 0),
+//                new Point(50, -25, 0),
+//
+//                new Point(-50, -0, 0),//11
+//                new Point(-25, 0, 0),
+//                new Point(0, 0, 0),
+//                new Point(25, 0, 0),
+//                new Point(50, 0, 0),
+//
+//                new Point(-50, 25, 0),//16
+//                new Point(-25, 25, 0),
+//                new Point(0, 25, 0),
+//                new Point(25, 25, 0),
+//                new Point(50, 25, 0),
+//
+//                new Point(-50, 50, 0),//21
+//                new Point(-25, 50, 0),
+//                new Point(0, 50, 0),
+//                new Point(25, 50, 0),
+//                new Point(50, 50, 0),
+//        };
+//
+//        scene.geometries.add(
+//                new Sphere(60d, new Point(0, 0, -200))
+//                        .setEmission(new Color(BLUE))
+//                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)),
+////                new Triangle(new Point(-62, -32, 0), new Point(-32, -62, 0), new Point(-60, -60, -4))
+////                        .setEmission(new Color(BLUE))
+////                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)),
+//
+//                new Polygon(p[1],p[2],p[7],p[6]).setMaterial(new Material().setKs(0).setKd(0.2).setKt(0).setKr(0.8)),
+//                new Polygon(p[2],p[3],p[8],p[7]).setMaterial(new Material().setKs(0).setKd(0.8).setKt(0).setKr(0.8)),
+//                new Polygon(p[3],p[4],p[9],p[8]).setMaterial(new Material().setKs(0.2).setKd(0).setKt(0).setKr(0.8)),
+//                new Polygon(p[4],p[5],p[10],p[9]).setMaterial(new Material().setKs(0.2).setKd(0.2).setKt(0).setKr(0.8)),
+//
+//                new Polygon(p[6],p[7],p[12],p[11]).setMaterial(new Material().setKs(0).setKd(0.2).setKt(0.3).setKr(0.6)),
+//                new Polygon(p[7],p[8],p[13],p[12]).setMaterial(new Material().setKs(0).setKd(0.8).setKt(0.3).setKr(0.6)),
+//                new Polygon(p[8],p[9],p[14],p[13]).setMaterial(new Material().setKs(0.2).setKd(0).setKt(0.3).setKr(0.6)),
+//                new Polygon(p[9],p[10],p[15],p[14]).setMaterial(new Material().setKs(0.2).setKd(0.2).setKt(0.3).setKr(0.6)),
+//
+//                new Polygon(p[11],p[12],p[17],p[16]).setMaterial(new Material().setKs(0).setKd(0.2).setKt(0.6).setKr(0.3)),
+//                new Polygon(p[12],p[13],p[18],p[17]).setMaterial(new Material().setKs(0).setKd(0.8).setKt(0.6).setKr(0.3)),
+//                new Polygon(p[13],p[14],p[19],p[18]).setMaterial(new Material().setKs(0.2).setKd(0).setKt(0.6).setKr(0.3)),
+//                new Polygon(p[14],p[15],p[20],p[19]).setMaterial(new Material().setKs(0.2).setKd(0.2).setKt(0.6).setKr(0.3)),
+//
+//                new Polygon(p[16],p[17],p[22],p[21]).setMaterial(new Material().setKs(0).setKd(0.2).setKt(0.8).setKr(0)),
+//                new Polygon(p[17],p[18],p[23],p[22]).setMaterial(new Material().setKs(0).setKd(0.8).setKt(0.8).setKr(0)),
+//                new Polygon(p[18],p[19],p[24],p[23]).setMaterial(new Material().setKs(0.2).setKd(0).setKt(0.8).setKr(0)),
+//                new Polygon(p[19],p[20],p[25],p[24]).setMaterial(new Material().setKs(0.2).setKd(0.2).setKt(0.8).setKr(0))
+//        );
+//
+//        scene.lights.add(
+//                new DirectionalLight(new Color(400, 240, 0), new Vector(1, 1, -3)));
+//
+//        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+//                .setViewPlaneSize(200, 200)
+//                .setViewPlaneDistance(1000)
+//                .setRayTracer(new RayTracerBasic(scene))
+//                .setImageWriter(new ImageWriter("depthOfField", 400, 400))
+//                .renderImage();
+//
+//        camera.writeToImage();
+//
+//
+//        //        Scene scene = new Scene("Test scene");
+////
+////        scene.geometries.add(
+////                new Polygon(
+////                        new Point(-100,150,-100),
+////                        new Point(-100,-50,-100),
+////                        new Point(100,-50,-100),
+////                        new Point(100,150,-100))
+////                        .setEmission(new Color(255,213,128)),
+////                new Sphere(50d, new Point(0, 50, -80))
+////                        .setEmission(new Color(135,206,250))
+////                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30))
+////                );
+////
+////
+////        Camera camera = new Camera(new Point(0,50,50), new Vector(0,0,-1), new Vector(0,1,0))
+////                .setViewPlaneSize(100,100).setViewPlaneDistance(100)
+////                .setRayTracer(new RayTracerBasic(scene))
+////                .setImageWriter(new ImageWriter("specAndDiff", 200, 200))
+////                .renderImage();
+////
+////        camera.writeToImage();
+//
+//    }
+
+
+    @Test
+    public void testGlossyAndDiffusive(){
+        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+                .setViewPlaneSize(150, 150).setViewPlaneDistance(1000);
+        Scene scene = new Scene("Test scene");
+
+        scene.geometries.add( //
+                new Sphere(50d, new Point(0, 0, -50)).setEmission(new Color(BLUE))
+                        .setMaterial(new Material().setKd(0.4).setKsG(0.3).setShininess(100).setKt(0.6)),
+                new Sphere(25d, new Point(0, 0, -50)).setEmission(new Color(RED))
+                        .setMaterial(new Material().setKsG(0.5).setKdG(0.5).setShininess(100)));
+        scene.lights.add( //
+                new SpotLight(new Color(1000, 600, 0), new Point(-100, -100, 500), new Vector(-1, -1, -2))
+                        .setKl(0.0004).setKq(0.0000006));
+
+        camera.setImageWriter(new ImageWriter("glossyDiffusive_0.5_0.5___", 500, 500))
+                .setRayTracer(new RayTracerBasic(scene))
+                .setMultithreading(3).setDebugPrint(0.1)
+                .renderImage() //
+                .writeToImage();
+
+    }
+
+        //endregion
 
     //region final image @TODO: delete before presentation
 

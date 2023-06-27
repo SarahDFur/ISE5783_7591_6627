@@ -1,11 +1,8 @@
 package special;
 
-import static java.awt.Color.YELLOW;
-
-import org.junit.jupiter.api.Test;
-
 import geometries.Triangle;
 import lighting.PointLight;
+import org.junit.jupiter.api.Test;
 import primitives.Color;
 import primitives.Material;
 import primitives.Point;
@@ -15,13 +12,15 @@ import renderer.ImageWriter;
 import renderer.RayTracerBasic;
 import scene.Scene;
 
+import static java.awt.Color.YELLOW;
+
 /**
  * Test rendering an image
  *
  * @author Dan
  */
 public class TeapotTest {
-    private final ImageWriter imageWriter = new ImageWriter("teapot", 800, 800);
+    private final ImageWriter imageWriter = new ImageWriter("teapot_dof_1050_0.1_9", 800, 800);
 
     private final Camera camera = new Camera(new Point(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, 1, 0)) //
             .setViewPlaneDistance(1000).setViewPlaneSize(200, 200) //

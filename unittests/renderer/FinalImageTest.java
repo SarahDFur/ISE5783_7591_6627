@@ -401,7 +401,7 @@ public class FinalImageTest {
                 .setImageWriter(new ImageWriter("whiskeyCupREGULAR", 1000, 1000))
                 //.setImageWriter(new ImageWriter("whiskeyCupADAPTIVE", 1000, 1000))
                 //.setSuperSampling(Camera.SUPER_SAMPLING_TYPE.REGULAR)
-                .setSuperSamplingGridSize(9)
+                //.setSuperSamplingGridSize(9)
                 //.setApertureSize(0.01).setFocalDistance(900)
                 .setMultithreading(3).setDebugPrint(0.1)
 
