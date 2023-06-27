@@ -139,15 +139,10 @@ public class Geometries extends Intersectable {
     public HashMap<Double3, Geometries> attachVoxel(Scene scene) {
         HashMap<Double3, Geometries> voxels = new HashMap<>();
         List<Double3> voxelIndexes;
-        int i = 0;
         for (var geometry : geometries) {
-            if(i==231){
-                int u = 5;
-            }
-            i++;
             voxelIndexes = geometry.findVoxels(scene);
             for (var index : voxelIndexes) {
-                if (!voxels.containsKey(index))//the voxel is already exists in thr map
+                if (!voxels.containsKey(index))//the voxel already exists in the map
                     voxels.put(index, new Geometries(geometry));
                 else {
                     voxels.get(index).add(geometry);

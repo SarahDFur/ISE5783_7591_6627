@@ -114,17 +114,17 @@ public class FinalImageTest {
                 ,new Cylinder(60d,new Ray(new Point(0,-80,-40),new Vector(0,1,0)),90d)
                         //.setEmission(new Color(230,111,20))
                         .setEmission(new Color(black))
-                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)
-                                .setKr(0.009).setKt(0.63))
+                        .setMaterial(new Material().setKs(0).setKd(0.5).setKt(0.5).setKdG(0.5).setShininess(60)
+                                .setKt(0.5))
                 ,new Cylinder(55d,new Ray(new Point(0,-78,-40),new Vector(0,1,0)),60d)
                         .setEmission(new Color(230,111,20))
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)
-                                .setKr(0.4).setKt(0.8))
+                                .setKr(0.2).setKt(0.8))
                 ,new Sphere(40d, new Point(0,-40,-40))
                         .setEmission(new Color(165, 242, 243))
                         .setMaterial(
-                                new Material().setKd(0.3).setKs(0.7).setShininess(0)
-                                        .setKt(1).setKr(0.001)
+                                new Material().setKd(0.8).setKs(0.3).setShininess(0)
+                                        .setKt(0.66).setKr(0.001)
                         )
                 //endregion
                 //region bottle
@@ -182,8 +182,8 @@ public class FinalImageTest {
                 //region rose/flower
                 , new Sphere(50,new Point(-150,-40,-50))
                         .setEmission(new Color(black))
-                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300)
-                                .setKr(0).setKt(1))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setKsG(0.8).setShininess(300)
+                                .setKr(1).setKt(0))
 //                , new Sphere(5,new Point(-150,-40,-50))
 //                        .setEmission(new Color(black))
 //                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(300)
@@ -315,6 +315,9 @@ public class FinalImageTest {
         //region lighting
         scene.lights.add(new PointLight(new Color(blue), new Point(30, 70, 0))
                 .setKl(0.001).setKq(0.0000002));
+
+//        scene.lights.add(new PointLight(new Color(black), new Point(64,156,80))
+//                .setKl(0.001).setKq(0.0000002));
         //light inside sphere
 //        scene.lights.add(new SpotLight(new Color(ORANGE), new Point(0,-80,-40), new Vector(0,1,0))
 //                        .setNarrowBeam(0.0001)
@@ -322,20 +325,17 @@ public class FinalImageTest {
         scene.lights.add(new SpotLight(new Color(orange), new Point(100,-75,-40), new Vector(0,1,0))
                 .setNarrowBeam(0.00000000000000000000001)
                 .setKl(0.001).setKq(0.0000002));
+
+        scene.lights.add(new SpotLight(new Color(64,156,255), new Point(-150,-40,-50), new Vector(0,1,0))
+                .setNarrowBeam(0.001)
+                .setKl(0.001).setKq(0.0000002));
         scene.lights.add(new DirectionalLight(new Color(64,156,255), new Vector(0,-1,0)));
         //endregion
 //        scene.lights.add(new DirectionalLight(new Color(ORANGE), new Vector(0,-40,-40)));
         Camera camera = new Camera(new Point(-3.6, -14.39,0), new Vector(0, 0, -1), new Vector(0, 1, 0));
 //-24.43,3273.3,308.49 - more of a top view
-        camera.moveCamera(new Point(80, 10, 300), new Point(0, -40, -40))
-                .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
-                //.setRayTracer(new RayTracerBasic(scene))
-                .setRayTracer(new RayTracerRegular(scene))
-                .setImageWriter(new ImageWriter("whiskeyCup", 1000, 1000))
-                //.setSuperSampling(Camera.SUPER_SAMPLING_TYPE.ADAPTIVE)
-                //.setApertureSize(0.01).setFocalDistance(900)
-                .setMultithreading(3).setDebugPrint(0.1)
-                .renderImage();
+        basicRender(scene, camera);
+        //regularRender(scene, camera);
         camera.writeToImage();
         //region camera movements
 //        //move right
@@ -390,5 +390,32 @@ public class FinalImageTest {
 //        }
         //endregion
 
+    }
+
+    private static void basicRender(Scene scene, Camera camera) {
+        camera.moveCamera(new Point(80, 20, 300), new Point(0, -40, -40))
+                .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
+                .setRayTracer(new RayTracerBasic(scene))
+                //.setImageWriter(new ImageWriter("whiskeyCup", 1000, 1000))
+                //.setImageWriter(new ImageWriter("whiskeyCupNONE", 1000, 1000))
+                .setImageWriter(new ImageWriter("whiskeyCupREGULAR", 1000, 1000))
+                //.setImageWriter(new ImageWriter("whiskeyCupADAPTIVE", 1000, 1000))
+                //.setSuperSampling(Camera.SUPER_SAMPLING_TYPE.REGULAR)
+                .setSuperSamplingGridSize(9)
+                //.setApertureSize(0.01).setFocalDistance(900)
+                .setMultithreading(3).setDebugPrint(0.1)
+
+                .renderImage();
+    }
+    private static void regularRender(Scene scene, Camera camera) {
+        scene.setResolution(10);
+        camera.moveCamera(new Point(80, 20, 300), new Point(0, -40, -40))
+                .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
+                .setImageWriter(new ImageWriter("whiskeyCup", 1000, 1000))
+                .setRayTracer(new RayTracerRegular(scene))
+                //.setSuperSampling(Camera.SUPER_SAMPLING_TYPE.ADAPTIVE)
+                //.setApertureSize(0.01).setFocalDistance(900)
+                .setMultithreading(3).setDebugPrint(0.1)
+                .renderImage();
     }
 }

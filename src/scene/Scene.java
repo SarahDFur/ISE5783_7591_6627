@@ -138,12 +138,12 @@ public class Scene {
      * calculates what voxels the scene has and the attributes of the voxels
      */
     public void calcVoxels() {
-        this.setBoundary();
-        this.setSceneEdges();
-        this.setResolution();
-        this.setVoxelsEdges();
-        this.setVoxelsGeometries();
-        this.setFaces();
+        this.setBoundary(); //V
+        this.setSceneEdges(); //V
+        this.setResolution(); //V
+        this.setVoxelsEdges(); //V
+        this.setVoxelsGeometries(); //@TODO: FIX
+        this.setFaces(); //V
     }
 
     /**
