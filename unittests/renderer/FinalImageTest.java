@@ -210,70 +210,70 @@ public class FinalImageTest {
                 , new Triangle(J,E1,B1)//1
                         .setEmission(new Color(178,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(E1,K,B2)//2
                         .setEmission(new Color(178,58,58))
                         //.setEmission(new Color(yellow))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(K,G1,B3)//3
                         .setEmission(new Color(178,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(G1,F1,B4)//4
                         .setEmission(new Color(178,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(F1,H1,B5)//5
                         .setEmission(new Color(178,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(H1,I,B6)//6
                         .setEmission(new Color(178,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(I,D1,B7)//7
                         .setEmission(new Color(178,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(D1,J,B8)//8
                         .setEmission(new Color(178,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 //endregion
                 //region middle layer:
                 , new Triangle(J2,E2,B11)//1
                         .setEmission(new Color(140,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(E2,K2,B12)//2
                         .setEmission(new Color(140,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(K2,G2,B13)//3
                         .setEmission(new Color(140,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(G2,F2,B14)//4
                         .setEmission(new Color(140,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(F2,H2,B15)//5
                         .setEmission(new Color(140,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(H2,I2,B16)//6
                         .setEmission(new Color(140,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(I2,D2,B17)//7
                         .setEmission(new Color(140,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(D2,J2,B18)//8
                         .setEmission(new Color(140,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 //endregion
                 //region top layer:
 //                , new Triangle(new Point(-119.11,-74.88,-68.14), new Point(-101.9,-40,-68.14), new Point(-81.63,-71.01,-63.6))//1
@@ -286,36 +286,36 @@ public class FinalImageTest {
                         .setEmission(new Color(178,58,58))
                         //.setEmission(new Color(yellow))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(E3,K3,B32)//2
                         .setEmission(new Color(178,58,58))
                         //.setEmission(new Color(yellow))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(K3,G3,B33)//3
                         .setEmission(new Color(178,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(G3,F3,B34)//4
                         .setEmission(new Color(178,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(F3,H3,B35)//5
                         .setEmission(new Color(178,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(H3,I3,B36)//6
                         .setEmission(new Color(178,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(I3,D3,B37)//7
                         .setEmission(new Color(178,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 , new Triangle(D3,J3,B38)//8
                         .setEmission(new Color(178,58,58))
                         .setMaterial(new Material().setKd(1).setKs(0).setShininess(30)
-                                .setKr(0.5).setKt(0.5).setKsG(0.8))
+                                .setKr(0.5).setKt(0.5))
                 //endregion
                 //endregion
 //endregion
@@ -405,14 +405,12 @@ public class FinalImageTest {
         camera.moveCamera(new Point(80, 20, 300), new Point(0, -40, -40))
                 .setViewPlaneSize(700, 700).setViewPlaneDistance(700)
                 .setRayTracer(new RayTracerBasic(scene))
-                .setImageWriter(new ImageWriter("whiskeyCup", 1000, 1000))
+                //.setImageWriter(new ImageWriter("whiskeyCup", 1000, 1000))
                 //.setImageWriter(new ImageWriter("whiskeyCupNONE", 1000, 1000))
                 //.setImageWriter(new ImageWriter("whiskeyCupREGULAR", 1000, 1000))
-                //.setImageWriter(new ImageWriter("whiskeyCupADAPTIVE", 1000, 1000))
-                //.setSuperSampling(Camera.SUPER_SAMPLING_TYPE.REGULAR)
-                //.setSuperSamplingGridSize(9)
-//                .setAntiAliasingFactor(9)
-//                .setUseAdaptive(true)
+                .setImageWriter(new ImageWriter("whiskeyCupADAPTIVE", 1000, 1000))
+                .setAntiAliasingFactor(9)
+                .setUseAdaptive(true)
                 //.setApertureSize(0.01).setFocalDistance(900)
                 .setMultithreading(3).setDebugPrint(0.1)
                 .renderImage();

@@ -68,8 +68,7 @@ public abstract class Intersectable {
     /**
      * boundary of the entity represented by the array [x[min,max],y[min,max],z[min,max]]
      */
-    //@TODO: allocate appropriate memory
-    public int[][] boundary = new int[][] {{0,0},{0,0},{0,0}};
+    public int[][] boundary;
 
     /**
      * finds the boundary values of the geometric entity or a group of geometric entities
