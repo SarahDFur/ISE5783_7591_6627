@@ -73,42 +73,30 @@ public class Sampling {
 
 
     /**
-     * A method that generates a ray, starting at the point and going through
-     * specific square in the grid.
+     * Generates a ray, starting at the point and going through specific square in grid.
      *
      * @param j      The horizontal index of the square
      * @param i      The vertical index of the square
      * @param ray    The main ray which we built the grid around
      * @param vTo    The direction of the main ray
-     * @param vUp    Orthogonal to vTo, decides the angle
-     * @param vRight Orthogonal to vTo, decides the angle
-     * @param k      glossy/diffusive attenuation coefficient
-     * @param n      normal to the head of the main ray
-     * @return Vector that goes through the requested square in the grid
+     * @param vUp    Orthogonal to vTo
+     * @param vRight Orthogonal to vTo
+     * @param k      for glossy/diffusive
+     * @param n      normal to head of main ray
+     * @return Vector - goes through requested square in grid
      */
     private static Vector createVectorBeam(int i, int j, Ray ray, Vector vTo, Vector vUp, Vector vRight, double k, Vector n) {
         Point p0 = ray.getP0();
-        //Center of the grid
-        Point pIj = p0.add(vTo.scale(TARGET_AREA_DISTANCE));
-        //height and width of each square
-        double rC = k * TARGET_AREA_EDGE / TARGET_AREA_RESOLUTION;
-        //vertical distance of the required square from the center of the grid
-        double yI = -(i - ((double) (TARGET_AREA_RESOLUTION - 1)) / 2) * rC;
-        //horizontal distance of the required square from the center of the grid
-        double xJ = -(j - ((double) (TARGET_AREA_RESOLUTION - 1)) / 2) * rC;
+        Point pIj = p0.add(vTo.scale(TARGET_AREA_DISTANCE)); //Center of the grid
+        double rC = k * TARGET_AREA_EDGE / TARGET_AREA_RESOLUTION; //height and width of each square
+        double yI = -(i - ((double) (TARGET_AREA_RESOLUTION - 1)) / 2) * rC; //vertical distance of the required square from the center of the grid
+        double xJ = -(j - ((double) (TARGET_AREA_RESOLUTION - 1)) / 2) * rC; // horizontal distance of the required square from the center of the grid
         //changing the position of the center point so that the ray will intersect the view plane in the right place
-        if (xJ != 0) {
-            pIj = pIj.add(vRight.scale(xJ));
-        }
-        if (yI != 0) {
-            pIj = pIj.add(vUp.scale(yI));
-        }
+        if (xJ != 0) pIj = pIj.add(vRight.scale(xJ));
+        if (yI != 0) pIj = pIj.add(vUp.scale(yI));
         //return the ray
         double sign = pIj.subtract(ray.getP0()).dotProduct(n);
-        //Checking that the secondary ray doesn't go the other side of the normal plane
-        if (vTo.dotProduct(n) * sign < 0) return null;
-
+        if (vTo.dotProduct(n) * sign < 0) return null; //Checking that the secondary ray doesn't go the other side of the normal plane
         return pIj.subtract(p0).normalize();
-
     }
 }
