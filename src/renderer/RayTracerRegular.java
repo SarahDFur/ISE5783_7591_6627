@@ -42,11 +42,10 @@ public class RayTracerRegular extends RayTracerBase {
         Intersectable.GeoPoint closestIntersection = traversalAlgorithm(ray);
         return closestIntersection == null ? scene.background : calcColor(closestIntersection, ray);
     }
-    //@TODO: RayTracerRegular - traceRays()
 
     @Override
     public Color traceRays(List<Ray> rays) {
-        Color currentPixelColor = Color.BLACK;
+        Color currentPixelColor = scene.background;
         for(Ray ray :rays)
             currentPixelColor = currentPixelColor.add(traceRay(ray));
         return  currentPixelColor.reduce(rays.size());
@@ -231,7 +230,6 @@ public class RayTracerRegular extends RayTracerBase {
 
         Color diffSamplingSum = Color.BLACK;
         Color glossSamplingSum = Color.BLACK;
-        //@TODO: RayTracerRegular - SuperSampling in calcGlobalEffects
 
         //If diffusive glass
         if (material.kDg != 0) {

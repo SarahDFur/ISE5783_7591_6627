@@ -71,6 +71,7 @@ public class Sampling {
         return sampling;
     }
 
+
     /**
      * A method that generates a ray, starting at the point and going through
      * specific square in the grid.
