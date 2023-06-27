@@ -101,6 +101,7 @@ public class FinalImageTest {
     public void wisCup()
     {
         Scene scene = new Scene("whiskey cup");
+        Sampling.setTargetAreaResolution(9);
         scene.geometries.add(
 //region geometries
                 //region surfaces
@@ -342,6 +343,7 @@ public class FinalImageTest {
         Camera camera = new Camera(new Point(-3.6, -14.39,0), new Vector(0, 0, -1), new Vector(0, 1, 0));
 //-24.43,3273.3,308.49 - more of a top view
         basicRender(scene, camera);
+        //
         //regularRender(scene, camera);
         camera.writeToImage();
         //region camera movements

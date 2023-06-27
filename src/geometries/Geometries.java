@@ -42,22 +42,6 @@ public class Geometries extends Intersectable {
             this.geometries.addAll(List.of(geometries));
     }
 
-    /**
-     * searches for a specific geometry in the list
-     *
-     * @param givenGeometry the geometry we are looking for
-     * @return true if it's in the list and false if not
-     */
-    public boolean contains(Geometry givenGeometry) {
-        if (givenGeometry != null) {
-            for (var geometry : geometries) {
-                if (geometry.equals(givenGeometry))
-                    return true;
-            }
-        }
-        return false;
-    }
-
     public Geometries remove(Geometry givenGeometry) {
         Geometries list = new Geometries();
         for (var geometry : geometries) {

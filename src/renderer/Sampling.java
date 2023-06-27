@@ -45,11 +45,11 @@ public class Sampling {
     }
 
     /**
-     * Creates a sample ray for each square in the target area
+     * Creates sample ray for each square in target area
      *
-     * @param ray The main ray
-     * @param k   glossy/diffusive attenuation coefficient
-     * @param n   normal to the head of the main ray
+     * @param ray main ray
+     * @param k   for glossy/diffusive
+     * @param n   normal to head of main ray
      * @return List of sample rays
      */
     public static LinkedList<Ray> superSample(Ray ray, double k, Vector n) {

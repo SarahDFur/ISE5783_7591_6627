@@ -50,8 +50,7 @@ public class Scene {
 
     //voxel attributes
     /**
-     * hash map of all voxels in the scene- their index as the key and the list of geometric entities that intersects
-     * with the voxel as the value.
+     * hash map of all voxels in the scene - index as the key & list of geometric entities that intersects with the voxel as the value.
      */
     public HashMap<Double3, Geometries> voxels = new HashMap<Double3, Geometries>();
     /**

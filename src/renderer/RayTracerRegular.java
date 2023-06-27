@@ -330,7 +330,7 @@ public class RayTracerRegular extends RayTracerBase {
 
     //region voxel algorithms
     /**
-     * this function implements the 3dda algorithm. It determines through which voxels the ray goes.
+     * Implements the 3dda algorithm. It determines through which voxels the ray goes.
      *
      * @param ray the ray through the scene voxels grid
      * @return the first intersection GeoPoint
@@ -344,7 +344,6 @@ public class RayTracerRegular extends RayTracerBase {
         int[][] boundary = scene.geometries.boundary;
         //move the point a little, so it would be inside the grid
         Point fixedFirstIntersection = fixPoint(firstIntersection, boundary);
-
         //arrays for calculations
         int[] indexes = VoxelByPoint(fixedFirstIntersection, boundary);
         double[] directions = new double[]{dir.getX(), dir.getY(), dir.getZ()};
@@ -573,7 +572,6 @@ public class RayTracerRegular extends RayTracerBase {
 
     }
 
-
     /**
      * this function matches a voxel to a point.
      *
@@ -606,7 +604,7 @@ public class RayTracerRegular extends RayTracerBase {
     }
 
     /**
-     * determines the maximum step in units of t to the next voxel
+     * Determines the maximum step (units) of t to the next voxel
      *
      * @param minBoundary            minimum boundary coordinate
      * @param step                   the direction of the next voxel
@@ -628,10 +626,10 @@ public class RayTracerRegular extends RayTracerBase {
     /**
      * checks if the intersection point ith the geometry is inside the voxel
      *
-     * @param index        the voxel's index
-     * @param intersection the intersection point of teh ray with the geometry
-     * @param boundary     the boundary of the scene
-     * @return if the intersection point ith the geometry is inside the voxel
+     * @param index        voxel index
+     * @param intersection intersection point of the ray with the geometry
+     * @param boundary     boundary of the scene
+     * @return if the intersection point is inside the voxel
      */
     private boolean isInsideVoxel(int[] index, Point intersection, int[][] boundary) {
         //minimum coordinates
