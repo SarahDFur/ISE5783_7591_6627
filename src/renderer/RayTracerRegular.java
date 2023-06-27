@@ -7,7 +7,6 @@ import lighting.LightSource;
 import primitives.*;
 import scene.Scene;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import static primitives.Util.alignZero;
@@ -234,7 +233,7 @@ public class RayTracerRegular extends RayTracerBase {
         //If diffusive glass
         if (material.kDg != 0) {
             //super sample the refracted ray
-            LinkedList<Ray> diffusedSampling = Sampling.superSample(refractedRay, material.kDg, normal);
+            List<Ray> diffusedSampling = Sampling.superSample(refractedRay, material.kDg, normal);
             //for each sampling ray calculate the global effect
             for (var secondaryRay : diffusedSampling) {
                 diffSamplingSum = diffSamplingSum.add(calcGlobalEffects(secondaryRay, level, k, material.kT));
@@ -245,7 +244,7 @@ public class RayTracerRegular extends RayTracerBase {
         //If glossy surface
         if (material.kSg != 0) {
             //super sample the reflected ray
-            LinkedList<Ray> glossySampling = Sampling.superSample(reflectedRay, material.kSg, normal);
+            List<Ray> glossySampling = Sampling.superSample(reflectedRay, material.kSg, normal);
             //for each sampling ray calculate the global effect
             for (var secondaryRay : glossySampling) {
                 glossSamplingSum = glossSamplingSum.add(calcGlobalEffects(secondaryRay, level, k, material.kR));

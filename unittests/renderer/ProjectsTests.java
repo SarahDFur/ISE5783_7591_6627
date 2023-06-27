@@ -78,7 +78,7 @@ public class ProjectsTests {
                 .setRayTracer(new RayTracerBasic(scene))
 //                .setImageWriter(new ImageWriter("myPicture-7.3", 700, 700))
                 .setImageWriter(new ImageWriter("dof_1040_0.1_10", 700, 700))
-                .setDepthOfField(1040, 0.1,5)
+                //.setDepthOfField(1040, 0.1,5)
                 .setMultithreading(3).setDebugPrint(0.1)
                 .renderImage();
 
@@ -112,8 +112,8 @@ public class ProjectsTests {
         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
                 .setViewPlaneSize(200, 200)
                 .setViewPlaneDistance(1000)
-//                .setRayTracer(new RayTracerBasic(scene))
-                .setRayTracer(new RayTracerRegular(scene))
+                .setRayTracer(new RayTracerBasic(scene))
+//                .setRayTracer(new RayTracerRegular(scene))
                 //.setImageWriter(new ImageWriter("antiAliasing9x9", 400, 400))
                 //.setAntiAliasingFactor(9)
                 .setImageWriter(new ImageWriter("antiAliasingAdaptiveRec6", 400, 400))
@@ -123,39 +123,39 @@ public class ProjectsTests {
         camera.writeToImage();
     }
 
-    @Test
-    public void testDepthOfField() {
-        Scene scene = new Scene("Test scene");
-
-        scene.geometries.add(
-                new Sphere(60d, new Point(0, 0, -200))
-                        .setEmission(new Color(BLUE))
-                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)),
-                new Triangle(new Point(-62, -32, 0), new Point(-32, -62, 0), new Point(-60, -60, -4))
-                        .setEmission(new Color(BLUE))
-                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)));
-
-        scene.lights.add(
-                new SpotLight(new Color(400, 240, 0), new Point(-100, -100, 200), new Vector(1, 1, -3))
-                        .setKl(1E-5).setKq(1.5E-7));
-
-        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
-                .setViewPlaneSize(200, 200)
-                .setViewPlaneDistance(1000)
-                .setRayTracer(new RayTracerBasic(scene))
-                .setDepthOfField(1140, 0.5, 9);
-
-//        camera.setImageWriter(new ImageWriter("depthOfField_only", 400, 400));
-
-//        camera.setImageWriter(new ImageWriter("depthOfField_AA", 400, 400))
-//                .setAntiAliasingFactor(9);
-
-        camera.setImageWriter(new ImageWriter("depthOfField_Adaptive", 400, 400))
-                .setUseAdaptive(true).setMaxAdaptiveLevel(4);
-
-        camera.setMultithreading(3).setDebugPrint(0.1).renderImage();
-        camera.writeToImage();
-    }
+//    @Test
+//    public void testDepthOfField() {
+//        Scene scene = new Scene("Test scene");
+//
+//        scene.geometries.add(
+//                new Sphere(60d, new Point(0, 0, -200))
+//                        .setEmission(new Color(BLUE))
+//                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)),
+//                new Triangle(new Point(-62, -32, 0), new Point(-32, -62, 0), new Point(-60, -60, -4))
+//                        .setEmission(new Color(BLUE))
+//                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)));
+//
+//        scene.lights.add(
+//                new SpotLight(new Color(400, 240, 0), new Point(-100, -100, 200), new Vector(1, 1, -3))
+//                        .setKl(1E-5).setKq(1.5E-7));
+//
+//        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+//                .setViewPlaneSize(200, 200)
+//                .setViewPlaneDistance(1000)
+//                .setRayTracer(new RayTracerBasic(scene))
+//                .setDepthOfField(1140, 0.5, 9);
+//
+////        camera.setImageWriter(new ImageWriter("depthOfField_only", 400, 400));
+//
+////        camera.setImageWriter(new ImageWriter("depthOfField_AA", 400, 400))
+////                .setAntiAliasingFactor(9);
+//
+//        camera.setImageWriter(new ImageWriter("depthOfField_Adaptive", 400, 400))
+//                .setUseAdaptive(true).setMaxAdaptiveLevel(4);
+//
+//        camera.setMultithreading(3).setDebugPrint(0.1).renderImage();
+//        camera.writeToImage();
+//    }
 
 //    @Test
 //    public void testDepthOfField() {
@@ -304,7 +304,7 @@ public class ProjectsTests {
                 new SpotLight(new Color(1000, 600, 0), new Point(-100, -100, 500), new Vector(-1, -1, -2))
                         .setKl(0.0004).setKq(0.0000006));
 
-        camera.setImageWriter(new ImageWriter("glossyDiffusive_0.5_0.5___", 500, 500))
+        camera.setImageWriter(new ImageWriter("glossyAndDiffusive", 500, 500))
                 .setRayTracer(new RayTracerBasic(scene))
                 .setMultithreading(3).setDebugPrint(0.1)
                 .renderImage() //
